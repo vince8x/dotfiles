@@ -117,3 +117,9 @@ eval "$(atuin init zsh)"
 
 bindkey -v
 alias dotfiles='/usr/bin/git --git-dir=/home/tnviet/.dotfiles/ --work-tree=/home/tnviet'
+
+if [ -z "$SSH_AUTH_SOCK" ] ; then
+  eval `ssh-agent -s`
+  ssh-add
+fi
+
