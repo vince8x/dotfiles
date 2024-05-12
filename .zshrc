@@ -76,6 +76,10 @@ plugins=(
 	ripgrep
 	fzf
 	rsync
+	zsh-autosuggestions
+	zsh-syntax-highlighting
+	you-should-use
+	zsh-bat
 )
 
 source $ZSH/oh-my-zsh.sh
