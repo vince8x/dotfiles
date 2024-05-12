@@ -1,0 +1,38 @@
+left: m
+right: i
+up: e
+down: n
+top: E
+bottom: I
+start: N
+end: O
+middle: M
+
+oneshot_timeout: 100
+
+grid_keys: l u n e
+grid_up: e
+grid_right: i
+grid_down: n
+grid_left: m
+
+drag: a
+buttons: t s r
+oneshot_buttons: p f w
+screen: v
+
+accelerator: q
+decelerator: b
+
+scroll_up: u
+scroll_down: d
+
+cursor_size: 5
+
+hint_font: Helvetica Neue
+cursor_color: #FFE524
+hint_bgcolor: #141414
+hint_fgcolor: #DDDDDD
+grid_color: #141414
+grid_border_color: #DDDDDD
+
