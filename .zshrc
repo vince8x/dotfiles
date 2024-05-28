@@ -87,6 +87,7 @@ plugins=(
 	zsh-syntax-highlighting
 	you-should-use
 	zsh-bat
+  ohmyzsh-full-autoupdate
 )
 
 source $ZSH/oh-my-zsh.sh
