@@ -156,3 +156,8 @@ esac
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 eval "$(zoxide init zsh)"
+
+# exa/eza
+alias l="eza"
+alias ll="eza -alh"
+alias tree="eza --tree"
