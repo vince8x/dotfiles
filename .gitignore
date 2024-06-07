@@ -76,6 +76,8 @@
 .vim/*/*/.*.swp
 .vim/*/*/*/.*.swp
 
+.vim/undodir
+
 # Local copies of tools/scripts
 !bin
 !bin/*

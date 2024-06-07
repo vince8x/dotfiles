@@ -119,6 +119,23 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
+# editor
+alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+
+function nvims() {
+  items=("default" "kickstart" "AstroNvim" "lazy")
+  config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
+  if [[ -z $config ]]; then
+    echo "Nothing selected"
+    return 0
+  elif [[ $config == "default" ]]; then
+    config = ""
+  elif [[ $config == "lazy" ]]; then
+    config = "nvim"
+  fi
+  NVIM_APPNAME=$config nvim $@
+}
+
 export EDITOR=nvim
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -161,3 +178,6 @@ eval "$(zoxide init --cmd cd zsh)"
 alias l="eza"
 alias ll="eza -alh"
 alias tree="eza --tree"
+
+
+bindkey -s ^e "nvims\n"
