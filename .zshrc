@@ -181,3 +181,6 @@ alias tree="eza --tree"
 
 
 bindkey -s ^e "nvims\n"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(navi widget zsh)"
