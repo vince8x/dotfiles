@@ -184,3 +184,5 @@ bindkey -s ^e "nvims\n"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(navi widget zsh)"
+eval "$(starship init zsh)"
+

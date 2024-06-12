@@ -4,6 +4,8 @@
 --
 -- Move to window using the <ctrl> hjkl keys
 local map = vim.keymap.set
+map("n", "<C-.>", "<C-i>", { desc = "Go to Foward", noremap = true })
+map("n", "<C-,>", "<C-o>", { desc = "Go to Backward", noremap = true })
 -- map("n", "<C-m>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 -- map("n", "<C-n>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 -- map("n", "<C-e>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
