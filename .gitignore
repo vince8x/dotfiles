@@ -162,3 +162,8 @@ etc/clusto*.conf
 # Lazygit
 !.config/lazygit/
 !.config/lazygit/config.yml
+
+# kitty
+!.config/kitty/
+!.config/kitty/kitty.conf
+
