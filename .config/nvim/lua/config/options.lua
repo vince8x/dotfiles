@@ -5,6 +5,7 @@ local vim = vim
 local opt = vim.opt
 local g = vim.g
 vim.opt.winbar = "%=%m %f"
+vim.opt.swapfile = false
 
 vim.g.matchparen_timeout = 20
 vim.g.matchparen_insert_timeout = 20
