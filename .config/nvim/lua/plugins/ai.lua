@@ -5,6 +5,9 @@ return {
     enabled = false,
   },
   {
+    "github/copilot.vim",
+  },
+  {
     "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
     config = function()
