@@ -17,6 +17,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.mini-surround" },
     -- import/override with your plugins
     { import = "lazyvim.plugins.extras.coding.codeium" },
+    { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "plugins" },
   },
   defaults = {

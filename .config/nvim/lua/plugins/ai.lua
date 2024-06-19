@@ -6,6 +6,7 @@ return {
   },
   {
     "github/copilot.vim",
+    enabled = false,
   },
   {
     "jackMort/ChatGPT.nvim",
