@@ -18,6 +18,5 @@ return {
       { "<c-up>", "<cmd><C-U>TmuxNavigateUp<cr>" },
       { "<c-right>", "<cmd><C-U>TmuxNavigateRight<cr>" },
     },
-    require("module"),
   },
 }
