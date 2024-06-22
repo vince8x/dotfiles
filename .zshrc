@@ -79,7 +79,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	bundler
-        dotenv
+  dotenv
 	ripgrep
 	fzf
 	rsync
@@ -139,6 +139,11 @@ function nvims() {
 export EDITOR=nvim
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH=/usr/local/go/bin:$PATH
+export PATH=${PATH}:`go env GOPATH`/bin
+
+# accept partial command
+bindkey "^i" forward-word
 
 
 eval "$(atuin init zsh)"
