@@ -143,7 +143,7 @@ export PATH=/usr/local/go/bin:$PATH
 export PATH=${PATH}:`go env GOPATH`/bin
 
 # accept partial command
-bindkey "^i" forward-word
+bindkey "^ " forward-word
 
 
 eval "$(atuin init zsh)"

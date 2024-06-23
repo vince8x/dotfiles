@@ -10,6 +10,8 @@ vim.opt.swapfile = false
 vim.g.matchparen_timeout = 20
 vim.g.matchparen_insert_timeout = 20
 
+vim.g.maplocalleader = ","
+
 vim.g.markdown_fenced_languages = {
   "html",
   "javascript",
@@ -78,9 +80,9 @@ local options = {
   showtabline = 0,
   mouse = "a",
   mousescroll = "ver:2,hor:6",
-  scrolloff = 3,
+  scrolloff = 8,
   sidescrolloff = 3,
-  wrap = true,
+  wrap = false,
   list = true,
   -- listchars = { leadmultispace = "│ ", multispace = "│ ", tab = "│ ", },
   --lazyredraw = true,
