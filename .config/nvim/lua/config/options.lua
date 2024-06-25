@@ -146,6 +146,8 @@ for k, v in pairs(window_options) do
   vim.wo[k] = v
 end
 
+vim.g.lazyvim_php_lsp = "intelephense"
+
 -- LSP Server to use for Python.
 -- Set to "basedpyright" to use basedpyright instead of pyright.
 vim.g.lazyvim_python_lsp = "pyright"
