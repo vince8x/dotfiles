@@ -93,8 +93,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
-bindkey '^.' forward-word
-
 
 # export MANPATH="/usr/local/man:$MANPATH"
 

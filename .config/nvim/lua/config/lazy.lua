@@ -22,6 +22,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.coding.codeium" },
     { import = "lazyvim.plugins.extras.coding.copilot" },
     { import = "lazyvim.plugins.extras.coding.copilot-chat" },
+    { import = "lazyvim.plugins.extras.editor.outline" },
 
     -- dap
     { import = "lazyvim.plugins.extras.dap.core" },
