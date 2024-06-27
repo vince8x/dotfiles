@@ -93,6 +93,8 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 
+bindkey '^.' forward-word
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -135,6 +137,12 @@ function nvims() {
   fi
   NVIM_APPNAME=$config nvim $@
 }
+
+
+export OPENAI_API_KEY=`pass show apikey/openai`
+export GROQ_API_KEY=`pass show apikey/groq`
+export DEEPSEEK_API_KEY=`pass show apikey/deepseek`
+export GEMINI_API_KEY=`pass show apikey/deepseek`
 
 export EDITOR=nvim
 export PATH="$HOME/bin:$PATH"

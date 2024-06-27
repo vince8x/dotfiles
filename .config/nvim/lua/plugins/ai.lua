@@ -20,6 +20,39 @@ return {
     end,
   },
   {
+    "joshuavial/aider.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "folke/which-key.nvim",
+    },
+    config = function()
+      require("aider").setup({
+        auto_manage_context = true,
+        default_bindings = false,
+      })
+    end,
+    keys = {
+      {
+        "<leader>ao",
+        desc = "Aider",
+      },
+      {
+        "<leader>aoa",
+        function()
+          require("aider").AiderOpen()
+        end,
+        desc = "Aider Open",
+      },
+      {
+        "<leader>aob",
+        function()
+          require("aider").AiderBackground()
+        end,
+        desc = "Aider Background",
+      },
+    },
+  },
+  {
     "github/copilot.vim",
     enabled = false,
   },
