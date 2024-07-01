@@ -61,14 +61,10 @@ return {
   },
   {
     "joshuavial/aider.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "folke/which-key.nvim",
-    },
     config = function()
       require("aider").setup({
         auto_manage_context = true,
-        default_bindings = false,
+        default_bindings = true,
       })
     end,
     keys = {
@@ -347,6 +343,34 @@ return {
         silent = true,
         noremap = true,
         nowait = true,
+      })
+    end,
+  },
+  {
+    "frankroeder/parrot.nvim",
+    tag = "v0.3.1",
+    dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
+    config = function()
+      require("parrot").setup({
+        providers = {
+          pplx = {
+            api_key = os.getenv("PERPLEXITY_API_KEY"),
+            -- OPTIONAL
+            -- gpg command
+            -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
+            -- macOS security tool
+            -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
+          },
+          openai = {
+            api_key = os.getenv("OPENAI_API_KEY"),
+          },
+          anthropic = {
+            api_key = os.getenv("ANTHROPIC_API_KEY"),
+          },
+          mistral = {
+            api_key = os.getenv("MISTRAL_API_KEY"),
+          },
+        },
       })
     end,
   },
