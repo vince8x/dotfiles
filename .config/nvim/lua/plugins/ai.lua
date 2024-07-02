@@ -353,23 +353,23 @@ return {
     config = function()
       require("parrot").setup({
         providers = {
-          pplx = {
-            api_key = os.getenv("PERPLEXITY_API_KEY"),
-            -- OPTIONAL
-            -- gpg command
-            -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
-            -- macOS security tool
-            -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
-          },
+          -- pplx = {
+          --   api_key = os.getenv("PERPLEXITY_API_KEY"),
+          -- OPTIONAL
+          -- gpg command
+          -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
+          -- macOS security tool
+          -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
+          -- },
           openai = {
             api_key = os.getenv("OPENAI_API_KEY"),
           },
-          anthropic = {
-            api_key = os.getenv("ANTHROPIC_API_KEY"),
-          },
-          mistral = {
-            api_key = os.getenv("MISTRAL_API_KEY"),
-          },
+          -- anthropic = {
+          --   api_key = os.getenv("ANTHROPIC_API_KEY"),
+          -- },
+          -- mistral = {
+          --   api_key = os.getenv("MISTRAL_API_KEY"),
+          -- },
         },
       })
     end,

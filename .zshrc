@@ -94,6 +94,9 @@ source $ZSH/oh-my-zsh.sh
 
 
 
+
+
+
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -199,3 +202,16 @@ eval "$(starship init zsh)"
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+
+# partial accept
+function my-forward-word-or-char() {
+  if [[ $CURSOR == $BUFFER_CURSOR ]]; then
+    zle forward-word
+  else
+    zle forward-char
+  fi
+}
+zle -N my-forward-word-or-char
+ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(my-forward-word-or-char)
+bindkey '^ ' my-forward-word-or-char
