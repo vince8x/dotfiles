@@ -17,7 +17,7 @@ vim.api.nvim_set_keymap("i", "<Down>", "<C-n>", { expr = true, noremap = true })
 
 map("n", "<Cr>", "viw")
 
-vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
+-- vim.keymap.set("n", "<localleader>", '<cmd>lua require("which-key").show("\\\\")<cr>')
 
 -- move lines up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -33,5 +33,22 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
+vim.keymap.set("v", "<leader>d", '"_d')
+
+local cmd = "cat /tmp/whisper.nvim | tail -n 1 | xargs -0 | tr -d '\\n' | sed -e 's/^[[:space:]]*//'"
+local function whisper()
+  vim.cmd("silent !whisper.nvim")
+  local result = vim.fn.system(cmd)
+  vim.fn.setreg("a", result)
+end
+
+-- inoremap
+vim.api.nvim_set_keymap("i", "<C-M>", "<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
+
+-- nnoremap
+vim.api.nvim_set_keymap("n", "<C-M>", '<Cmd>lua whisper()<CR>"ap', { noremap = true, silent = true })
+
+-- vnoremap
+vim.api.nvim_set_keymap("v", "<C-M>", "c<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
 -- use leader + x to chmod executable
 -- vim.keymap.set("n", "<leader>chmo", "<cmd>!chmod +x %<CR>", { silent = true })

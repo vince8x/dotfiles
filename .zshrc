@@ -141,9 +141,12 @@ function nvims() {
 
 
 export OPENAI_API_KEY=`pass show apikey/openai`
+export OPENAI_EMAIL=`pass show web/email`
+export OPENAI_PASSWORD=`pass show web/password002`
 export GROQ_API_KEY=`pass show apikey/groq`
 export DEEPSEEK_API_KEY=`pass show apikey/deepseek`
-export GEMINI_API_KEY=`pass show apikey/deepseek`
+export GEMINI_API_KEY=`pass show apikey/gemini`
+export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 
 export EDITOR=nvim
 export PATH="$HOME/bin:$PATH"
@@ -215,3 +218,7 @@ function my-forward-word-or-char() {
 zle -N my-forward-word-or-char
 ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(my-forward-word-or-char)
 bindkey '^ ' my-forward-word-or-char
+
+
+# whisper
+export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
