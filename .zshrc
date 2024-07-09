@@ -169,6 +169,8 @@ if [ -z "$SSH_AUTH_SOCK" ] ; then
   eval `ssh-agent -s`
   ssh-add
 fi
+# eval "$(ssh-agent -s)"
+# ssh-add ~/.ssh/id_rsa
 
 
 export NVM_DIR="$HOME/.nvm"
