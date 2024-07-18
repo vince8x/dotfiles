@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -95,8 +95,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 
-
-
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -139,15 +137,6 @@ function nvims() {
   NVIM_APPNAME=$config nvim $@
 }
 
-
-export OPENAI_API_KEY=`pass show apikey/openai`
-export OPENAI_EMAIL=`pass show web/email`
-export OPENAI_PASSWORD=`pass show web/password002`
-export GROQ_API_KEY=`pass show apikey/groq`
-export DEEPSEEK_API_KEY=`pass show apikey/deepseek`
-export GEMINI_API_KEY=`pass show apikey/gemini`
-export OPENROUTER_API_KEY=`pass show apikey/openrouter`
-
 export EDITOR=nvim
 export PATH="$HOME/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -159,18 +148,10 @@ bindkey "^ " forward-word
 
 
 eval "$(atuin init zsh)"
-eval "$(atuin init zsh)"
 
 
 bindkey -v
 alias dotfiles='/usr/bin/git --git-dir=/home/tnviet/.dotfiles/ --work-tree=/home/tnviet'
-
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-  eval `ssh-agent -s`
-  ssh-add
-fi
-# eval "$(ssh-agent -s)"
-# ssh-add ~/.ssh/id_rsa
 
 
 export NVM_DIR="$HOME/.nvm"
@@ -192,6 +173,15 @@ esac
 export PATH="$HOME/.tmux/plugins/tmuxifier/bin:$PATH"
 eval "$(tmuxifier init -)"
 eval "$(zoxide init --cmd cd zsh)"
+
+# fzf-nova
+__fzf_nova__() {
+  fzf-nova
+}
+zle     -N             __fzf_nova__
+bindkey -M emacs '^F' __fzf_nova__
+bindkey -M vicmd '^F' __fzf_nova__
+bindkey -M viins '^F' __fzf_nova__
 
 # exa/eza
 alias l="eza"
@@ -224,3 +214,4 @@ bindkey '^ ' my-forward-word-or-char
 
 # whisper
 export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
+source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
