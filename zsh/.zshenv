@@ -23,4 +23,4 @@ export GEMINI_API_KEY=`pass show apikey/gemini`
 export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 
 
-. "$HOME/.cargo/env"
+export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig
