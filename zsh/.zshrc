@@ -220,4 +220,3 @@ bindkey '^ ' my-forward-word-or-char
 
 # whisper
 export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
