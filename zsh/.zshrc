@@ -92,6 +92,12 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# source antidote
+source ~/.antidote/antidote.zsh
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
+
 
 
 
