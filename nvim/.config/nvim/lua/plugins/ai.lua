@@ -138,7 +138,7 @@ return {
             name = "ChatGPT4",
             chat = true,
             command = false,
-            model = { model = "gpt-4o", temperature = 0.2, top_p = 0.1 },
+            model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
             system_prompt = "You are a general AI assistant.\n\n"
               .. "The user provided the additional info about how they would like you to respond:\n\n"
               .. "- If you're unsure don't guess and say you don't know instead.\n"
@@ -344,6 +344,7 @@ return {
   },
   {
     "frankroeder/parrot.nvim",
+    disabled = true,
     tag = "v0.3.1",
     dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
     config = function()

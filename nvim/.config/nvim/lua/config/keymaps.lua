@@ -52,3 +52,16 @@ vim.api.nvim_set_keymap("n", "<C-M>", '<Cmd>lua whisper()<CR>"ap', { noremap = t
 vim.api.nvim_set_keymap("v", "<C-M>", "c<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
 -- use leader + x to chmod executable
 -- vim.keymap.set("n", "<leader>chmo", "<cmd>!chmod +x %<CR>", { silent = true })
+--
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>To",
+  ":Telescope project_cli_commands open<cr>",
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>Tr",
+  ":Telescope project_cli_commands running<cr>",
+  { noremap = true, silent = true }
+)
