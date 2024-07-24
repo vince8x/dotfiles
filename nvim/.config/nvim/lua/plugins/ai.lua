@@ -151,7 +151,7 @@ return {
           },
           {
             name = "CodeGPT4",
-            chat = false,
+            chat = true,
             command = true,
             model = { model = "gpt-4o", temperature = 0.2, top_p = 0.1 },
             system_prompt = "You are an AI working as a code editor.\n\n"
