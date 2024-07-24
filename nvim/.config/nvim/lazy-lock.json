@@ -77,6 +77,7 @@
   "plenary.nvim": { "branch": "master", "commit": "a3e3bc82a3f95c5ed0d7201546d5d2c19b20d683" },
   "project-cli-commands.nvim": { "branch": "main", "commit": "9a2a2fdfd38a3d71cc927e3a398ac0ddfa846b3d" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
+  "rust-tools.nvim": { "branch": "master", "commit": "676187908a1ce35ffcd727c654ed68d851299d3e" },
   "rustaceanvim": { "branch": "master", "commit": "047f9c9d8cd2861745eb9de6c1570ee0875aa795" },
   "sg.nvim": { "branch": "master", "commit": "8bdd4d19da2268072708d5fe18fda9c23e16509d" },
   "speech-to-text.nvim": { "branch": "master", "commit": "d1e3c980745b6904293d811d28fae67704555618" },

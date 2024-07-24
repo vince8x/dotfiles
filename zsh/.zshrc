@@ -98,8 +98,10 @@ source ~/.antidote/antidote.zsh
 # initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
 antidote load ${ZDOTDIR:-$HOME}/.zsh_plugins.txt
 
-
-
+export SUDO_EDITOR=nvim
+export GIT_EDITOR=nvim
+export VISUAL=nvim
+export EDITOR="$VISUAL"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
