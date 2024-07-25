@@ -65,3 +65,24 @@ vim.api.nvim_set_keymap(
   ":Telescope project_cli_commands running<cr>",
   { noremap = true, silent = true }
 )
+
+-- wsnavigator
+-- use buf_only
+vim.keymap.set("n", "tt", function()
+  local wsn = require("wsnavigator")
+  wsn.set_opts({ jumplist = { buf_only = true } })
+  wsn.open_wsn()
+end, { noremap = true })
+
+-- use jumplist
+vim.keymap.set("n", "tj", function()
+  local wsn = require("wsnavigator")
+  wsn.set_opts({ jumplist = { buf_only = false } })
+  wsn.open_wsn()
+end, { noremap = true })
+
+-- switch_display_mode
+vim.keymap.set("n", "ts", function()
+  local wsn = require("wsnavigator")
+  wsn.switch_display_mode()
+end, { noremap = true })

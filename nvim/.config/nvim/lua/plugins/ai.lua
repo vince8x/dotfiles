@@ -2,7 +2,7 @@ return {
   {
     "Exafunction/codeium.vim",
     event = "BufEnter",
-    enabled = false,
+    enabled = true,
     config = function()
       -- Change '<C-g>' here to any keycode you like.
       vim.keymap.set("i", "<C-g>", function()
@@ -131,6 +131,43 @@ return {
     "robitx/gp.nvim",
     config = function()
       require("gp").setup({
+        providers = {
+          openai = {
+            endpoint = "https://api.openai.com/v1/chat/completions",
+            secret = os.getenv("OPENAI_API_KEY"),
+          },
+
+          -- azure = {...},
+
+          copilot = {
+            endpoint = "https://api.githubcopilot.com/chat/completions",
+            secret = {
+              "bash",
+              "-c",
+              "cat ~/.config/github-copilot/hosts.json | sed -e 's/.*oauth_token...//;s/\".*//'",
+            },
+          },
+
+          pplx = {
+            endpoint = "https://api.perplexity.ai/chat/completions",
+            secret = os.getenv("PPLX_API_KEY"),
+          },
+
+          ollama = {
+            endpoint = "http://localhost:11434/v1/chat/completions",
+          },
+
+          googleai = {
+            endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
+            secret = os.getenv("GOOGLEAI_API_KEY"),
+          },
+
+          anthropic = {
+            endpoint = "https://api.anthropic.com/v1/messages",
+            secret = os.getenv("ANTHROPIC_API_KEY"),
+          },
+        },
+
         agents = {
           -- Remove default agents
           { name = "CodeGPT3-5", disabled = true },
@@ -153,7 +190,7 @@ return {
             name = "CodeGPT4",
             chat = true,
             command = true,
-            model = { model = "gpt-4o", temperature = 0.2, top_p = 0.1 },
+            model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
             system_prompt = "You are an AI working as a code editor.\n\n"
               .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
               .. "START AND END YOUR ANSWER WITH:\n\n```",
@@ -185,190 +222,143 @@ return {
         },
       })
 
-      require("which-key").register({
-        -- ...
-        ["<C-g>"] = {
-          c = { ":<C-u>'<,'>GpChatNew<cr>", "Visual Chat New" },
-          p = { ":<C-u>'<,'>GpChatPaste<cr>", "Visual Chat Paste" },
-          t = { ":<C-u>'<,'>GpChatToggle<cr>", "Visual Toggle Chat" },
-
-          ["<C-x>"] = { ":<C-u>'<,'>GpChatNew split<cr>", "Visual Chat New split" },
-          ["<C-v>"] = { ":<C-u>'<,'>GpChatNew vsplit<cr>", "Visual Chat New vsplit" },
-          ["<C-t>"] = { ":<C-u>'<,'>GpChatNew tabnew<cr>", "Visual Chat New tabnew" },
-
-          r = { ":<C-u>'<,'>GpRewrite<cr>", "Visual Rewrite" },
-          a = { ":<C-u>'<,'>GpAppend<cr>", "Visual Append (after)" },
-          b = { ":<C-u>'<,'>GpPrepend<cr>", "Visual Prepend (before)" },
-          i = { ":<C-u>'<,'>GpImplement<cr>", "Implement selection" },
-
-          g = {
-            name = "generate into new ..",
-            p = { ":<C-u>'<,'>GpPopup<cr>", "Visual Popup" },
-            e = { ":<C-u>'<,'>GpEnew<cr>", "Visual GpEnew" },
-            n = { ":<C-u>'<,'>GpNew<cr>", "Visual GpNew" },
-            v = { ":<C-u>'<,'>GpVnew<cr>", "Visual GpVnew" },
-            t = { ":<C-u>'<,'>GpTabnew<cr>", "Visual GpTabnew" },
-          },
-
-          n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-          s = { "<cmd>GpStop<cr>", "GpStop" },
-          x = { ":<C-u>'<,'>GpContext<cr>", "Visual GpContext" },
-
-          w = {
-            name = "Whisper",
-            w = { ":<C-u>'<,'>GpWhisper<cr>", "Whisper" },
-            r = { ":<C-u>'<,'>GpWhisperRewrite<cr>", "Whisper Rewrite" },
-            a = { ":<C-u>'<,'>GpWhisperAppend<cr>", "Whisper Append (after)" },
-            b = { ":<C-u>'<,'>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
-            p = { ":<C-u>'<,'>GpWhisperPopup<cr>", "Whisper Popup" },
-            e = { ":<C-u>'<,'>GpWhisperEnew<cr>", "Whisper Enew" },
-            n = { ":<C-u>'<,'>GpWhisperNew<cr>", "Whisper New" },
-            v = { ":<C-u>'<,'>GpWhisperVnew<cr>", "Whisper Vnew" },
-            t = { ":<C-u>'<,'>GpWhisperTabnew<cr>", "Whisper Tabnew" },
-          },
+      require("which-key").add({
+        -- VISUAL mode mappings
+        -- s, x, v modes are handled the same way by which_key
+        {
+          mode = { "v" },
+          nowait = true,
+          remap = false,
+          { "<C-g><C-t>", ":<C-u>'<,'>GpChatNew tabnew<cr>", desc = "ChatNew tabnew" },
+          { "<C-g><C-v>", ":<C-u>'<,'>GpChatNew vsplit<cr>", desc = "ChatNew vsplit" },
+          { "<C-g><C-x>", ":<C-u>'<,'>GpChatNew split<cr>", desc = "ChatNew split" },
+          { "<C-g>a", ":<C-u>'<,'>GpAppend<cr>", desc = "Visual Append (after)" },
+          { "<C-g>b", ":<C-u>'<,'>GpPrepend<cr>", desc = "Visual Prepend (before)" },
+          { "<C-g>c", ":<C-u>'<,'>GpChatNew<cr>", desc = "Visual Chat New" },
+          { "<C-g>g", group = "generate into new .." },
+          { "<C-g>ge", ":<C-u>'<,'>GpEnew<cr>", desc = "Visual GpEnew" },
+          { "<C-g>gn", ":<C-u>'<,'>GpNew<cr>", desc = "Visual GpNew" },
+          { "<C-g>gp", ":<C-u>'<,'>GpPopup<cr>", desc = "Visual Popup" },
+          { "<C-g>gt", ":<C-u>'<,'>GpTabnew<cr>", desc = "Visual GpTabnew" },
+          { "<C-g>gv", ":<C-u>'<,'>GpVnew<cr>", desc = "Visual GpVnew" },
+          { "<C-g>i", ":<C-u>'<,'>GpImplement<cr>", desc = "Implement selection" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "Next Agent" },
+          { "<C-g>p", ":<C-u>'<,'>GpChatPaste<cr>", desc = "Visual Chat Paste" },
+          { "<C-g>r", ":<C-u>'<,'>GpRewrite<cr>", desc = "Visual Rewrite" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
+          { "<C-g>t", ":<C-u>'<,'>GpChatToggle<cr>", desc = "Visual Toggle Chat" },
+          { "<C-g>w", group = "Whisper" },
+          { "<C-g>wa", ":<C-u>'<,'>GpWhisperAppend<cr>", desc = "Whisper Append" },
+          { "<C-g>wb", ":<C-u>'<,'>GpWhisperPrepend<cr>", desc = "Whisper Prepend" },
+          { "<C-g>we", ":<C-u>'<,'>GpWhisperEnew<cr>", desc = "Whisper Enew" },
+          { "<C-g>wn", ":<C-u>'<,'>GpWhisperNew<cr>", desc = "Whisper New" },
+          { "<C-g>wp", ":<C-u>'<,'>GpWhisperPopup<cr>", desc = "Whisper Popup" },
+          { "<C-g>wr", ":<C-u>'<,'>GpWhisperRewrite<cr>", desc = "Whisper Rewrite" },
+          { "<C-g>wt", ":<C-u>'<,'>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
+          { "<C-g>wv", ":<C-u>'<,'>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
+          { "<C-g>ww", ":<C-u>'<,'>GpWhisper<cr>", desc = "Whisper" },
+          { "<C-g>x", ":<C-u>'<,'>GpContext<cr>", desc = "Visual GpContext" },
         },
-        -- ...
-      }, {
-        mode = "v", -- VISUAL mode
-        prefix = "",
-        buffer = nil,
-        silent = true,
-        noremap = true,
-        nowait = true,
-      })
 
-      -- NORMAL mode mappings
-      require("which-key").register({
-        -- ...
-        ["<C-g>"] = {
-          c = { "<cmd>GpChatNew<cr>", "New Chat" },
-          t = { "<cmd>GpChatToggle<cr>", "Toggle Chat" },
-          f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-
-          ["<C-x>"] = { "<cmd>GpChatNew split<cr>", "New Chat split" },
-          ["<C-v>"] = { "<cmd>GpChatNew vsplit<cr>", "New Chat vsplit" },
-          ["<C-t>"] = { "<cmd>GpChatNew tabnew<cr>", "New Chat tabnew" },
-
-          r = { "<cmd>GpRewrite<cr>", "Inline Rewrite" },
-          a = { "<cmd>GpAppend<cr>", "Append (after)" },
-          b = { "<cmd>GpPrepend<cr>", "Prepend (before)" },
-
-          g = {
-            name = "generate into new ..",
-            p = { "<cmd>GpPopup<cr>", "Popup" },
-            e = { "<cmd>GpEnew<cr>", "GpEnew" },
-            n = { "<cmd>GpNew<cr>", "GpNew" },
-            v = { "<cmd>GpVnew<cr>", "GpVnew" },
-            t = { "<cmd>GpTabnew<cr>", "GpTabnew" },
-          },
-
-          n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-          s = { "<cmd>GpStop<cr>", "GpStop" },
-          x = { "<cmd>GpContext<cr>", "Toggle GpContext" },
-
-          w = {
-            name = "Whisper",
-            w = { "<cmd>GpWhisper<cr>", "Whisper" },
-            r = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-            a = { "<cmd>GpWhisperAppend<cr>", "Whisper Append (after)" },
-            b = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
-            p = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
-            e = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-            n = { "<cmd>GpWhisperNew<cr>", "Whisper New" },
-            v = { "<cmd>GpWhisperVnew<cr>", "Whisper Vnew" },
-            t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
-          },
+        -- NORMAL mode mappings
+        {
+          mode = { "n" },
+          nowait = true,
+          remap = false,
+          { "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "New Chat tabnew" },
+          { "<C-g><C-v>", "<cmd>GpChatNew vsplit<cr>", desc = "New Chat vsplit" },
+          { "<C-g><C-x>", "<cmd>GpChatNew split<cr>", desc = "New Chat split" },
+          { "<C-g>a", "<cmd>GpAppend<cr>", desc = "Append (after)" },
+          { "<C-g>b", "<cmd>GpPrepend<cr>", desc = "Prepend (before)" },
+          { "<C-g>c", "<cmd>GpChatNew<cr>", desc = "New Chat" },
+          { "<C-g>f", "<cmd>GpChatFinder<cr>", desc = "Chat Finder" },
+          { "<C-g>g", group = "generate into new .." },
+          { "<C-g>ge", "<cmd>GpEnew<cr>", desc = "GpEnew" },
+          { "<C-g>gn", "<cmd>GpNew<cr>", desc = "GpNew" },
+          { "<C-g>gp", "<cmd>GpPopup<cr>", desc = "Popup" },
+          { "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "GpTabnew" },
+          { "<C-g>gv", "<cmd>GpVnew<cr>", desc = "GpVnew" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "Next Agent" },
+          { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
+          { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat" },
+          { "<C-g>w", group = "Whisper" },
+          { "<C-g>wa", "<cmd>GpWhisperAppend<cr>", desc = "Whisper Append (after)" },
+          { "<C-g>wb", "<cmd>GpWhisperPrepend<cr>", desc = "Whisper Prepend (before)" },
+          { "<C-g>we", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew" },
+          { "<C-g>wn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New" },
+          { "<C-g>wp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup" },
+          { "<C-g>wr", "<cmd>GpWhisperRewrite<cr>", desc = "Whisper Inline Rewrite" },
+          { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
+          { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
+          { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
+          { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
         },
-        -- ...
-      }, {
-        mode = "n", -- NORMAL mode
-        prefix = "",
-        buffer = nil,
-        silent = true,
-        noremap = true,
-        nowait = true,
-      })
 
-      -- INSERT mode mappings
-      require("which-key").register({
-        -- ...
-        ["<C-g>"] = {
-          c = { "<cmd>GpChatNew<cr>", "New Chat" },
-          t = { "<cmd>GpChatToggle<cr>", "Toggle Chat" },
-          f = { "<cmd>GpChatFinder<cr>", "Chat Finder" },
-
-          ["<C-x>"] = { "<cmd>GpChatNew split<cr>", "New Chat split" },
-          ["<C-v>"] = { "<cmd>GpChatNew vsplit<cr>", "New Chat vsplit" },
-          ["<C-t>"] = { "<cmd>GpChatNew tabnew<cr>", "New Chat tabnew" },
-
-          r = { "<cmd>GpRewrite<cr>", "Inline Rewrite" },
-          a = { "<cmd>GpAppend<cr>", "Append (after)" },
-          b = { "<cmd>GpPrepend<cr>", "Prepend (before)" },
-
-          g = {
-            name = "generate into new ..",
-            p = { "<cmd>GpPopup<cr>", "Popup" },
-            e = { "<cmd>GpEnew<cr>", "GpEnew" },
-            n = { "<cmd>GpNew<cr>", "GpNew" },
-            v = { "<cmd>GpVnew<cr>", "GpVnew" },
-            t = { "<cmd>GpTabnew<cr>", "GpTabnew" },
-          },
-
-          x = { "<cmd>GpContext<cr>", "Toggle GpContext" },
-          s = { "<cmd>GpStop<cr>", "GpStop" },
-          n = { "<cmd>GpNextAgent<cr>", "Next Agent" },
-
-          w = {
-            name = "Whisper",
-            w = { "<cmd>GpWhisper<cr>", "Whisper" },
-            r = { "<cmd>GpWhisperRewrite<cr>", "Whisper Inline Rewrite" },
-            a = { "<cmd>GpWhisperAppend<cr>", "Whisper Append (after)" },
-            b = { "<cmd>GpWhisperPrepend<cr>", "Whisper Prepend (before)" },
-            p = { "<cmd>GpWhisperPopup<cr>", "Whisper Popup" },
-            e = { "<cmd>GpWhisperEnew<cr>", "Whisper Enew" },
-            n = { "<cmd>GpWhisperNew<cr>", "Whisper New" },
-            v = { "<cmd>GpWhisperVnew<cr>", "Whisper Vnew" },
-            t = { "<cmd>GpWhisperTabnew<cr>", "Whisper Tabnew" },
-          },
-        },
-        -- ...
-      }, {
-        mode = "i", -- INSERT mode
-        prefix = "",
-        buffer = nil,
-        silent = true,
-        noremap = true,
-        nowait = true,
-      })
-    end,
-  },
-  {
-    "frankroeder/parrot.nvim",
-    disabled = true,
-    tag = "v0.3.1",
-    dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
-    config = function()
-      require("parrot").setup({
-        providers = {
-          -- pplx = {
-          --   api_key = os.getenv("PERPLEXITY_API_KEY"),
-          -- OPTIONAL
-          -- gpg command
-          -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
-          -- macOS security tool
-          -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
-          -- },
-          openai = {
-            api_key = os.getenv("OPENAI_API_KEY"),
-          },
-          -- anthropic = {
-          --   api_key = os.getenv("ANTHROPIC_API_KEY"),
-          -- },
-          -- mistral = {
-          --   api_key = os.getenv("MISTRAL_API_KEY"),
-          -- },
+        -- INSERT mode mappings
+        {
+          mode = { "i" },
+          nowait = true,
+          remap = false,
+          { "<C-g><C-t>", "<cmd>GpChatNew tabnew<cr>", desc = "New Chat tabnew" },
+          { "<C-g><C-v>", "<cmd>GpChatNew vsplit<cr>", desc = "New Chat vsplit" },
+          { "<C-g><C-x>", "<cmd>GpChatNew split<cr>", desc = "New Chat split" },
+          { "<C-g>a", "<cmd>GpAppend<cr>", desc = "Append (after)" },
+          { "<C-g>b", "<cmd>GpPrepend<cr>", desc = "Prepend (before)" },
+          { "<C-g>c", "<cmd>GpChatNew<cr>", desc = "New Chat" },
+          { "<C-g>f", "<cmd>GpChatFinder<cr>", desc = "Chat Finder" },
+          { "<C-g>g", group = "generate into new .." },
+          { "<C-g>ge", "<cmd>GpEnew<cr>", desc = "GpEnew" },
+          { "<C-g>gn", "<cmd>GpNew<cr>", desc = "GpNew" },
+          { "<C-g>gp", "<cmd>GpPopup<cr>", desc = "Popup" },
+          { "<C-g>gt", "<cmd>GpTabnew<cr>", desc = "GpTabnew" },
+          { "<C-g>gv", "<cmd>GpVnew<cr>", desc = "GpVnew" },
+          { "<C-g>n", "<cmd>GpNextAgent<cr>", desc = "Next Agent" },
+          { "<C-g>r", "<cmd>GpRewrite<cr>", desc = "Inline Rewrite" },
+          { "<C-g>s", "<cmd>GpStop<cr>", desc = "GpStop" },
+          { "<C-g>t", "<cmd>GpChatToggle<cr>", desc = "Toggle Chat" },
+          { "<C-g>w", group = "Whisper" },
+          { "<C-g>wa", "<cmd>GpWhisperAppend<cr>", desc = "Whisper Append (after)" },
+          { "<C-g>wb", "<cmd>GpWhisperPrepend<cr>", desc = "Whisper Prepend (before)" },
+          { "<C-g>we", "<cmd>GpWhisperEnew<cr>", desc = "Whisper Enew" },
+          { "<C-g>wn", "<cmd>GpWhisperNew<cr>", desc = "Whisper New" },
+          { "<C-g>wp", "<cmd>GpWhisperPopup<cr>", desc = "Whisper Popup" },
+          { "<C-g>wr", "<cmd>GpWhisperRewrite<cr>", desc = "Whisper Inline Rewrite" },
+          { "<C-g>wt", "<cmd>GpWhisperTabnew<cr>", desc = "Whisper Tabnew" },
+          { "<C-g>wv", "<cmd>GpWhisperVnew<cr>", desc = "Whisper Vnew" },
+          { "<C-g>ww", "<cmd>GpWhisper<cr>", desc = "Whisper" },
+          { "<C-g>x", "<cmd>GpContext<cr>", desc = "Toggle GpContext" },
         },
       })
     end,
   },
+  -- {
+  --   "frankroeder/parrot.nvim",
+  --   disabled = true,
+  --   tag = "v0.3.1",
+  --   dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
+  --   config = function()
+  --     require("parrot").setup({
+  --       providers = {
+  --         -- pplx = {
+  --         --   api_key = os.getenv("PERPLEXITY_API_KEY"),
+  --         -- OPTIONAL
+  --         -- gpg command
+  --         -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
+  --         -- macOS security tool
+  --         -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
+  --         -- },
+  --         openai = {
+  --           api_key = os.getenv("OPENAI_API_KEY"),
+  --         },
+  --         -- anthropic = {
+  --         --   api_key = os.getenv("ANTHROPIC_API_KEY"),
+  --         -- },
+  --         -- mistral = {
+  --         --   api_key = os.getenv("MISTRAL_API_KEY"),
+  --         -- },
+  --       },
+  --     })
+  --   end,
+  -- },
 }
