@@ -28,6 +28,10 @@ return {
           require("typescript").setup({ server = opts })
           return true
         end,
+        rust_analyzer = function()
+          return true
+        end,
+
         -- Specify * to use this function as a fallback for any server
         -- ["*"] = function(server, opts) end,
       },

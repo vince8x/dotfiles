@@ -83,6 +83,7 @@ plugins=(
 	ripgrep
 	fzf
 	rsync
+  fzf-tab
 	zsh-autosuggestions
 	zsh-syntax-highlighting
 	you-should-use
@@ -90,7 +91,19 @@ plugins=(
   ohmyzsh-full-autoupdate
 )
 
+autoload -U compinit; compinit
+
 source $ZSH/oh-my-zsh.sh
+
+# set descriptions format to enable group support
+# NOTE: don't use escape sequences here, fzf-tab will ignore them
+zstyle ':completion:*:descriptions' format '[%d]'
+# preview directory's content with eza when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza -1 --color=always $realpath'
+# switch group using `<` and `>`
+zstyle ':fzf-tab:*' switch-group '<' '>'
+
+zstyle ':fzf-tab:*' fzf-command ftb-tmux-popup
 
 # source antidote
 source ~/.antidote/antidote.zsh
