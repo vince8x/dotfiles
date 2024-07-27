@@ -24,5 +24,6 @@ export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 
 
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig
+export CONFIG_DIR=$HOME/.config
 
 source $HOME/.cargo/env

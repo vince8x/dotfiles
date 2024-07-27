@@ -1,0 +1,48 @@
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    ports:
+      - "6379:6379"
+    volumes:
+      - /data/docker/redis-stack-server:/data
+    restart: always
+    networks:
+      - mynetwork
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_PASSWORD: 123
+    ports:
+      - "5432:5432"
+    volumes:
+      - /data/docker/postgres:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - mynetwork
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+    ports:
+      - "3306:3306"
+    volumes:
+      - /data/docker/mysql:/var/lib/mysql
+    restart: always
+    networks:
+      - mynetwork
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - /data/docker/mongodb:/data/db
+    restart: always
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
