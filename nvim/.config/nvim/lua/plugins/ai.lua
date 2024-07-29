@@ -62,29 +62,25 @@ return {
   {
     "joshuavial/aider.nvim",
     opts = {
-      -- auto_manage_context = false,
-      default_bindings = false,
+      auto_manage_context = true,
+      default_bindings = true,
     },
-    keys = function()
-      return {
-
-        {
-          "<leader>ao",
-          desc = "Aider",
-        },
-        {
-          "<leader>aoa",
-          "<cmd>lua AiderOpen()<cr>i",
-          desc = "Aider Open",
-        },
-        {
-          "<leader>aob",
-          "<cmd>lua AiderBackground()<cr>",
-          desc = "Aider Background",
-          -- defaults to message "Complete as many todo items as you can and remove the comment for any item you complete."
-        },
-      }
-    end,
+    keys = {
+      {
+        "<leader>aoa",
+        function()
+          require("aider").AiderOpen()
+        end,
+        desc = "Aider Open",
+      },
+      {
+        "<leader>aob",
+        function()
+          require("aider").AiderBackground()
+        end,
+        desc = "Aider Background",
+      },
+    },
   },
   {
     "github/copilot.vim",
@@ -101,22 +97,25 @@ return {
           yank_last_code = "<C-y>",
         },
       })
-      require("which-key").register({
-        ["<leader>o"] = {
-          name = "OpenAI's ChatGPT",
-          c = { "<cmd>ChatGPT<CR>", "ChatGPT" },
-          e = { "<cmd>ChatGPTEditWithInstruction<CR>", "Edit with instruction", mode = { "n", "v" } },
-          g = { "<cmd>ChatGPTRun grammar_correction<CR>", "Grammar Correction", mode = { "n", "v" } },
-          t = { "<cmd>ChatGPTRun translate<CR>", "Translate", mode = { "n", "v" } },
-          k = { "<cmd>ChatGPTRun keywords<CR>", "Keywords", mode = { "n", "v" } },
-          d = { "<cmd>ChatGPTRun docstring<CR>", "Docstring", mode = { "n", "v" } },
-          a = { "<cmd>ChatGPTRun add_tests<CR>", "Add Tests", mode = { "n", "v" } },
-          o = { "<cmd>ChatGPTRun optimize_code<CR>", "Optimize Code", mode = { "n", "v" } },
-          s = { "<cmd>ChatGPTRun summarize<CR>", "Summarize", mode = { "n", "v" } },
-          f = { "<cmd>ChatGPTRun fix_bugs<CR>", "Fix Bugs", mode = { "n", "v" } },
-          x = { "<cmd>ChatGPTRun explain_code<CR>", "Explain Code", mode = { "n", "v" } },
-          r = { "<cmd>ChatGPTRun roxygen_edit<CR>", "Roxygen Edit", mode = { "n", "v" } },
-          l = { "<cmd>ChatGPTRun code_readability_analysis<CR>", "Code Readability Analysis", mode = { "n", "v" } },
+      require("which-key").add({
+        {
+          { "<leader>o", group = "OpenAI's ChatGPT" },
+          { "<leader>oc", "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
+          {
+            mode = { "n", "v" },
+            { "<leader>oa", "<cmd>ChatGPTRun add_tests<CR>", desc = "Add Tests" },
+            { "<leader>od", "<cmd>ChatGPTRun docstring<CR>", desc = "Docstring" },
+            { "<leader>oe", "<cmd>ChatGPTEditWithInstruction<CR>", desc = "Edit with instruction" },
+            { "<leader>of", "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs" },
+            { "<leader>og", "<cmd>ChatGPTRun grammar_correction<CR>", desc = "Grammar Correction" },
+            { "<leader>ok", "<cmd>ChatGPTRun keywords<CR>", desc = "Keywords" },
+            { "<leader>ol", "<cmd>ChatGPTRun code_readability_analysis<CR>", desc = "Code Readability Analysis" },
+            { "<leader>oo", "<cmd>ChatGPTRun optimize_code<CR>", desc = "Optimize Code" },
+            { "<leader>or", "<cmd>ChatGPTRun roxygen_edit<CR>", desc = "Roxygen Edit" },
+            { "<leader>os", "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize" },
+            { "<leader>ot", "<cmd>ChatGPTRun translate<CR>", desc = "Translate" },
+            { "<leader>ox", "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code" },
+          },
         },
       })
     end,
@@ -170,12 +169,41 @@ return {
 
         agents = {
           -- Remove default agents
-          { name = "CodeGPT3-5", disabled = true },
+          {
+            name = "CodeGPT3-5",
+            chat = false,
+            command = true,
+            model = {
+              model = "gpt-3.5-turbo-1106",
+              temperature = 0.8,
+              top_p = 1,
+            },
+            system_prompt = "You are an AI working as a code editor.\n\n"
+              .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+              .. "START AND END YOUR ANSWER WITH:\n\n```",
+          },
+          {
+            name = "ChatGPT3-5",
+            chat = true,
+            command = false,
+            -- string with model name or table with model name and parameters
+            model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
+            -- system prompt (use this to specify the persona/role of the AI)
+            system_prompt = "You are a general AI assistant.\n\n"
+              .. "The user provided the additional info about how they would like you to respond:\n\n"
+              .. "- If you're unsure don't guess and say you don't know instead.\n"
+              .. "- Ask question if you need clarification to provide better answer.\n"
+              .. "- Think deeply and carefully from first principles step by step.\n"
+              .. "- Zoom out first to see the big picture and then zoom in to details.\n"
+              .. "- Use Socratic method to improve your thinking and coding skills.\n"
+              .. "- Don't elide any code from your output if the answer requires coding.\n"
+              .. "- Take a deep breath; You've got this!\n",
+          },
           {
             name = "ChatGPT4",
             chat = true,
             command = false,
-            model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
+            model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
             system_prompt = "You are a general AI assistant.\n\n"
               .. "The user provided the additional info about how they would like you to respond:\n\n"
               .. "- If you're unsure don't guess and say you don't know instead.\n"
@@ -188,9 +216,9 @@ return {
           },
           {
             name = "CodeGPT4",
-            chat = true,
+            chat = false,
             command = true,
-            model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
+            model = { model = "gpt-4o-mini", temperature = 0.8, top_p = 1 },
             system_prompt = "You are an AI working as a code editor.\n\n"
               .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
               .. "START AND END YOUR ANSWER WITH:\n\n```",

@@ -9,6 +9,16 @@ return {
       require("window-picker").setup({
         hint = "floating-big-letter",
         selection_chars = "TNSERIAOC<X>DHWYFU",
+        filter_rules = {
+          include_current_win = false,
+          bo = {
+            -- if the file type is one of following, the window will be ignored
+            filetype = { "notify" },
+
+            -- if the file type is one of following, the window will be ignored
+            buftype = {},
+          },
+        },
       })
     end,
     keys = {

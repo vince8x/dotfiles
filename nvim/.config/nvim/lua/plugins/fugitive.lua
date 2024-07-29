@@ -7,13 +7,9 @@ return {
   config = function()
     local wk = require("which-key")
 
-    wk.register({
-      ["<leader>gS"] = { "<cmd>Git<CR>", "View Git Status" },
-      ["g."] = { "<cmd>GBrowse<CR>", "View HTTP Link" },
+    wk.add({
+        { "<leader>gS", "<cmd>Git<CR>", desc = "View Git Status" },
+        { "g.", "<cmd>GBrowse<CR>", desc = "View HTTP Link" },
     })
-
-    wk.register({
-      ["g,"] = { "<cmd>GBrowse<CR>", "View HTTP Link" },
-    }, { mode = "v" })
   end,
 }

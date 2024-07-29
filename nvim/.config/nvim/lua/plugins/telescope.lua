@@ -76,7 +76,7 @@ return {
       desc = "Grep (root dir)",
     },
     {
-      "<leader>sp",
+      "<leader>s.",
       function()
         require("telescope").extensions.dir.live_grep()
       end,

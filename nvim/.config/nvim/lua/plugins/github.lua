@@ -1,54 +1,38 @@
 local github_key_maps = function()
   local wk = require("which-key")
-  wk.register({
-    g = {
-      h = {
-        name = "+Github",
-        c = {
-          name = "+Commits",
-          c = { "<cmd>GHCloseCommit<cr>", "Close" },
-          e = { "<cmd>GHExpandCommit<cr>", "Expand" },
-          o = { "<cmd>GHOpenToCommit<cr>", "Open To" },
-          p = { "<cmd>GHPopOutCommit<cr>", "Pop Out" },
-          z = { "<cmd>GHCollapseCommit<cr>", "Collapse" },
-        },
-        i = {
-          name = "+Issues",
-          p = { "<cmd>GHPreviewIssue<cr>", "Preview" },
-        },
-        l = {
-          name = "+Litee",
-          t = { "<cmd>LTPanel<cr>", "Toggle Panel" },
-        },
-        v = {
-          name = "+Review",
-          b = { "<cmd>GHStartReview<cr>", "Begin" },
-          c = { "<cmd>GHCloseReview<cr>", "Close" },
-          d = { "<cmd>GHDeleteReview<cr>", "Delete" },
-          e = { "<cmd>GHExpandReview<cr>", "Expand" },
-          s = { "<cmd>GHSubmitReview<cr>", "Submit" },
-          z = { "<cmd>GHCollapseReview<cr>", "Collapse" },
-        },
-        q = {
-          name = "+Pull Request",
-          c = { "<cmd>GHClosePR<cr>", "Close" },
-          d = { "<cmd>GHPRDetails<cr>", "Details" },
-          e = { "<cmd>GHExpandPR<cr>", "Expand" },
-          o = { "<cmd>GHOpenPR<cr>", "Open" },
-          p = { "<cmd>GHPopOutPR<cr>", "PopOut" },
-          r = { "<cmd>GHRefreshPR<cr>", "Refresh" },
-          t = { "<cmd>GHOpenToPR<cr>", "Open To" },
-          z = { "<cmd>GHCollapsePR<cr>", "Collapse" },
-        },
-        t = {
-          name = "+Threads",
-          c = { "<cmd>GHCreateThread<cr>", "Create" },
-          n = { "<cmd>GHNextThread<cr>", "Next" },
-          t = { "<cmd>GHToggleThread<cr>", "Toggle" },
-        },
-      },
-    },
-  }, { prefix = "<leader>" })
+  wk.add({
+    { "<localleader>gh", group = "Github" },
+    { "<localleader>ghc", group = "Commits" },
+    { "<localleader>ghcc", "<cmd>GHCloseCommit<cr>", desc = "Close" },
+    { "<localleader>ghce", "<cmd>GHExpandCommit<cr>", desc = "Expand" },
+    { "<localleader>ghco", "<cmd>GHOpenToCommit<cr>", desc = "Open To" },
+    { "<localleader>ghcp", "<cmd>GHPopOutCommit<cr>", desc = "Pop Out" },
+    { "<localleader>ghcz", "<cmd>GHCollapseCommit<cr>", desc = "Collapse" },
+    { "<localleader>ghi", group = "Issues" },
+    { "<localleader>ghip", "<cmd>GHPreviewIssue<cr>", desc = "Preview" },
+    { "<localleader>ghl", group = "Litee" },
+    { "<localleader>ghlt", "<cmd>LTPanel<cr>", desc = "Toggle Panel" },
+    { "<localleader>ghq", group = "Pull Request" },
+    { "<localleader>ghqc", "<cmd>GHClosePR<cr>", desc = "Close" },
+    { "<localleader>ghqd", "<cmd>GHPRDetails<cr>", desc = "Details" },
+    { "<localleader>ghqe", "<cmd>GHExpandPR<cr>", desc = "Expand" },
+    { "<localleader>ghqo", "<cmd>GHOpenPR<cr>", desc = "Open" },
+    { "<localleader>ghqp", "<cmd>GHPopOutPR<cr>", desc = "PopOut" },
+    { "<localleader>ghqr", "<cmd>GHRefreshPR<cr>", desc = "Refresh" },
+    { "<localleader>ghqt", "<cmd>GHOpenToPR<cr>", desc = "Open To" },
+    { "<localleader>ghqz", "<cmd>GHCollapsePR<cr>", desc = "Collapse" },
+    { "<localleader>ght", group = "Threads" },
+    { "<localleader>ghtc", "<cmd>GHCreateThread<cr>", desc = "Create" },
+    { "<localleader>ghtn", "<cmd>GHNextThread<cr>", desc = "Next" },
+    { "<localleader>ghtt", "<cmd>GHToggleThread<cr>", desc = "Toggle" },
+    { "<localleader>ghv", group = "Review" },
+    { "<localleader>ghvb", "<cmd>GHStartReview<cr>", desc = "Begin" },
+    { "<localleader>ghvc", "<cmd>GHCloseReview<cr>", desc = "Close" },
+    { "<localleader>ghvd", "<cmd>GHDeleteReview<cr>", desc = "Delete" },
+    { "<localleader>ghve", "<cmd>GHExpandReview<cr>", desc = "Expand" },
+    { "<localleader>ghvs", "<cmd>GHSubmitReview<cr>", desc = "Submit" },
+    { "<localleader>ghvz", "<cmd>GHCollapseReview<cr>", desc = "Collapse" },
+  })
 end
 
 return {

@@ -20,6 +20,7 @@ export OPENAI_EMAIL=`pass show web/email`
 export OPENAI_PASSWORD=`pass show web/password002`
 export DEEPSEEK_API_KEY=`pass show apikey/deepseek`
 export GEMINI_API_KEY=`pass show apikey/gemini`
+export GOOGLEAI_API_KEY=$GEMINI_API_KEY
 export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 
 
