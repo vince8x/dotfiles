@@ -80,7 +80,6 @@ export ZSH="$HOME/.oh-my-zsh"
 plugins=(
 	bundler
   dotenv
-	ripgrep
 	fzf
 	rsync
   fzf-tab
@@ -218,17 +217,31 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 
-# partial accept
-function my-forward-word-or-char() {
-  if [[ $CURSOR == $BUFFER_CURSOR ]]; then
-    zle forward-word
-  else
-    zle forward-char
-  fi
+# Define custom widgets for partial accept
+function partial_accept_forward() {
+  echo "partial_accept_forward called"
+    zle vi-forward-word
+    zle autosuggest-accept
 }
-zle -N my-forward-word-or-char
-ZSH_AUTOSUGGEST_IGNORE_WIDGETS+=(my-forward-word-or-char)
-bindkey '^ ' my-forward-word-or-char
+zle -N partial_accept_forward
+
+function partial_accept_backward() {
+  echo "partial_accept_backward called"
+    zle vi-backward-word
+    zle autosuggest-accept
+}
+zle -N partial_accept_backward
+
+# Add custom widgets to partial accept list
+ZSH_AUTOSUGGEST_PARTIAL_ACCEPT_WIDGETS+=(partial_accept_forward partial_accept_backward)
+
+# Bind keys to custom widgets in vi mode
+bindkey -M viins '^[.' partial_accept_forward  # Ctrl + .
+bindkey -M viins '^[,' partial_accept_backward # Ctrl + ,
+
+# Optionally, bind keys in vicmd mode (normal mode)
+bindkey -M vicmd '^[.' partial_accept_forward  # Ctrl + .
+bindkey -M vicmd '^[,' partial_accept_backward # Ctrl + ,
 
 
 # whisper
