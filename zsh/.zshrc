@@ -246,3 +246,4 @@ bindkey -M vicmd '^[,' partial_accept_backward # Ctrl + ,
 
 # whisper
 export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
+

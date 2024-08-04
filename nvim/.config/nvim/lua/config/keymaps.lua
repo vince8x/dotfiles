@@ -86,3 +86,5 @@ vim.keymap.set("n", "ts", function()
   local wsn = require("wsnavigator")
   wsn.switch_display_mode()
 end, { noremap = true })
+
+vim.api.nvim_set_keymap( 'n', '<localleader>do', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })

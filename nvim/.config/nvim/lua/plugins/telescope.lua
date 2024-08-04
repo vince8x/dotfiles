@@ -4,11 +4,17 @@ return {
     {
       "nvim-telescope/telescope-live-grep-args.nvim",
       "princejoogie/dir-telescope.nvim",
+      "ThePrimeagen/git-worktree.nvim",
+      {
+        "isak102/telescope-git-file-history.nvim",
+        dependencies = { "tpope/vim-fugitive" },
+      },
     },
   },
   opts = function(_, opts)
-    local lga_actions = require("telescope-live-grep-args.actions")
     local actions = require("telescope.actions")
+    local lga_actions = require("telescope-live-grep-args.actions")
+    local gfh_actions = require("telescope").extensions.git_file_history.actions
     opts.extensions = {
       live_grep_args = {
         auto_quoting = true, -- enable/disable auto-quoting
@@ -27,12 +33,29 @@ return {
         -- theme = { }, -- use own theme spec
         -- layout_config = { mirror=true }, -- mirror preview pane
       },
+      git_file_history = {
+        -- Keymaps inside the picker
+        mappings = {
+          i = {
+            ["<C-g>"] = gfh_actions.open_in_browser,
+          },
+          n = {
+            ["<C-g>"] = gfh_actions.open_in_browser,
+          },
+        },
+
+        -- The command to use for opening the browser (nil or string)
+        -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
+        browser_command = nil,
+      },
     }
     opts.defaults = vim.tbl_extend("force", opts.defaults, {
       mappings = {
         i = {
           ["<C-n>"] = require("telescope.actions").move_selection_next,
           ["<C-e>"] = require("telescope.actions").move_selection_previous,
+          ["<PageUp>"] = require("telescope.actions").results_scrolling_up,
+          ["<PageDown>"] = require("telescope.actions").results_scrolling_down,
         },
         n = { -- while in normal mode
           ["<C-n>"] = require("telescope.actions").move_selection_next,
@@ -89,6 +112,13 @@ return {
       end,
       desc = "Find file in selected directory",
     },
+    {
+      "<leader>g*", -- "gl" for "git log"
+      function()
+        require("telescope").extensions.git_file_history.git_file_history()
+      end,
+      desc = "Git file history",
+    },
   },
   config = function(_, opts)
     local tele = require("telescope")
@@ -102,5 +132,6 @@ return {
 
     tele.load_extension("live_grep_args")
     tele.load_extension("dir")
+    tele.load_extension("git_file_history")
   end,
 }
