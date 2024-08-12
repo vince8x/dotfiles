@@ -60,26 +60,20 @@ return {
     },
   },
   {
-    "joshuavial/aider.nvim",
-    opts = {
-      auto_manage_context = true,
-      default_bindings = true,
+    "nekowasabi/aider.vim",
+    event = "VeryLazy",
+    dependencies = {
+      "vim-denops/denops.vim"
     },
     keys = {
-      {
-        "<leader>aoa",
-        function()
-          require("aider").AiderOpen()
-        end,
-        desc = "Aider Open",
-      },
-      {
-        "<leader>aob",
-        function()
-          require("aider").AiderBackground()
-        end,
-        desc = "Aider Background",
-      },
+      { "<localleader>ar", "<cmd>AiderRun<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>aa", "<cmd>AiderAddCurrentFile<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>aw", "<cmd>AiderAddWeb<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>ap", "<cmd>AiderSendPromptWithInput<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>ax", "<cmd>AiderExit<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>ai", "<cmd>AiderAddIgnoreCurrentFile<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>aI", "<cmd>AiderOpenIgnore<cr>", mode = "n", noremap = true, silent = true },
+      { "<localleader>av", "<cmd>AiderVisualTextWithPrompt<cr>", mode = "v" },
     },
   },
   {
@@ -91,7 +85,26 @@ return {
     event = "VeryLazy",
     config = function()
       require("chatgpt").setup({
-        api_key_cmd = "pass show apikey/openai",
+        openai_params = {
+          -- NOTE: model can be a function returning the model name
+          -- this is useful if you want to change the model on the fly
+          -- using commands
+          -- Example:
+          -- model = function()
+          --     if some_condition() then
+          --         return "gpt-4-1106-preview"
+          --     else
+          --         return "gpt-3.5-turbo"
+          --     end
+          -- end,
+          model = "gpt-4-1106-preview",
+          frequency_penalty = 0,
+          presence_penalty = 0,
+          max_tokens = 4095,
+          temperature = 0.2,
+          top_p = 0.1,
+          n = 1,
+        },
         keymaps = {
           submit = "<C-j>",
           yank_last_code = "<C-y>",

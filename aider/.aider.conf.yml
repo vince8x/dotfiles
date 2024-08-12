@@ -153,7 +153,7 @@ openai-api-key: OPENAI_API_KEY
 #aiderignore: .aiderignore
 
 ## Enable/disable auto commit of LLM changes (default: True)
-#auto-commits: true
+auto-commits: false
 
 ## Enable/disable commits when repo is found dirty (default: True)
 #dirty-commits: true
