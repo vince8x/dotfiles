@@ -1,3 +1,17 @@
+local default_chat_system_prompt = "You are a general AI assistant.\n\n"
+  .. "The user provided the additional info about how they would like you to respond:\n\n"
+  .. "- If you're unsure don't guess and say you don't know instead.\n"
+  .. "- Ask question if you need clarification to provide better answer.\n"
+  .. "- Think deeply and carefully from first principles step by step.\n"
+  .. "- Zoom out first to see the big picture and then zoom in to details.\n"
+  .. "- Use Socratic method to improve your thinking and coding skills.\n"
+  .. "- Don't elide any code from your output if the answer requires coding.\n"
+  .. "- Take a deep breath; You've got this!\n"
+
+local default_code_system_prompt = "You are an AI working as a code editor.\n\n"
+  .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
+  .. "START AND END YOUR ANSWER WITH:\n\n```"
+
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 local pickers = require("telescope.pickers")
@@ -120,7 +134,7 @@ local HOOKS = {
         .. "```{{filetype}}\n{{selection}}\n```\n\n"
         .. "Please respond by explaining the code above."
       local agent = gp.get_chat_agent()
-      gp.Prompt(params, gp.Target.popup,  agent, template)
+      gp.Prompt(params, gp.Target.popup, agent, template)
     end,
   },
   CodeReview = {
@@ -259,6 +273,11 @@ return {
           endpoint = "https://api.anthropic.com/v1/messages",
           secret = os.getenv("ANTHROPIC_API_KEY"),
         },
+        openrouter = {
+          disable = false,
+          endpoint = "https://openrouter.ai/api/v1/chat/completions",
+          secret = os.getenv("OPENROUTER_API_KEY"),
+        },
       },
       agents = {
         {
@@ -270,9 +289,7 @@ return {
             temperature = 0.8,
             top_p = 1,
           },
-          system_prompt = "You are an AI working as a code editor.\n\n"
-            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
-            .. "START AND END YOUR ANSWER WITH:\n\n```",
+          system_prompt = default_code_system_prompt,
         },
         {
           name = "ChatGPT3-5",
@@ -281,39 +298,37 @@ return {
           -- string with model name or table with model name and parameters
           model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
-          system_prompt = "You are a general AI assistant.\n\n"
-            .. "The user provided the additional info about how they would like you to respond:\n\n"
-            .. "- If you're unsure don't guess and say you don't know instead.\n"
-            .. "- Ask question if you need clarification to provide better answer.\n"
-            .. "- Think deeply and carefully from first principles step by step.\n"
-            .. "- Zoom out first to see the big picture and then zoom in to details.\n"
-            .. "- Use Socratic method to improve your thinking and coding skills.\n"
-            .. "- Don't elide any code from your output if the answer requires coding.\n"
-            .. "- Take a deep breath; You've got this!\n",
+          system_prompt = default_chat_system_prompt,
         },
         {
           name = "ChatGPT4",
           chat = true,
           command = false,
           model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
-          system_prompt = "You are a general AI assistant.\n\n"
-            .. "The user provided the additional info about how they would like you to respond:\n\n"
-            .. "- If you're unsure don't guess and say you don't know instead.\n"
-            .. "- Ask question if you need clarification to provide better answer.\n"
-            .. "- Think deeply and carefully from first principles step by step.\n"
-            .. "- Zoom out first to see the big picture and then zoom in to details.\n"
-            .. "- Use Socratic method to improve your thinking and coding skills.\n"
-            .. "- Don't elide any code from your output if the answer requires coding.\n"
-            .. "- Take a deep breath; You've got this!\n",
+          system_prompt = default_chat_system_prompt,
         },
         {
           name = "CodeGPT4",
           chat = false,
           command = true,
           model = { model = "gpt-4o-mini", temperature = 0.8, top_p = 1 },
-          system_prompt = "You are an AI working as a code editor.\n\n"
-            .. "Please AVOID COMMENTARY OUTSIDE OF THE SNIPPET RESPONSE.\n"
-            .. "START AND END YOUR ANSWER WITH:\n\n```",
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "ChatDeepseek",
+          chat = true,
+          command = false,
+          model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
+          system_prompt = default_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "CodeDeepseek",
+          chat = false,
+          command = true,
+          model = { model = "deepseek/deepseek-coder", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
         },
       },
       -- [feat: add option to set chat buftype to prompt](https://github.com/Robitx/gp.nvim/issues/94)
