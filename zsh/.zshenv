@@ -27,4 +27,8 @@ export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig
 export CONFIG_DIR=$HOME/.config
 
+export DENO_INSTALL="/home/vince8x/.deno"
+export PATH="$DENO_INSTALL/bin:$PATH"
+
+
 source $HOME/.cargo/env

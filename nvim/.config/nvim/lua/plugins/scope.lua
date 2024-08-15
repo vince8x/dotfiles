@@ -7,4 +7,8 @@ return {
   config = function()
     require("scope").setup()
   end,
+  keys = {
+    { "<leader>.", "<Cmd>Telescope scope buffers<CR>", desc = "List buffers" },
+    { "<leader>wm", "<Cmd>ScopeMoveBuf<CR>", desc = "List buffers" },
+  },
 }

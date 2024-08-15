@@ -133,5 +133,6 @@ return {
     tele.load_extension("live_grep_args")
     tele.load_extension("dir")
     tele.load_extension("git_file_history")
+    tele.load_extension("scope")
   end,
 }
