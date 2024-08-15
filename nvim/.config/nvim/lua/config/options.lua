@@ -157,3 +157,15 @@ vim.g.lazyvim_php_lsp = "intelephense"
 vim.g.lazyvim_python_lsp = "pyright"
 vim.g.lazyvim_python_ruff = "ruff_lsp"
 vim.g.autoformat = false
+
+vim.filetype.add({
+    extension = {
+        Jenkinsfile = "groovy",
+    },
+})
+
+vim.filetype.add({
+    extension = {
+        Jenkinsfile = "groovy",
+    },
+})
