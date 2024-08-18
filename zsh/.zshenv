@@ -14,6 +14,7 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH=/usr/local/go/bin:$PATH
 export PATH=${PATH}:`go env GOPATH`/bin
 
+export GITHUB_API_KEY=`pass show apikey/github`
 export OPENAI_API_KEY=`pass show apikey/openai`
 export GROQ_API_KEY=`pass show apikey/groq`
 export OPENAI_EMAIL=`pass show web/email`

@@ -63,7 +63,9 @@ return {
     "nekowasabi/aider.vim",
     event = "VeryLazy",
     dependencies = {
-      "vim-denops/denops.vim"
+      "vim-denops/denops.vim",
+      event = { 'VeryLazy' },
+      'vim-denops/denops-helloworld.vim'
     },
     keys = {
       { "<localleader>ar", "<cmd>AiderRun<cr>", mode = "n", noremap = true, silent = true },

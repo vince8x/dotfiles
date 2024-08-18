@@ -9,6 +9,30 @@ return {
         "isak102/telescope-git-file-history.nvim",
         dependencies = { "tpope/vim-fugitive" },
       },
+      {
+        "natecraddock/telescope-zf-native.nvim",
+        config = function()
+          require("telescope").load_extension("zf-native")
+        end,
+      },
+      {
+        "nvim-telescope/telescope-ui-select.nvim",
+        config = function()
+          require("telescope").load_extension("ui-select")
+        end,
+      },
+      -- {
+      --   "nvim-telescope/telescope-github.nvim",
+      --   config = function()
+      --     require("telescope").load_extension("gh")
+      --   end,
+      -- },
+      {
+        "Marskey/telescope-sg",
+        config = function()
+          require("telescope").load_extension("ast_grep")
+        end,
+      },
     },
   },
   opts = function(_, opts)
