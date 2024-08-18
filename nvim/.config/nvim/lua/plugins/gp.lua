@@ -254,24 +254,9 @@ return {
             "cat ~/.config/github-copilot/hosts.json | sed -e 's/.*oauth_token...//;s/\".*//'",
           },
         },
-
-        pplx = {
-          endpoint = "https://api.perplexity.ai/chat/completions",
-          secret = os.getenv("PPLX_API_KEY"),
-        },
-
-        ollama = {
-          endpoint = "http://localhost:11434/v1/chat/completions",
-        },
-
         googleai = {
           endpoint = "https://generativelanguage.googleapis.com/v1beta/models/{{model}}:streamGenerateContent?key={{secret}}",
           secret = os.getenv("GOOGLEAI_API_KEY"),
-        },
-
-        anthropic = {
-          endpoint = "https://api.anthropic.com/v1/messages",
-          secret = os.getenv("ANTHROPIC_API_KEY"),
         },
         openrouter = {
           disable = false,
@@ -319,7 +304,7 @@ return {
           name = "ChatDeepseek",
           chat = true,
           command = false,
-          model = { model = "deepseek/deepseek-coder", temperature = 1.1, top_p = 1 },
+          model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
           system_prompt = default_chat_system_prompt,
         },
         {
@@ -328,6 +313,22 @@ return {
           chat = false,
           command = true,
           model = { model = "deepseek/deepseek-coder", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "ChatClaudeSonnet",
+          chat = true,
+          command = false,
+          model = { model = "anthropic/claude-3.5-sonnet", temperature = 1.1, top_p = 1 },
+          system_prompt = default_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "CodeClaudeSonnet",
+          chat = false,
+          command = true,
+          model = { model = "anthropic/claude-3.5-sonnet", temperature = 0.8, top_p = 1 },
           system_prompt = default_code_system_prompt,
         },
       },

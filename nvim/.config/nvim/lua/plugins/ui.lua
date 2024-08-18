@@ -34,4 +34,18 @@ return {
       },
     },
   },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
+    lazy = true,
+    config = function()
+      require("neo-tree").setup({
+        window = {
+          mappings = {
+            ["/"] = "noop",
+          },
+        },
+      })
+    end,
+  },
 }

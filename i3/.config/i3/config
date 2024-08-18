@@ -95,7 +95,7 @@ bindsym $mod+minus scratchpad show
 bindsym $mod2+k exec ~/.vim-anywhere/bin/run
 
 # clipmenu
-bindsym $mod+c exec --no-startup-id clipmenu
+bindsym Ctrl+p exec --no-startup-id clipmenu
 
 
 # kill focused window
