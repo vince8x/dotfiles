@@ -1,0 +1,26 @@
+[core]
+  pager = delta
+  editor = nvim
+  excludesfile = ~/.gitignore_global
+
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  side-by-side = true
+  
+[diff]
+  colorMoved = default
+
+[user]
+  email = vince.tran8x@gmail.com
+  name = vince8x
+
+[merge]
+  tool = kdiff3
+
+[mergetool "kdiff3"]
+  path = /usr/bin/kdiff3
+  trustExitCode = false
+
