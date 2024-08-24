@@ -1,0 +1,8 @@
+
+% mods
+
+# To run mods with role shell 
+mods --role shell "<statement>"
+
+# To run mods
+mods --role shell "<statement>"

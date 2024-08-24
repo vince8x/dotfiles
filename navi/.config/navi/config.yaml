@@ -18,9 +18,10 @@ finder:
   # overrides: --tac # equivalent to the --fzf-overrides option
   # overrides_var: --tac # equivalent to the --fzf-overrides-var option
 
-# cheats:
-#   paths:
-#     - /path/to/some/dir # on unix-like os
+cheats:
+  paths:
+    - ~/.config/navi/.cheats
+    - ~/.local/share/navi/cheats
 #     - F:\\path\\to\\dir # on Windows
 # path: /path/to/some/dir # (DEPRECATED) equivalent to the --path option
 

@@ -31,5 +31,8 @@ export CONFIG_DIR=$HOME/.config
 export DENO_INSTALL="/home/vince8x/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
+export SRC_ENDPOINT=https://sourcegraph.com
+export SRC_ACCESS_TOKEN=`pass show tokens/sourcegraph`
+
 
 source $HOME/.cargo/env
