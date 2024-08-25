@@ -143,19 +143,36 @@ return {
   },
   {
     "yetone/avante.nvim",
-    enabled = false,
     event = "VeryLazy",
     build = "make",
-    config = {
-      provider = "deepseek"
-    },
-    keys = {
-      { "<leader>av", desc = "Toggle (Avante)" },
-      { "<leader>ar", desc = "Refresh (Avante)" },
-      { "<leader>ae", desc = "Edit (Avante)" },
-    },
     opts = {
-      -- add any opts here
+      provider = "deepseek",
+      mappings = {
+        ask = "<localleader>va",
+        edit = "<localleader>ve",
+        refresh = "<localleader>vr",
+        --- @class AvanteConflictMappings
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          none = "c0",
+          both = "cb",
+          next = "]x",
+          prev = "[x",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        toggle = {
+          debug = "<localleader>vd",
+          hint = "<localleader>vh",
+        },
+      },
     },
     dependencies = {
       "nvim-tree/nvim-web-devicons",
@@ -168,13 +185,13 @@ return {
         },
       },
       --- The below is optional, make sure to setup it properly if you have lazy=true
-      -- {
-      --   "MeanderingProgrammer/render-markdown.nvim",
-      --   opts = {
-      --     file_types = { "markdown", "Avante" },
-      --   },
-      --   ft = { "markdown", "Avante" },
-      -- },
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
     },
   },
   -- {
