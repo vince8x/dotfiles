@@ -88,3 +88,13 @@ vim.keymap.set("n", "ts", function()
 end, { noremap = true })
 
 vim.api.nvim_set_keymap( 'n', '<localleader>do', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+
+-- Oil
+vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
+
+-- Jump between markdown headers
+vim.keymap.set("n", "gj", [[/^##\+ .*<CR>]], { buffer = true, silent = true })
+vim.keymap.set("n", "gk", [[?^##\+ .*<CR>]], { buffer = true, silent = true })
+
+-- Exit insert mode without hitting Esc
+vim.keymap.set("i", "nn", "<Esc>", { desc = "Esc" })

@@ -1,0 +1,10 @@
+
+% p2s
+
+# To run p2s clippy
+cargo clippy --no-deps -- -Dwarnings
+
+# To run test with package
+dotenv -e .env -- cargo test --package <package> --all-features -- --show-output
+
+$ package: echo "p2s-server p2s-db" | tr ' ' '\n' 
