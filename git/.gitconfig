@@ -9,6 +9,7 @@
 
 [delta]
   side-by-side = true
+  navigate = true
   
 [diff]
   colorMoved = default
@@ -18,10 +19,10 @@
   name = vince8x
 
 [merge]
-  tool = kdiff3
+  tool = diff3
 
 [mergetool "kdiff3"]
-  path = /usr/bin/kdiff3
+  path = /usr/bin/diff3
   trustExitCode = false
 
 [credential "https://github.com"]
