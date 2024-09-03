@@ -19,6 +19,8 @@ return {
       end, { expr = true, silent = true })
     end,
   },
+  {},
+
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
@@ -193,6 +195,24 @@ return {
         ft = { "markdown", "Avante" },
       },
     },
+  },
+  {
+    "supermaven-inc/supermaven-nvim",
+    event = "VeryLazy",
+    build = ":SupermavenUseFree",
+    config = function()
+      require("supermaven-nvim").setup({
+        keymaps = {
+          accept_suggestion = "<M-i>",
+          accept_word = "<M-j>",
+          clear_suggestion = "<C-]>",
+        },
+        color = {
+          suggestion_color = "blue",
+          cterm = 226,
+        },
+      })
+    end,
   },
   -- {
   --   "frankroeder/parrot.nvim",

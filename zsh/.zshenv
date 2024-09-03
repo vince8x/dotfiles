@@ -1,4 +1,5 @@
 export ANDROID_HOME=$HOME/Android/Sdk 
+export XDG_CONFIG_HOME="$HOME/.config"
 export PATH=$PATH:$ANDROID_HOME/tools 
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
