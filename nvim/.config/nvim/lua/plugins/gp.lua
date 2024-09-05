@@ -304,7 +304,7 @@ return {
           name = "ChatDeepseek",
           chat = true,
           command = false,
-          model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
+          model = { model = "deepseek/deepseek-coder", temperature = 1.1, top_p = 1 },
           system_prompt = default_chat_system_prompt,
         },
         {

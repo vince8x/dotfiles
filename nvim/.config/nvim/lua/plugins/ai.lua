@@ -148,7 +148,7 @@ return {
     event = "VeryLazy",
     build = "make",
     opts = {
-      provider = "deepseek",
+      provider = "gemini",
       mappings = {
         ask = "<localleader>va",
         edit = "<localleader>ve",

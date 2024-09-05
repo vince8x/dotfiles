@@ -15,22 +15,18 @@ return {
       height = 20,
     },
     hooks = {
-      view_opened = function()
-        local stdout = vim.loop.new_tty(1, false)
-        if stdout ~= nil then
-          stdout:write(
-            ("\x1bPtmux;\x1b\x1b]1337;SetUserVar=%s=%s\b\x1b\\"):format("DIFF_VIEW", vim.fn.system({ "base64" }, "+4"))
-          )
-          vim.cmd([[redraw]])
-        end
-      end,
-      view_closed = function()
-        local stdout = vim.loop.new_tty(1, false)
-        if stdout ~= nil then
-          stdout:write(
-            ("\x1bPtmux;\x1b\x1b]1337;SetUserVar=%s=%s\b\x1b\\"):format("DIFF_VIEW", vim.fn.system({ "base64" }, "-1"))
-          )
-          vim.cmd([[redraw]])
+      diff_buf_win_enter = function(bufnr, winid, ctx)
+        if ctx.layout_name:match("^diff2") then
+          if ctx.symbol == "a" then
+            vim.opt_local.winhl = table.concat({
+              "DiffAdd:DiffviewDiffAddAsDelete",
+              "DiffDelete:DiffviewDiffDelete",
+            }, ",")
+          elseif ctx.symbol == "b" then
+            vim.opt_local.winhl = table.concat({
+              "DiffDelete:DiffviewDiffDelete",
+            }, ",")
+          end
         end
       end,
     },
