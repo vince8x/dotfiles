@@ -1,0 +1,182 @@
+{
+  "Unit Tests for Python Function": {
+    "prefix": "p_puf",
+    "body": [
+      "Write a unit test for the following Python function. Ensure that the test covers edge cases, exceptions, and typical use cases. Include multiple assertions to validate input and output behavior.",
+      "",
+      "[paste Python function]"
+    ],
+    "description": "Generate Unit Tests for Python Function"
+  },
+  "Unit Test Suite for JavaScript Code": {
+    "prefix": "p_jsut",
+    "body": [
+      "Create a comprehensive test suite for the following JavaScript code. Include tests for all possible edge cases, incorrect inputs, and boundary conditions. Ensure tests are written using a JavaScript testing framework like Jest or Mocha.",
+      "",
+      "[paste JavaScript code]"
+    ],
+    "description": "Unit Test Suite for JavaScript Code"
+  },
+  "Test Class Methods in Python": {
+    "prefix": "p_pcm",
+    "body": [
+      "Develop unit tests for the following Python class. Make sure to test every method for both valid and invalid inputs. Include edge cases, and verify that exceptions are handled properly where applicable.",
+      "",
+      "[paste Python class]"
+    ],
+    "description": "Test Class Methods in Python"
+  },
+  "Automated Web App Testing with Selenium": {
+    "prefix": "p_awt",
+    "body": [
+      "Write automated tests for this web application using Selenium. Create tests for basic navigation, form submission, and error handling. Ensure the tests cover all core features of the application and run in different browsers.",
+      "",
+      "[describe web application]"
+    ],
+    "description": "Automated Web App Testing with Selenium"
+  },
+  "API Endpoint Unit Testing": {
+    "prefix": "p_apiut",
+    "body": [
+      "Write unit tests for the following API endpoint. Include tests for both successful requests and failure scenarios (e.g., 404 and 500 errors). Use a testing framework like Pytest or Postman, and cover all expected response formats.",
+      "",
+      "[paste API endpoint details]"
+    ],
+    "description": "API Endpoint Unit Testing"
+  },
+  "JavaScript Function Test Coverage": {
+    "prefix": "p_jstc",
+    "body": [
+      "Write unit tests to achieve full coverage for this JavaScript function. Ensure that the tests check for all input conditions, including edge cases, null values, and exceptions. Use a framework like Jest for the implementation.",
+      "",
+      "[paste JavaScript function]"
+    ],
+    "description": "JavaScript Function Test Coverage"
+  },
+  "Testing Input Validation in Forms": {
+    "prefix": "p_tivf",
+    "body": [
+      "Create a test suite to validate input handling for this form processing function. Include tests for required fields, incorrect data types, and boundary values. Ensure the form handles invalid inputs gracefully.",
+      "",
+      "[paste form processing function]"
+    ],
+    "description": "Testing Input Validation in Forms"
+  },
+  "Unit Testing Python Flask API": {
+    "prefix": "p_pfapi",
+    "body": [
+      "Write unit tests for this Flask API. Ensure that each API endpoint is tested for both success and error cases. Cover all HTTP methods (GET, POST, PUT, DELETE) and ensure proper validation of inputs and outputs.",
+      "",
+      "[describe Flask API]"
+    ],
+    "description": "Unit Testing Python Flask API"
+  },
+  "Testing SQL Query Logic": {
+    "prefix": "p_sqlq",
+    "body": [
+      "Develop unit tests for this SQL query. Include tests to validate the correct retrieval of data, handling of NULL values, and performance optimization. Ensure that edge cases like empty tables are also considered.",
+      "",
+      "[paste SQL query]"
+    ],
+    "description": "Testing SQL Query Logic"
+  },
+  "Unit Test Suite for Java Methods": {
+    "prefix": "p_jut",
+    "body": [
+      "Create a unit test suite for this Java class. Ensure that each method is thoroughly tested with a range of input values, including edge cases. Implement the tests using a framework like JUnit, and ensure proper coverage of all methods.",
+      "",
+      "[paste Java class]"
+    ],
+    "description": "Unit Test Suite for Java Methods"
+  },
+  "Code Optimization for Python Function": {
+    "prefix": "p_pco",
+    "body": [
+      "Analyze the following Python function and suggest optimizations to improve its execution speed. Consider factors like algorithmic complexity, unnecessary computations, and caching where applicable. Provide a refactored version of the code.",
+      "",
+      "[paste Python function]"
+    ],
+    "description": "Code Optimization for Python Function"
+  },
+  "JavaScript Code Optimization for Performance": {
+    "prefix": "p_jsco",
+    "body": [
+      "Refactor the following JavaScript code to improve its performance, especially in browser environments. Identify bottlenecks and optimize the code for faster execution, while maintaining the same functionality.",
+      "",
+      "[paste JavaScript code]"
+    ],
+    "description": "JavaScript Code Optimization for Performance"
+  },
+  "Reduce Memory Usage in Python Code": {
+    "prefix": "p_rmup",
+    "body": [
+      "Optimize the following Python function for memory efficiency. Identify areas where memory usage can be reduced, such as by reusing variables or optimizing data structures. Provide an updated version of the code.",
+      "",
+      "[paste Python function]"
+    ],
+    "description": "Reduce Memory Usage in Python Code"
+  },
+  "Optimize Recursive Function in Any Language": {
+    "prefix": "p_orf",
+    "body": [
+      "Examine this recursive function and suggest an optimized version for both time and space complexity. Consider using memoization, tail recursion, or converting the recursion to an iterative solution where appropriate.",
+      "",
+      "[paste recursive function]"
+    ],
+    "description": "Optimize Recursive Function in Any Language"
+  },
+  "Improve Concurrency in Code": {
+    "prefix": "p_icc",
+    "body": [
+      "Analyze this code and refactor it to improve concurrency. Ensure that thread safety is maintained while optimizing the performance. Provide a detailed explanation of the changes made.",
+      "",
+      "[paste code]"
+    ],
+    "description": "Improve Concurrency in Code"
+  },
+  "Optimize SQL Query for Large Datasets": {
+    "prefix": "p_osql",
+    "body": [
+      "Optimize the following SQL query for performance when handling large datasets. Suggest improvements in query structure, indexing, and efficient data retrieval techniques.",
+      "",
+      "[paste SQL query]"
+    ],
+    "description": "Optimize SQL Query for Large Datasets"
+  },
+  "Performance Tuning for Machine Learning Model": {
+    "prefix": "p_ptml",
+    "body": [
+      "Optimize the following machine learning training code to reduce runtime without sacrificing model accuracy. Provide suggestions for hyperparameter tuning, data handling, and any parallelization options.",
+      "",
+      "[describe ML model/code]"
+    ],
+    "description": "Performance Tuning for Machine Learning Model"
+  },
+  "Refactor Java Code for Readability and Speed": {
+    "prefix": "p_rjcs",
+    "body": [
+      "Improve the readability and performance of this Java code by refactoring it. Maintain the same functionality but optimize areas where execution time can be reduced. Document any improvements made in detail.",
+      "",
+      "[paste Java code]"
+    ],
+    "description": "Refactor Java Code for Readability and Speed"
+  },
+  "Optimize Algorithm for Time Complexity": {
+    "prefix": "p_oatc",
+    "body": [
+      "Analyze this algorithm and refactor it to reduce its time complexity. Provide an optimized version that improves efficiency, particularly for large inputs. Explain the thought process behind the optimization.",
+      "",
+      "[paste algorithm]"
+    ],
+    "description": "Optimize Algorithm for Time Complexity"
+  },
+  "Memory Optimization for Data Processing": {
+    "prefix": "p_modp",
+    "body": [
+      "Review the following data processing code and refactor it to minimize memory consumption. Use more efficient data structures and techniques to handle large datasets with minimal memory usage.",
+      "",
+      "[paste data processing code]"
+    ],
+    "description": "Memory Optimization for Data Processing"
+  }
+}

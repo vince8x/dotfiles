@@ -1,0 +1,15 @@
+{
+  "name": "vince8x-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": "markdown",
+        "path": "./snippets/markdown.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./snippets/prompts.json"
+      }
+    ]
+  }
+}
