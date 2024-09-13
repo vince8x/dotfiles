@@ -26,13 +26,16 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 
-vim.keymap.set("x", "<leader>p", '"_dP')
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
+-- Paste without overwriting register
+vim.keymap.set("v", "p", '"_dP')
+
+-- Copy text to " register
+vim.keymap.set("n", "<leader>y", "\"+y", { desc = "Yank into \" register" })
+vim.keymap.set("v", "<leader>y", "\"+y", { desc = "Yank into \" register" })
+vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "Yank into \" register" })
+
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
-
 vim.keymap.set("v", "<leader>d", '"_d')
 
 local cmd = "cat /tmp/whisper.nvim | tail -n 1 | xargs -0 | tr -d '\\n' | sed -e 's/^[[:space:]]*//'"
@@ -96,5 +99,13 @@ vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory
 vim.keymap.set("n", "gj", [[/^##\+ .*<CR>]], { buffer = true, silent = true })
 vim.keymap.set("n", "gk", [[?^##\+ .*<CR>]], { buffer = true, silent = true })
 
--- Exit insert mode without hitting Esc
-vim.keymap.set("i", "nn", "<Esc>", { desc = "Esc" })
+-- Select all
+vim.keymap.set("n", "==", "gg<S-v>G")
+
+-- Make current file executable
+vim.keymap.set("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
+
+-- Copy file paths
+vim.keymap.set("n", "<localleader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "Copy File Name" })
+vim.keymap.set("n", "<localleader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
+
