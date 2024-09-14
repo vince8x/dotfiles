@@ -19,11 +19,39 @@ return {
           desc = "Run with Args",
         },
         {
+          "<leader>dB",
+          function()
+            require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))
+          end,
+          desc = "Breakpoint Condition",
+        },
+        {
+          "<leader>db",
+          function()
+            require("dap").toggle_breakpoint()
+          end,
+          desc = "Toggle Breakpoint",
+        },
+        {
+          "<leader>dg",
+          function()
+            require("dap").goto_()
+          end,
+          desc = "Go to Line (No Execute)",
+        },
+        {
           "<leader>dC",
           function()
             require("dap").run_to_cursor()
           end,
           desc = "Run to Cursor",
+        },
+        {
+          "<leader>ds",
+          function()
+            require("dap").session()
+          end,
+          desc = "Session",
         },
         {
           "<F10>",

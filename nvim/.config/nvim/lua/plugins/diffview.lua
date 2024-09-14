@@ -32,7 +32,12 @@ return {
     },
   },
   keys = {
-    { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
-    { "<leader>gD", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+    { "<leader>gd", "", desc = "+Diffview", mode = { "n", "v" } },
+    { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
+    { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
+    { "<leader>gdl", "<cmd>DiffviewLog<cr>", desc = "DiffviewLog" },
+    { "<leader>gdr", "<cmd>DiffviewRefresh<cr>", desc = "DiffviewRefresh" },
+    { "<leader>gdh", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
+    { "<leader>gdf", "<cmd>DiffviewFileFocusFiles<cr>", desc = "DiffviewFileFocusFiles" },
   },
 }
