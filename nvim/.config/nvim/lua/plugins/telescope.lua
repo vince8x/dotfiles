@@ -21,12 +21,12 @@ return {
           require("telescope").load_extension("ui-select")
         end,
       },
-      -- {
-      --   "nvim-telescope/telescope-github.nvim",
-      --   config = function()
-      --     require("telescope").load_extension("gh")
-      --   end,
-      -- },
+      {
+        "nvim-telescope/telescope-github.nvim",
+        config = function()
+          require("telescope").load_extension("gh")
+        end,
+      },
       {
         "Marskey/telescope-sg",
         config = function()
@@ -143,6 +143,7 @@ return {
       end,
       desc = "Git file history",
     },
+    { "<leader>s_", "<cmd>Telescope ast_grep<CR>", desc = "Telescope AST" },
   },
   config = function(_, opts)
     local tele = require("telescope")
@@ -158,5 +159,6 @@ return {
     tele.load_extension("dir")
     tele.load_extension("git_file_history")
     tele.load_extension("scope")
+    tele.load_extension("ast_grep")
   end,
 }

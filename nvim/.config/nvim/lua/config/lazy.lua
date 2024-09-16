@@ -43,6 +43,7 @@ require("lazy").setup({
 
     -- dap
     { import = "lazyvim.plugins.extras.dap.core" },
+    { import = "lazyvim.plugins.extras.test.core" },
     { import = "plugins" },
   },
   defaults = {

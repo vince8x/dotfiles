@@ -3,7 +3,7 @@ return {
   lazy = "VeryLazy",
   keys = {
     {
-      "<leader>tt",
+      "<localleader>tt",
       function()
         local wsn = require("wsnavigator")
         wsn.set_opts({ jumplist = { buf_only = true } })
@@ -12,7 +12,7 @@ return {
       desc = "Open Wsnavigator",
     },
     {
-      "<leader>tj",
+      "<localleader>tj",
       function()
         local wsn = require("wsnavigator")
         wsn.set_opts({ jumplist = { buf_only = false } })
@@ -21,7 +21,7 @@ return {
       desc = "Open Jumplist",
     },
     {
-      "<leader>ts",
+      "<localleader>ts",
       function()
         local wsn = require("wsnavigator")
         wsn.switch_display_mode()

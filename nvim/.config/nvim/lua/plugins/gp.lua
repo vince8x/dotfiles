@@ -301,6 +301,30 @@ return {
         },
         {
           provider = "openrouter",
+          name = "OpenAI-o1-mini",
+          chat = true,
+          command = false,
+          model = {
+            model = "openai/o1-mini-2024-09-12",
+            temperature = 0.8,
+            top_p = 1,
+          },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "OpenAI-o1-preview",
+          chat = true,
+          command = false,
+          model = {
+            model = "openai/o1-preview-2024-09-12",
+            temperature = 0.8,
+            top_p = 1,
+          },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
           name = "ChatDeepseek",
           chat = true,
           command = false,

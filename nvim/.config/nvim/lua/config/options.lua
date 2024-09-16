@@ -169,3 +169,6 @@ vim.filetype.add({
         Jenkinsfile = "groovy",
     },
 })
+
+-- Python debugging
+vim.g.python3_host_prog = "~/.virtualenvs/debugpy/bin/python"
