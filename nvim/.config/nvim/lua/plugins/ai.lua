@@ -5,16 +5,16 @@ return {
     enabled = true,
     config = function()
       -- Change '<C-g>' here to any keycode you like.
-      vim.keymap.set("i", "<C-g>", function()
+      vim.keymap.set("i", "<C-y>", function()
         return vim.fn["codeium#Accept"]()
       end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-e>", function()
+      vim.keymap.set("i", "<C-e>", function()
         return vim.fn["codeium#CycleCompletions"](1)
       end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-n>", function()
+      vim.keymap.set("i", "<C-n>", function()
         return vim.fn["codeium#CycleCompletions"](-1)
       end, { expr = true, silent = true })
-      vim.keymap.set("i", "<c-x>", function()
+      vim.keymap.set("i", "<C-x>", function()
         return vim.fn["codeium#Clear"]()
       end, { expr = true, silent = true })
     end,
@@ -203,9 +203,9 @@ return {
     config = function()
       require("supermaven-nvim").setup({
         keymaps = {
-          accept_suggestion = "<D-i>",
-          accept_word = "<D-j>",
-          clear_suggestion = "<D-c>",
+          accept_suggestion = "<M-i>",
+          accept_word = "<M-j>",
+          clear_suggestion = "<M-c>",
         },
         color = {
           suggestion_color = "blue",
