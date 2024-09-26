@@ -16,7 +16,7 @@ return {
     { "[[",              mode = "i", "<cmd>Telekasten insert_link<CR>",     desc = "Telekasten insert link"            },
   },
   opts = {
-    home = vim.fn.expand("~/docs/wiki"),
+    home = vim.fn.expand("~/Sync/obsidian/obsidian_vault"),
   },
   ft = { "markdown" },
 }
