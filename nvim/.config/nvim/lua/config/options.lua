@@ -172,3 +172,6 @@ vim.filetype.add({
 
 -- Python debugging
 vim.g.python3_host_prog = "~/.virtualenvs/debugpy/bin/python"
+
+-- Obsidian
+vim.opt_local.conceallevel = 2
