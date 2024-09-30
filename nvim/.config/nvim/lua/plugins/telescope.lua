@@ -33,12 +33,21 @@ return {
           require("telescope").load_extension("ast_grep")
         end,
       },
+      {
+        "nvim-telescope/telescope-bibtex.nvim",
+        config = function()
+          require("telescope").load_extension("bibtex")
+        end,
+      }
     },
   },
   opts = function(_, opts)
     local actions = require("telescope.actions")
     local lga_actions = require("telescope-live-grep-args.actions")
     local gfh_actions = require("telescope").extensions.git_file_history.actions
+
+    local telescope_bibfile = vim.fn.expand("~/Sync/bib/quantum-blockchain.bib")
+
     opts.extensions = {
       live_grep_args = {
         auto_quoting = true, -- enable/disable auto-quoting
@@ -72,6 +81,14 @@ return {
         -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
         browser_command = nil,
       },
+      bibtex = {
+        -- The command to use for opening the browser (nil or string)
+        -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
+        browser_command = nil,
+        global_files = {
+          telescope_bibfile
+        },
+      }
     }
     opts.defaults = vim.tbl_extend("force", opts.defaults, {
       mappings = {
@@ -143,7 +160,17 @@ return {
       end,
       desc = "Git file history",
     },
-    { "<leader>s_", "<cmd>Telescope ast_grep<CR>", desc = "Telescope AST" },
+    {
+      "<leader>s_",
+      function()
+        vim.ui.input({ prompt = "Enter language: " }, function(input)
+          if input then
+            vim.cmd("Telescope ast_grep lang=" .. input)
+          end
+        end)
+      end,
+      desc = "Telescope AST with language",
+    },
   },
   config = function(_, opts)
     local tele = require("telescope")
@@ -160,5 +187,8 @@ return {
     tele.load_extension("git_file_history")
     tele.load_extension("scope")
     tele.load_extension("ast_grep")
+    tele.load_extension("bibtex")
+
+    vim.keymap.set('n', '<leader>bt', function() vim.cmd.Telescope("bibtex") end, { desc = "Telescope: Find [B]ib[T]eX" })
   end,
 }
