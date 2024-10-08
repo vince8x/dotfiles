@@ -33,7 +33,9 @@ return {
           path = "~/Sync/obsidian/obsidian_vault",
         },
       },
-
+      ui = {
+        enabled = false,
+      },
       -- see below for full list of options 👇
     },
   },

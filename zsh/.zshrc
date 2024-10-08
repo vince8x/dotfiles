@@ -221,6 +221,19 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
+function nvimvenv {
+  if [[ -e "$VIRTUAL_ENV" && -f "$VIRTUAL_ENV/bin/activate" ]]; then
+    source "$VIRTUAL_ENV/bin/activate"
+    command nvim $@
+    deactivate
+  else
+    command nvim $@
+  fi
+}
+
+alias vim=nvimvenv
+alias nvim=nvimvenv
+
 
 # Define custom widgets for partial accept
 function partial_accept_forward() {

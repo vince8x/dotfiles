@@ -12,6 +12,7 @@ return {
   --   version = "2.*",
   --   dependencies = {
   --     "nvim-treesitter/nvim-treesitter",
+  --     "evesdropper/luasnip-latex-snippets.nvim",
   --     {
   --       "rafamadriz/friendly-snippets",
   --       config = function()
