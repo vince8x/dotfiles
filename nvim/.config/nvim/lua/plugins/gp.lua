@@ -263,6 +263,10 @@ return {
           endpoint = "https://openrouter.ai/api/v1/chat/completions",
           secret = os.getenv("OPENROUTER_API_KEY"),
         },
+        cerebras = {
+          endpoint = "https://api.cerebras.ai/v1/chat/completions",
+          secret = os.getenv("CEREBRAS_API_KEY"),
+        },
       },
       agents = {
         {
@@ -353,6 +357,22 @@ return {
           chat = false,
           command = true,
           model = { model = "anthropic/claude-3.5-sonnet", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "cerebras",
+          name = "llama3.1-8b",
+          chat = true,
+          command = false,
+          model = { model = "llama3.1-8b", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "cerebras",
+          name = "llama3.1-70b",
+          chat = true,
+          command = false,
+          model = { model = "llama3.1-70b", temperature = 0.8, top_p = 1 },
           system_prompt = default_code_system_prompt,
         },
       },

@@ -4,3 +4,4 @@
 .avante*
 *.patch
 .vscode
+.WalletContextNodeValueaider.tags.cache.v3/cache.db*

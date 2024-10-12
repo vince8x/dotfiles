@@ -25,6 +25,7 @@ export DEEPSEEK_API_KEY=`pass show apikey/deepseek`
 export GEMINI_API_KEY=`pass show apikey/gemini`
 export GOOGLEAI_API_KEY=$GEMINI_API_KEY
 export OPENROUTER_API_KEY=`pass show apikey/openrouter`
+export CEREBRAS_API_KEY=`pass show apikey/cerebras`
 
 
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig
