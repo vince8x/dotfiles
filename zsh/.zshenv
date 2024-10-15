@@ -37,5 +37,7 @@ export PATH="$DENO_INSTALL/bin:$PATH"
 export SRC_ENDPOINT=https://sourcegraph.com
 export SRC_ACCESS_TOKEN=`pass show tokens/sourcegraph`
 
+export GOROOT=/usr/local/go
+export GOPATH=$HOME/go
 
 source $HOME/.cargo/env
