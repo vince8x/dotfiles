@@ -375,6 +375,22 @@ return {
           model = { model = "llama3.1-70b", temperature = 0.8, top_p = 1 },
           system_prompt = default_code_system_prompt,
         },
+        {
+          provider = "openrouter",
+          name = "nemotron",
+          chat = false,
+          command = true,
+          model = { model = "nvidia/llama-3.1-nemotron-70b-instruct", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "qwen",
+          chat = false,
+          command = true,
+          model = { model = "qwen/qwen-2.5-7b-instruct", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
+        },
       },
       -- [feat: add option to set chat buftype to prompt](https://github.com/Robitx/gp.nvim/issues/94)
       chat_prompt_buf_type = false,
