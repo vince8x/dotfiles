@@ -12,6 +12,7 @@ return {
       "BufNewFile */obsidian/*/**.md",
     },
     keys = {
+      { "<localleader>oc", "<Cmd>lua require('obsidian').util.toggle_checkbox()<CR>", desc = "Obsidian Check Checkbox" },
       { "<localleader>ob", "<Cmd>ObsidianBacklinks<CR>", desc = "obsidian: buffer backlinks" },
       { "<localleader>od", "<Cmd>ObsidianToday<CR>", desc = "obsidian: open daily note" },
       { "<localleader>on", ":ObsidianNew ", desc = "obsidian: new note" },
@@ -19,6 +20,8 @@ return {
       { "<localleader>oo", ":ObsidianOpen ", desc = "obsidian: open in app" },
       { "<localleader>os", "<Cmd>ObsidianSearch<CR>", desc = "obsidian: search" },
       { "<localleader>ot", "<Cmd>ObsidianTemplate<CR>", desc = "obsidian: insert template" },
+      { "<localleader>ol", "<Cmd>ObsidianLinks<CR>", desc = "Show Obsidian Links" },
+      { "<localleader>oq", "<Cmd>ObsidianQuickSwitch<CR>", desc = "Quick Switch" },
     },
     dependencies = {
       -- Required.
