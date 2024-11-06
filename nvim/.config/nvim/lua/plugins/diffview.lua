@@ -35,9 +35,10 @@ return {
     { "<leader>gd", "", desc = "+Diffview", mode = { "n", "v" } },
     { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
     { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
-    { "<leader>gdl", "<cmd>DiffviewLog<cr>", desc = "DiffviewLog" },
+    { "<leader>gdl", "<Cmd>.DiffviewFileHistory --follow<CR>", desc = "Line history", mode = "n" },
     { "<leader>gdr", "<cmd>DiffviewRefresh<cr>", desc = "DiffviewRefresh" },
-    { "<leader>gdh", "<cmd>DiffviewFileHistory %<cr>", desc = "DiffviewFileHistory" },
+    { "<leader>gdh", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "DiffviewFileHistory" },
+    { "<leader>gdv", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = "v" },
     { "<leader>gdf", "<cmd>DiffviewFileFocusFiles<cr>", desc = "DiffviewFileFocusFiles" },
   },
 }

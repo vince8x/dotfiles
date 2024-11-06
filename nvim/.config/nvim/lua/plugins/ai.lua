@@ -149,6 +149,14 @@ return {
     build = "make",
     opts = {
       provider = "gemini",
+      geminemini = {
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = "gemini-1.5-pro-002",
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0,
+        max_tokens = 4096,
+        ["local"] = false,
+      },
       mappings = {
         ask = "<localleader>va",
         edit = "<localleader>ve",

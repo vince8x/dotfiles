@@ -38,7 +38,7 @@ return {
         config = function()
           require("telescope").load_extension("bibtex")
         end,
-      }
+      },
     },
   },
   opts = function(_, opts)
