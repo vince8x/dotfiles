@@ -143,67 +143,67 @@ return {
       "nvim-telescope/telescope.nvim",
     },
   },
-  -- {
-  --   "yetone/avante.nvim",
-  --   event = "VeryLazy",
-  --   build = "make",
-  --   opts = {
-  --     provider = "gemini",
-  --     geminemini = {
-  --       endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-  --       model = "gemini-1.5-pro-002",
-  --       timeout = 30000, -- Timeout in milliseconds
-  --       temperature = 0,
-  --       max_tokens = 4096,
-  --       ["local"] = false,
-  --     },
-  --     mappings = {
-  --       ask = "<localleader>va",
-  --       edit = "<localleader>ve",
-  --       refresh = "<localleader>vr",
-  --       --- @class AvanteConflictMappings
-  --       diff = {
-  --         ours = "co",
-  --         theirs = "ct",
-  --         none = "c0",
-  --         both = "cb",
-  --         next = "]x",
-  --         prev = "[x",
-  --       },
-  --       jump = {
-  --         next = "]]",
-  --         prev = "[[",
-  --       },
-  --       submit = {
-  --         normal = "<CR>",
-  --         insert = "<C-s>",
-  --       },
-  --       toggle = {
-  --         debug = "<localleader>vd",
-  --         hint = "<localleader>vh",
-  --       },
-  --     },
-  --   },
-  --   dependencies = {
-  --     "nvim-tree/nvim-web-devicons",
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     {
-  --       "grapp-dev/nui-components.nvim",
-  --       dependencies = {
-  --         "MunifTanjim/nui.nvim",
-  --       },
-  --     },
-  --     --- The below is optional, make sure to setup it properly if you have lazy=true
-  --     {
-  --       "MeanderingProgrammer/render-markdown.nvim",
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    build = "make",
+    opts = {
+      provider = "gemini",
+      geminemini = {
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = "gemini-1.5-pro-002",
+        timeout = 30000, -- Timeout in milliseconds
+        temperature = 0,
+        max_tokens = 4096,
+        ["local"] = false,
+      },
+      mappings = {
+        ask = "<localleader>va",
+        edit = "<localleader>ve",
+        refresh = "<localleader>vr",
+        --- @class AvanteConflictMappings
+        diff = {
+          ours = "co",
+          theirs = "ct",
+          none = "c0",
+          both = "cb",
+          next = "]x",
+          prev = "[x",
+        },
+        jump = {
+          next = "]]",
+          prev = "[[",
+        },
+        submit = {
+          normal = "<CR>",
+          insert = "<C-s>",
+        },
+        toggle = {
+          debug = "<localleader>vd",
+          hint = "<localleader>vh",
+        },
+      },
+    },
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      {
+        "grapp-dev/nui-components.nvim",
+        dependencies = {
+          "MunifTanjim/nui.nvim",
+        },
+      },
+      --- The below is optional, make sure to setup it properly if you have lazy=true
+      {
+        "MeanderingProgrammer/render-markdown.nvim",
+        opts = {
+          file_types = { "markdown", "Avante" },
+        },
+        ft = { "markdown", "Avante" },
+      },
+    },
+  },
   {
     "supermaven-inc/supermaven-nvim",
     dependencies = {

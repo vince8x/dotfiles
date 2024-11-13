@@ -39,6 +39,45 @@ return {
           require("telescope").load_extension("bibtex")
         end,
       },
+      {
+        "rudism/telescope-dict.nvim",
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+          require("telescope").load_extension("dict")
+        end,
+        keys = {
+          {
+            "<localleader>ss",
+            function()
+              require("telescope.builtin").spell_suggest({
+                prompt_title = "",
+                layout_config = {
+                  height = 0.25,
+                  width = 0.25,
+                },
+                layout_strategy = "cursor",
+                sorting_strategy = "ascending", -- From top
+              })
+            end,
+            desc = "Spell suggest",
+          },
+          {
+            "<localleader>sy",
+            function()
+              require("telescope").extensions.dict.synonyms({
+                prompt_title = "",
+                layout_config = {
+                  height = 0.4,
+                  width = 0.60,
+                },
+                layout_strategy = "cursor",
+                sorting_strategy = "ascending", -- From top
+              })
+            end,
+            desc = "Synonyms",
+          },
+        },
+      },
     },
   },
   opts = function(_, opts)
@@ -86,9 +125,9 @@ return {
         -- If nil, it will check if xdg-open, open, start, wslview are available, in that order.
         browser_command = nil,
         global_files = {
-          telescope_bibfile
+          telescope_bibfile,
         },
-      }
+      },
     }
     opts.defaults = vim.tbl_extend("force", opts.defaults, {
       mappings = {
@@ -188,7 +227,10 @@ return {
     tele.load_extension("scope")
     tele.load_extension("ast_grep")
     tele.load_extension("bibtex")
+    tele.load_extension("dict")
 
-    vim.keymap.set('n', '<leader>bt', function() vim.cmd.Telescope("bibtex") end, { desc = "Telescope: Find [B]ib[T]eX" })
+    vim.keymap.set("n", "<leader>bt", function()
+      vim.cmd.Telescope("bibtex")
+    end, { desc = "Telescope: Find [B]ib[T]eX" })
   end,
 }

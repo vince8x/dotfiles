@@ -38,6 +38,7 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.editor.aerial" },
     -- { import = "lazyvim.plugins.extras.editor.fzf" },
+    { import = "lazyvim.plugins.extras.util.octo" },
 
     -- util
     { import = "lazyvim.plugins.extras.util.project" },
