@@ -386,9 +386,9 @@ return {
         {
           provider = "openrouter",
           name = "qwen",
-          chat = false,
-          command = true,
-          model = { model = "qwen/qwen-2.5-7b-instruct", temperature = 0.8, top_p = 1 },
+          chat = true,
+          command = false,
+          model = { model = "qwen/qwen-2.5-coder-32b-instruct", temperature = 0.8, top_p = 1 },
           system_prompt = default_code_system_prompt,
         },
       },

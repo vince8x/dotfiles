@@ -40,5 +40,6 @@ return {
     { "<leader>gdh", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "DiffviewFileHistory" },
     { "<leader>gdv", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = "v" },
     { "<leader>gdf", "<cmd>DiffviewFileFocusFiles<cr>", desc = "DiffviewFileFocusFiles" },
+    { "<leader>gdm", "<cmd>:DiffviewOpen origin/master... --imply-local<cr>", desc = "Do review with master branch" },
   },
 }
