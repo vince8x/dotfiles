@@ -109,6 +109,8 @@ vim.keymap.set("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { silent = true, d
 vim.keymap.set("n", "<localleader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "Copy File Name" })
 vim.keymap.set("n", "<localleader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
 
+vim.keymap.set('n', '<localleader>sl', '<Cmd>lua require("dict").lookup()<CR>')
+
 -- Zotero Citation Picker
 function ZoteroCite()
 	local url = '"http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc&brackets=yes"'

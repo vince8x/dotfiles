@@ -40,6 +40,9 @@ return {
         end,
       },
       {
+        "archie-judd/telescope-words.nvim",
+      },
+      {
         "rudism/telescope-dict.nvim",
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
@@ -210,6 +213,22 @@ return {
       end,
       desc = "Telescope AST with language",
     },
+    {
+      "<localleader>sd",
+      function()
+        require("telescope").extensions.telescope_words.search_dictionary_for_word_under_cursor()
+      end,
+      mode = "n",
+      desc = "Telescope: search dictionary",
+    },
+    {
+      "<localleader>st",
+      function()
+        require("telescope").extensions.telescope_words.search_thesaurus_for_word_under_cursor()
+      end,
+      mode = "n",
+      desc = "Telescope: search thesaurus",
+    },
   },
   config = function(_, opts)
     local tele = require("telescope")
@@ -228,6 +247,7 @@ return {
     tele.load_extension("ast_grep")
     tele.load_extension("bibtex")
     tele.load_extension("dict")
+    -- tele.load_extension("telescope_words")
 
     vim.keymap.set("n", "<leader>bt", function()
       vim.cmd.Telescope("bibtex")
