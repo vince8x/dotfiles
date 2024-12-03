@@ -22,6 +22,24 @@ return {
   -- {},
   --
   {
+    "napisani/context-nvim",
+    config = function()
+      require("context_nvim").setup({})
+    end,
+    keys = {
+      { "<localleader>af", "<cmd>ContextNvim add_current_file<cr>", desc = "Add current (f)ile" },
+      { "<localleader>ac", "<cmd>ContextNvim add_current<cr>", desc = "Add (c)urrent" },
+      { "<localleader>ad", "<cmd>ContextNvim add_dir<cr>", desc = "Add (d)ir" },
+      { "<localleader>aq", "<cmd>ContextNvim add_qflist<cr>", desc = "Add (q)uickfix list" },
+      { "<localleader>aq", "<cmd>ContextNvim add_line_lsp_daig<cr>", desc = "Add line lsp diagnostic" },
+      { "<localleader>cch", "<cmd>ContextNvim clear_history<cr>", desc = "Clear history" },
+      { "<localleader>ccm", "<cmd>ContextNvim clear_manual<cr>", desc = "Clear manual" },
+      { "<localleader>cm", "<cmd>ContextNvim find_clear_manual<cr>", desc = "Find context manual" },
+      { "<localleader>ch", "<cmd>ContextNvim find_clear_history<cr>", desc = "Find context history" },
+      { "<localleader>ip", "<cmd>ContextNvim insert_prompt<cr>", desc = "Insert prompt" },
+    },
+  },
+  {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
