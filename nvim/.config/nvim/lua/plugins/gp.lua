@@ -417,7 +417,7 @@ return {
       chat_prompt_buf_type = false,
       chat_user_prefix = "# 🗨",
       chat_assistant_prefix = { "# 🤖 ", "{{agent}}" },
-      chat_free_cursor = false,
+      chat_free_cursor = true,
       hooks = hooks,
     })
 
