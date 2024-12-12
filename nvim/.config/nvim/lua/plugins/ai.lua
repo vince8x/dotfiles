@@ -170,7 +170,7 @@ return {
       auto_suggestions_provider = "gemini",
       gemini = {
         endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-        model = "gemini-1.5-pro-002",
+        model = "gemini-exp-1206",
         timeout = 30000, -- Timeout in milliseconds
         temperature = 0,
         max_tokens = 4096,

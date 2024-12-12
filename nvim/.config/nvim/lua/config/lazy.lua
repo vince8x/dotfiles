@@ -39,6 +39,8 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.editor.aerial" },
     -- { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.util.octo" },
+    -- ui
+    { import = "lazyvim.plugins.extras.ui.treesitter-context" },
 
     -- util
     { import = "lazyvim.plugins.extras.util.project" },

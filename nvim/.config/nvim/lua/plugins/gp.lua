@@ -409,7 +409,7 @@ return {
           name = "gemini-chat-dense",
           chat = true,
           command = false,
-          model = { model = "gemini-exp-1121", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-exp-1206", temperature = 0.8, top_p = 1 },
           system_prompt = dense_chat_system_prompt,
         }
       },
