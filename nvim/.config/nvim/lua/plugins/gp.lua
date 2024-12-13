@@ -411,6 +411,14 @@ return {
           command = false,
           model = { model = "gemini-exp-1206", temperature = 0.8, top_p = 1 },
           system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "googleai",
+          name = "gemini-flash",
+          chat = true,
+          command = false,
+          model = { model = "gemini-2.0-flash-exp", temperature = 0.8, top_p = 1 },
+          system_prompt = dense_chat_system_prompt,
         }
       },
       -- [feat: add option to set chat buftype to prompt](https://github.com/Robitx/gp.nvim/issues/94)
