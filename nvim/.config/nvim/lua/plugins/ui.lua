@@ -1,5 +1,11 @@
 return {
   {
+    "snacks.nvim",
+    opts = {
+      scroll = { enabled = false },
+    },
+  },
+  {
 
     "s1n7ax/nvim-window-picker",
     name = "window-picker",

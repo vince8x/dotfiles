@@ -38,21 +38,21 @@ vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
 
-local cmd = "cat /tmp/whisper.nvim | tail -n 1 | xargs -0 | tr -d '\\n' | sed -e 's/^[[:space:]]*//'"
-local function whisper()
-  vim.cmd("silent !whisper.nvim")
-  local result = vim.fn.system(cmd)
-  vim.fn.setreg("a", result)
-end
+-- local cmd = "cat /tmp/whisper.nvim | tail -n 1 | xargs -0 | tr -d '\\n' | sed -e 's/^[[:space:]]*//'"
+-- local function whisper()
+--   vim.cmd("silent !whisper.nvim")
+--   local result = vim.fn.system(cmd)
+--   vim.fn.setreg("a", result)
+-- end
 
 -- inoremap
-vim.api.nvim_set_keymap("i", "<C-M>", "<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("i", "<C-M>", "<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
 
 -- nnoremap
-vim.api.nvim_set_keymap("n", "<C-M>", '<Cmd>lua whisper()<CR>"ap', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("n", "<C-M>", '<Cmd>lua whisper()<CR>"ap', { noremap = true, silent = true })
 
 -- vnoremap
-vim.api.nvim_set_keymap("v", "<C-M>", "c<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap("v", "<C-M>", "c<Cmd>lua whisper()<CR><C-R>a", { noremap = true, silent = true })
 -- use leader + x to chmod executable
 -- vim.keymap.set("n", "<leader>chmo", "<cmd>!chmod +x %<CR>", { silent = true })
 --

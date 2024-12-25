@@ -175,3 +175,6 @@ vim.g.python3_host_prog = "~/.virtualenvs/debugpy/bin/python"
 
 -- Obsidian
 vim.opt_local.conceallevel = 2
+
+-- Disable blink
+-- vim.g.lazyvim_blink_main = false
