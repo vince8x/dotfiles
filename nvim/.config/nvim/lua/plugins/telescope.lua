@@ -132,6 +132,7 @@ return {
         },
       },
     }
+    opts.defaults = opts.defaults or {}
     opts.defaults = vim.tbl_extend("force", opts.defaults, {
       mappings = {
         i = {

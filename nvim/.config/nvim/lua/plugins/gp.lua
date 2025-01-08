@@ -346,7 +346,7 @@ return {
           chat = true,
           command = false,
           model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
-          system_prompt = default_chat_system_prompt,
+          system_prompt = dense_chat_system_prompt,
         },
         {
           provider = "openrouter",
@@ -354,7 +354,7 @@ return {
           chat = false,
           command = true,
           model = { model = "deepseek/deepseek-chat", temperature = 0.8, top_p = 1 },
-          system_prompt = default_code_system_prompt,
+          system_prompt = dense_chat_system_prompt,
         },
         {
           provider = "openrouter",
