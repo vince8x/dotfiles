@@ -8,6 +8,7 @@ return {
       "nvim-neotest/neotest-python",
       "haydenmeade/neotest-jest",
       "marilari88/neotest-vitest",
+      "rouge8/neotest-rust"
     },
     opts = function(_, opts)
       table.insert(
@@ -28,6 +29,12 @@ return {
           cwd = function()
             return vim.fn.getcwd()
           end,
+        })
+      )
+      table.insert(
+        opts.adapters,
+        require("neotest-rust")({
+          args = { "--no-capture" },
         })
       )
     end,

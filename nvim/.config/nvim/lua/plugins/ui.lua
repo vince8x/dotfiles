@@ -6,6 +6,18 @@ return {
     },
   },
   {
+    "davesavic/dadbod-ui-yank",
+    dependencies = { "kristijanhusak/vim-dadbod-ui" },
+    config = function()
+      require("dadbod-ui-yank").setup()
+    end,
+    keys = {
+      { "<localleader>yc", "<cmd>DBUIYankAsCSV<cr>", desc = "Yank csv" },
+      { "<localleader>yj", "<cmd>DBUIYankAsJSON<cr>", desc = "Yank json" },
+      { "<localleader>yx", "<cmd>DBUIYankAsXML<cr>", desc = "Yank xml" },
+    },
+  },
+  {
 
     "s1n7ax/nvim-window-picker",
     name = "window-picker",
@@ -51,6 +63,30 @@ return {
             ["/"] = "noop",
           },
         },
+      })
+    end,
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      require("hlchunk").setup({})
+    end,
+  },
+  {
+    "jinh0/eyeliner.nvim",
+    config = function()
+      require("eyeliner").setup({
+        highlight_on_key = true,
+      })
+    end,
+  },
+  {
+    "Wansmer/treesj",
+    keys = { "<localleader>m", "<localleader>j", "<localleader>r" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" }, -- if you install parsers with `nvim-treesitter`
+    config = function()
+      require("treesj").setup({--[[ your config ]]
       })
     end,
   },
