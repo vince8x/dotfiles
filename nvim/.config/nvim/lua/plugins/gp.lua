@@ -280,6 +280,14 @@ return {
           endpoint = "https://api.cerebras.ai/v1/chat/completions",
           secret = os.getenv("CEREBRAS_API_KEY"),
         },
+        deepseek = {
+          endpoint = "https://api.deepseek.com/chat/completions",
+          secret = os.getenv("DEEPSEEK_API_KEY"),
+        },
+        groq = {
+          endpoint = "https://api.groq.com/openai/v1/chat/completions",
+          secret = os.getenv("GROQ_API_KEY"),
+        },
       },
       agents = {
         {
@@ -339,6 +347,22 @@ return {
             top_p = 1,
           },
           system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "deepseek",
+          name = "deepseek-reasoner",
+          chat = true,
+          command = false,
+          model = { model = "deepseek-reasoner", temperature = 1.1, top_p = 1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "groq",
+          name = "deepseek-reasoner-groq",
+          chat = true,
+          command = false,
+          model = { model = "deepseek-r1-distill-llama-70b", temperature = 0.6, top_p = 0.95 },
+          system_prompt = dense_chat_system_prompt,
         },
         {
           provider = "openrouter",
@@ -425,7 +449,7 @@ return {
           name = "gemini-flash-thinking",
           chat = true,
           command = false,
-          model = { model = "gemini-2.0-flash-thinking-exp-1219", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-2.0-flash-thinking-exp-01-21", temperature = 0.8, top_p = 1 },
           system_prompt = dense_chat_system_prompt,
         }
       },

@@ -17,7 +17,7 @@ export PATH=${PATH}:`go env GOPATH`/bin
 
 export GITHUB_API_KEY=`pass show apikey/github`
 export GITHUB_TOKEN=$GITHUB_API_KEY
-export OPENAI_API_KEY=`pass show apikey/openai`
+# export OPENAI_API_KEY=`pass show apikey/openai`
 export GROQ_API_KEY=`pass show apikey/groq`
 export OPENAI_EMAIL=`pass show web/email`
 export OPENAI_PASSWORD=`pass show web/password002`

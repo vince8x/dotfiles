@@ -18,7 +18,7 @@
 # Main:
 
 ## Specify the OpenAI API key
-openai-api-key: OPENAI_API_KEY
+# openai-api-key: OPENAI_API_KEY
 
 ## Specify the Anthropic API key
 #anthropic-api-key:

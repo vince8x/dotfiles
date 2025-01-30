@@ -39,38 +39,47 @@ return {
       { "<localleader>ip", "<cmd>ContextNvim insert_prompt<cr>", desc = "Insert prompt" },
     },
   },
+
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
-      "nvim-telescope/telescope.nvim", -- Optional
-      {
-        "stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
-        opts = {},
-      },
+      { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
     },
-    opts = function(_, opts)
-      opts.strategies = {
-        chat = "openai",
-        inline = "openai",
-        tools = "openai",
-      }
-      opts.adapters = {
-        anthropic = require("codecompanion.adapters").use("anthropic", {
-          schema = {
-            model = {
-              default = "claude-3-5-sonnet-20240620",
-            },
-          },
-        }),
-        openai = require("codecompanion.adapters").use("openai", {
-          env = {
-            api_key = "OPENAI_API_KEY",
-          },
-        }),
-      }
+    config = function()
+      require("codecompanion").setup({
+        adapters = {
+          deepseek = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://api.deepseek.com",
+                api_key = "DEEPSEEK_API_KEY",
+              },
+            })
+          end,
+          groq = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = {
+                url = "https://api.groq.com/openai/v1/chat/completions",
+                api_key = "GROQ_API_KEY",
+              },
+            })
+          end,
+        },
+        strategies = {
+          chat = { adapter = "deepseek" },
+          inline = { adapter = "deepseek" },
+          agent = { adapter = "deepseek" },
+        },
+      })
     end,
+    cmd = {
+      "CodeCompanion",
+      "CodeCompanionActions",
+      "CodeCompanionChat",
+      "CodeCompanionCmd",
+    },
     keys = {
       { "<leader>Aa", "<cmd>CodeCompanionActions<cr>", mode = "n", noremap = true, silent = true },
       { "<leader>Aa", "<cmd>CodeCompanionActions<cr>", mode = "v", noremap = true, silent = true },
@@ -181,13 +190,19 @@ return {
           __inherited_from = "openai",
           api_key_name = "DEEPSEEK_API_KEY",
           endpoint = "https://api.deepseek.com",
-          model = "deepseek-coder",
+          model = "deepseek-chat",
+        },
+        groq = {
+          __inherited_from = "openai",
+          api_key_name = "GROQ_API_KEY",
+          endpoint = "https://api.groq.com/openai/v1/chat/completions",
+          model = "deepseek-r1-distill-llama-70b",
         },
       },
       dual_boost = {
         enabled = true,
         first_provider = "gemini",
-        second_provider = "deepseek",
+        second_provider = "groq",
         prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
         timeout = 60000, -- Timeout in milliseconds
       },

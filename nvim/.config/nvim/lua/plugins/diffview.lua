@@ -37,6 +37,7 @@ return {
     { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
     { "<leader>gdl", "<Cmd>.DiffviewFileHistory --follow<CR>", desc = "Line history", mode = "n" },
     { "<leader>gdr", "<cmd>DiffviewRefresh<cr>", desc = "DiffviewRefresh" },
+    { "<leader>gdi", "<cmd>DiffviewFileHistory<cr>", desc = "DiffviewHistory" },
     { "<leader>gdh", "<cmd>DiffviewFileHistory --follow %<cr>", desc = "DiffviewFileHistory" },
     { "<leader>gdv", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = "v" },
     { "<leader>gdf", "<cmd>DiffviewFileFocusFiles<cr>", desc = "DiffviewFileFocusFiles" },

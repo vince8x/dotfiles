@@ -103,6 +103,7 @@
   "obsidian.nvim": { "branch": "main", "commit": "ae1f76a75c7ce36866e1d9342a8f6f5b9c2caf9b" },
   "octo.nvim": { "branch": "master", "commit": "b4f00b00dec14fd396be979b04453336d6e83182" },
   "oil.nvim": { "branch": "master", "commit": "09fa1d22f5edf0730824d2b222d726c8c81bbdc9" },
+  "overseer.nvim": { "branch": "master", "commit": "d14f8218115f8ae51eec26f8692943f25203d283" },
   "persisted.nvim": { "branch": "main", "commit": "8a25e7028d44645616a503b07b84be62da2fee86" },
   "persistence.nvim": { "branch": "main", "commit": "f6aad7dde7fcf54148ccfc5f622c6d5badd0cc3d" },
   "plenary.nvim": { "branch": "master", "commit": "3707cdb1e43f5cea73afb6037e6494e7ce847a66" },

@@ -38,10 +38,12 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.ai.copilot" },
     { import = "lazyvim.plugins.extras.ai.supermaven" },
     { import = "lazyvim.plugins.extras.editor.aerial" },
+    { import = "lazyvim.plugins.extras.editor.overseer" },
     -- { import = "lazyvim.plugins.extras.editor.fzf" },
     { import = "lazyvim.plugins.extras.util.octo" },
     -- ui
     { import = "lazyvim.plugins.extras.ui.treesitter-context" },
+    -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
 
     -- util
     { import = "lazyvim.plugins.extras.util.project" },
