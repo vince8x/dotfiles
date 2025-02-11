@@ -33,6 +33,7 @@ return {
   },
   keys = {
     { "<leader>gd", "", desc = "+Diffview", mode = { "n", "v" } },
+    { "<f16>", "", desc = "+Diffview", mode = { "n", "v" } },
     { "<leader>gdo", "<cmd>DiffviewOpen<cr>", desc = "DiffviewOpen" },
     { "<leader>gdc", "<cmd>DiffviewClose<cr>", desc = "DiffviewClose" },
     { "<leader>gdl", "<Cmd>.DiffviewFileHistory --follow<CR>", desc = "Line history", mode = "n" },
@@ -42,5 +43,7 @@ return {
     { "<leader>gdv", "<Esc><Cmd>'<,'>DiffviewFileHistory --follow<CR>", desc = "Range history", mode = "v" },
     { "<leader>gdf", "<cmd>DiffviewFileFocusFiles<cr>", desc = "DiffviewFileFocusFiles" },
     { "<leader>gdm", "<cmd>:DiffviewOpen origin/master... --imply-local<cr>", desc = "Do review with master branch" },
+    { "<leader>gd1", "<cmd>:DiffviewOpen HEAD^1... --imply-local<cr>", desc = "Do review with master branch" },
+    { "<f16>gd1", "<cmd>:DiffviewOpen HEAD^1... --imply-local<cr>", desc = "Do review with master branch" },
   },
 }
