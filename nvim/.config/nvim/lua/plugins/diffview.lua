@@ -45,5 +45,17 @@ return {
     { "<leader>gdm", "<cmd>:DiffviewOpen origin/master... --imply-local<cr>", desc = "Do review with master branch" },
     { "<leader>gd1", "<cmd>:DiffviewOpen HEAD^1... --imply-local<cr>", desc = "Do review with master branch" },
     { "<f16>gd1", "<cmd>:DiffviewOpen HEAD^1... --imply-local<cr>", desc = "Do review with master branch" },
+    {
+      "<leader>gdb",
+      function()
+        local branches = vim.fn.systemlist("git branch --format='%(refname:short)'")
+        vim.ui.select(branches, { prompt = "Select branch or commit hash:" }, function(branch)
+          if branch then
+            vim.cmd("DiffviewOpen " .. branch .. "... --imply-local")
+          end
+        end)
+      end,
+      desc = "Diff with branch or commit hash",
+    },
   },
 }
