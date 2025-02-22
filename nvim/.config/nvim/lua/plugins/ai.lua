@@ -143,12 +143,47 @@ return {
           accept_word = "<M-j>",
           clear_suggestion = "<M-c>",
         },
-        color = {
-          suggestion_color = "red",
-          cterm = 226,
-        },
       })
     end,
+  },
+  {
+    "augmentcode/augment.vim",
+    init = function()
+      vim.g.augment_workspace_folders = { "~/projects" }
+      vim.g.augment_disable_tab_mapping = true
+      vim.keymap.set("n", "<leader>al", function()
+        vim.cmd("Augment chat " .. vim.api.nvim_get_current_line())
+      end, { desc = "Augment chat with current line" })
+      vim.keymap.set({ "n", "v" }, "<localleader>aac", "<cmd>Augment chat<CR>")
+      vim.keymap.set("n", "<localleader>aat", "<cmd>Augment chat-toggle<CR>")
+      -- vim.keymap.set("i", "<C-a>", "<cmd>call augment#Accept()<CR>", { silent = true })
+    end,
+  },
+  {
+    "GeorgesAlkhouri/nvim-aider",
+    cmd = {
+      "AiderTerminalToggle",
+      "AiderHealth",
+    },
+    keys = {
+      { "<f16>a/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
+      { "<f16>as", "<cmd>AiderTerminalSend<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+      { "<f16>ac", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
+      { "<f16>ab", "<cmd>AiderQuickSendBuffer<cr>", desc = "Send Buffer To Aider" },
+      { "<f16>a+", "<cmd>AiderQuickAddFile<cr>", desc = "Add File to Aider" },
+      { "<f16>a-", "<cmd>AiderQuickDropFile<cr>", desc = "Drop File from Aider" },
+      { "<f16>ar", "<cmd>AiderQuickReadOnlyFile<cr>", desc = "Add File as Read-Only" },
+      -- Example nvim-tree.lua integration if needed
+      { "<f16>a+", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "NvimTree" },
+      { "<f16>a-", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "NvimTree" },
+    },
+    dependencies = {
+      "folke/snacks.nvim",
+      --- The below dependencies are optional
+      "catppuccin/nvim",
+      "nvim-tree/nvim-tree.lua",
+    },
+    config = true,
   },
   -- {
   --   "frankroeder/parrot.nvim",
