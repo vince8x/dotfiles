@@ -30,9 +30,9 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("v", "p", '"_dP')
 
 -- Copy text to " register
-vim.keymap.set("n", "<leader>y", "\"+y", { desc = "Yank into \" register" })
-vim.keymap.set("v", "<leader>y", "\"+y", { desc = "Yank into \" register" })
-vim.keymap.set("n", "<leader>Y", "\"+Y", { desc = "Yank into \" register" })
+vim.keymap.set("n", "<leader>y", '"+y', { desc = 'Yank into " register' })
+vim.keymap.set("v", "<leader>y", '"+y', { desc = 'Yank into " register' })
+vim.keymap.set("n", "<leader>Y", '"+Y', { desc = 'Yank into " register' })
 
 vim.keymap.set("n", "<leader>d", '"_d')
 vim.keymap.set("v", "<leader>d", '"_d')
@@ -90,7 +90,12 @@ vim.keymap.set("n", "ts", function()
   wsn.switch_display_mode()
 end, { noremap = true })
 
-vim.api.nvim_set_keymap( 'n', '<localleader>do', ':lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<localleader>do",
+  ":lua vim.diagnostic.open_float()<CR>",
+  { noremap = true, silent = true }
+)
 
 -- Oil
 vim.keymap.set("n", "-", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
@@ -106,21 +111,83 @@ vim.keymap.set("n", "==", "gg<S-v>G")
 vim.keymap.set("n", "<localleader>x", "<cmd>!chmod +x %<CR>", { silent = true, desc = "Make current file executable" })
 
 -- Copy file paths
-vim.keymap.set("n", "<localleader>cf", "<cmd>let @+ = expand(\"%\")<CR>", { desc = "Copy File Name" })
-vim.keymap.set("n", "<localleader>cp", "<cmd>let @+ = expand(\"%:p\")<CR>", { desc = "Copy File Path" })
+vim.keymap.set("n", "<localleader>cf", '<cmd>let @+ = expand("%")<CR>', { desc = "Copy File Name" })
+vim.keymap.set("n", "<localleader>cp", '<cmd>let @+ = expand("%:p")<CR>', { desc = "Copy File Path" })
 
-vim.keymap.set('n', '<localleader>sl', '<Cmd>lua require("dict").lookup()<CR>')
+vim.keymap.set("n", "<localleader>sl", '<Cmd>lua require("dict").lookup()<CR>')
 
 -- Zotero Citation Picker
 function ZoteroCite()
-	local url = '"http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc&brackets=yes"'
-	local handle = io.popen('curl -s ' .. url)
-	local citekey = handle:read("*a")
-	citekey = citekey:gsub('[\n\r]', ' ')
-	local col = vim.api.nvim_win_get_cursor(0)[2]
-	local row = vim.api.nvim_win_get_cursor(0)[1]
-	vim.api.nvim_buf_set_text(0,row - 1, col, row - 1, col, {citekey})
-	end
+  local url = '"http://127.0.0.1:23119/better-bibtex/cayw?format=pandoc&brackets=yes"'
+  local handle = io.popen("curl -s " .. url)
+  local citekey = handle:read("*a")
+  citekey = citekey:gsub("[\n\r]", " ")
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local row = vim.api.nvim_win_get_cursor(0)[1]
+  vim.api.nvim_buf_set_text(0, row - 1, col, row - 1, col, { citekey })
+end
 
-map('i', '<A-z>', ZoteroCite)
-map('n', '<leader>zz', ZoteroCite)
+map("i", "<A-z>", ZoteroCite)
+map("n", "<leader>zz", ZoteroCite)
+
+-- ############################################################################
+--                         Begin of markdown section
+-- ############################################################################
+
+-- Keymap to auto-format and save all Markdown files in the CURRENT REPOSITORY,
+-- lamw26wmal if the TOC is not updated, this will take care of it
+vim.keymap.set("n", "<leader>mfA", function()
+  -- Get the root directory of the git repository
+  local git_root = vim.fn.systemlist("git rev-parse --show-toplevel")[1]
+  if not git_root or git_root == "" then
+    print("Could not determine the root directory for the Git repository.")
+    return
+  end
+  -- Find all Markdown files in the repository
+  local find_command = string.format("find %s -type f -name '*.md'", vim.fn.shellescape(git_root))
+  local handle = io.popen(find_command)
+  if not handle then
+    print("Failed to execute the find command.")
+    return
+  end
+  local result = handle:read("*a")
+  handle:close()
+  if result == "" then
+    print("No Markdown files found in the repository.")
+    return
+  end
+  -- Format and save each Markdown file
+  for file in result:gmatch("[^\r\n]+") do
+    local bufnr = vim.fn.bufadd(file)
+    vim.fn.bufload(bufnr)
+    require("conform").format({ bufnr = bufnr })
+    -- Save the buffer to write changes to disk
+    vim.api.nvim_buf_call(bufnr, function()
+      vim.cmd("write")
+    end)
+    print("Formatted and saved: " .. file)
+  end
+end, { desc = "[P]Format and save all Markdown files in the repo" })
+
+local wk = require("which-key")
+wk.add({
+  {
+    mode = { "n" },
+    { "<leader>mt", group = "[P]todo" },
+  },
+  {
+    mode = { "n", "v" },
+    { "<leader>m", group = "[P]markdown" },
+    { "<leader>mf", group = "[P]fold" },
+    { "<leader>mh", group = "[P]headings increase/decrease" },
+    { "<leader>ml", group = "[P]links" },
+    { "<leader>ms", group = "[P]spell" },
+    { "<leader>msl", group = "[P]language" },
+  },
+})
+vim.keymap.set(
+  "v",
+  "<leader>mj",
+  ":g/^\\s*$/d<CR>:nohlsearch<CR>",
+  { desc = "[P]Delete newlines in selected text (join)" }
+)
