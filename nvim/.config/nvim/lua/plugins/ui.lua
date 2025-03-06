@@ -104,13 +104,16 @@ return {
     "mistricky/codesnap.nvim",
     build = "make build_generator",
     keys = {
-      { "<localleader>cp", "<cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
-      { "<localleader>cs", "<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
+      { "\\cp", "'<,'><cmd>CodeSnap<cr>", mode = "x", desc = "Save selected code snapshot into clipboard" },
+      { "\\cs", "<,'><<cmd>CodeSnapSave<cr>", mode = "x", desc = "Save selected code snapshot in ~/Pictures" },
     },
     opts = {
       save_path = "~/Pictures",
       has_breadcrumbs = false,
       bg_theme = "bamboo",
+      bg_x_padding = 0,
+      bg_y_padding = 0,
+      bg_padding = nil,
     },
   },
 }
