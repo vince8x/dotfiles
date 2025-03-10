@@ -81,11 +81,6 @@ return {
         reindent_linewise = true,
       },
 
-      -- Sort text
-      sort = {
-        prefix = "<localleader>gs",
-        func = nil,
-      },
     },
   },
 }

@@ -10,7 +10,7 @@ return {
 
     keys = {
       {
-        "<localleader>ss",
+        "<localleader>sg",
         "<cmd>lua require('sg.extensions.telescope').fuzzy_search_results()<CR>",
         desc = "Sourcegraph fuzzy search results",
       },

@@ -365,6 +365,14 @@ return {
           system_prompt = dense_chat_system_prompt,
         },
         {
+          provider = "groq",
+          name = "qwen-qwq-32b-groq",
+          chat = true,
+          command = false,
+          model = { model = "qwen-qwq-32b", temperature = 0.6, top_p = 0.95 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
           provider = "openrouter",
           name = "ChatDeepseek",
           chat = true,
@@ -385,7 +393,7 @@ return {
           name = "ChatClaudeSonnet",
           chat = true,
           command = false,
-          model = { model = "anthropic/claude-3.5-sonnet", temperature = 1.1, top_p = 1 },
+          model = { model = "anthropic/claude-3.7-sonnet", temperature = 1.1, top_p = 1 },
           system_prompt = default_chat_system_prompt,
         },
         {
@@ -393,7 +401,7 @@ return {
           name = "CodeClaudeSonnet",
           chat = false,
           command = true,
-          model = { model = "anthropic/claude-3.5-sonnet", temperature = 0.8, top_p = 1 },
+          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.8, top_p = 1 },
           system_prompt = default_code_system_prompt,
         },
         {
