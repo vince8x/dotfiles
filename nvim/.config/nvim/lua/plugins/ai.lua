@@ -95,7 +95,7 @@ return {
                 choices = {
                   ["google/gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
                   ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
-                }
+                },
               },
             })
           end,
@@ -228,13 +228,13 @@ return {
   {
     "augmentcode/augment.vim",
     init = function()
-      vim.g.augment_workspace_folders = { "~/projects" }
       vim.g.augment_disable_tab_mapping = true
       vim.keymap.set("n", "<leader>al", function()
         vim.cmd("Augment chat " .. vim.api.nvim_get_current_line())
       end, { desc = "Augment chat with current line" })
       vim.keymap.set({ "n", "v" }, "<localleader>aac", "<cmd>Augment chat<CR>")
       vim.keymap.set("n", "<localleader>aat", "<cmd>Augment chat-toggle<CR>")
+      vim.keymap.set("n", "<localleader>aan", "<cmd>Augment chat-new<CR>")
       -- vim.keymap.set("i", "<C-a>", "<cmd>call augment#Accept()<CR>", { silent = true })
     end,
   },
@@ -263,6 +263,18 @@ return {
       "nvim-tree/nvim-tree.lua",
     },
     config = true,
+  },
+  {
+    "greggh/claude-code.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for git operations
+    },
+    config = function()
+      require("claude-code").setup()
+    end,
+    keys = {
+      { "<localleader>cl", "<cmd>ClaudeCode<CR>", desc = "Claude Code" },
+    },
   },
   -- {
   --   "frankroeder/parrot.nvim",
