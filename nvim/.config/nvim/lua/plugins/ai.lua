@@ -21,25 +21,44 @@ return {
   -- },
   -- {},
   --
-  -- {
-  --   "ravitemer/mcphub.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --   },
-  --   build = "npm install -g mcp-hub@latest",
-  --   config = function()
-  --     require("mcphub").setup({
-  --       port = 3000,
-  --       config = vim.fn.expand("~/mcpservers.json"),
-  --     })
-  --   end,
-  -- },
+  {
+    -- enabled = false,
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    cmd = "MCPHub", -- lazily start the hub when `MCPHub` is called
+    build = "bun install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    config = function()
+      require("mcphub").setup({
+        -- Required options
+        port = 3000, -- Port for MCP Hub server
+        config = vim.fn.expand("~/mcpservers.json"), -- Absolute path to config file
+
+        -- Optional options
+        on_ready = function(hub)
+          -- Called when hub is ready
+        end,
+        on_error = function(err)
+          -- Called on errors
+        end,
+        shutdown_delay = 0, -- Wait 0ms before shutting down server after last client exits
+        log = {
+          level = vim.log.levels.WARN,
+          to_file = false,
+          file_path = nil,
+          prefix = "MCPHub",
+        },
+      })
+    end,
+  },
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       { "MeanderingProgrammer/render-markdown.nvim", ft = { "markdown", "codecompanion" } },
+      "ravitemer/mcphub.nvim",
     },
     config = function()
       require("codecompanion").setup({
@@ -105,7 +124,10 @@ return {
             adapter = "deepseek",
             tools = {
               ["mcp"] = {
-                callback = require("mcphub.extensions.codecompanion"),
+                -- calling it in a function would prevent mcphub from being loaded before it's needed
+                callback = function()
+                  return require("mcphub.extensions.codecompanion")
+                end,
                 description = "Call tools and resources from the MCP Servers",
                 opts = {
                   requires_approval = true,
@@ -235,6 +257,7 @@ return {
       vim.keymap.set({ "n", "v" }, "<localleader>aac", "<cmd>Augment chat<CR>")
       vim.keymap.set("n", "<localleader>aat", "<cmd>Augment chat-toggle<CR>")
       vim.keymap.set("n", "<localleader>aan", "<cmd>Augment chat-new<CR>")
+      vim.keymap.set("n", "<C-y>", "<cmd>augment#Accept()<CR>")
       -- vim.keymap.set("i", "<C-a>", "<cmd>call augment#Accept()<CR>", { silent = true })
     end,
   },
