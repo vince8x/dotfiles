@@ -256,6 +256,11 @@ return {
         telescope = {
           enable = true, -- whether to enable the telescope picker
         },
+        blink = {
+          manual_context_keyword = "@manual_context", -- keyword to use for manual context
+          history_keyword = "@history_context", -- keyword to use for history context
+          prompt_keyword = "@prompt", -- keyword to use for prompt context
+        },
         prompts = {
           {
             name = "Unit tests", -- the name of the prompt (required)

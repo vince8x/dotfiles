@@ -1,10 +1,27 @@
 {
   "mcpServers": {
+    "github": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "command": "npx",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      }
+    },
     "fetch": {
-      "command": "uvx",
       "args": [
         "mcp-server-fetch"
-      ]
+      ],
+      "command": "uvx"
+    },
+    "browser-tools": {
+      "args": [
+        "-y",
+        "@agentdeskai/browser-tools-mcp@1.2.0"
+      ],
+      "command": "npx"
     },
     "todoist": {
       "command": "npx",
@@ -17,29 +34,13 @@
         "TODOIST_API_TOKEN": "your-api-token-here"
       }
     },
-    "github": {
+    "obsidian": {
       "command": "npx",
+      "disabled": false,
       "args": [
         "-y",
-        "@modelcontextprotocol/server-github"
-      ],
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      }
-    },
-    "browser-tools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@agentdeskai/browser-tools-mcp@1.2.0"
-      ]
-    },
-    "redis": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-redis",
-        "redis://localhost:6379"
+        "@smithery-ai/mcp-obsidian",
+        "/home/vince8x/Sync/obsidian/obsidian_vault/"
       ]
     },
     "postgres": {
@@ -47,8 +48,19 @@
       "args": [
         "-y",
         "@modelcontextprotocol/server-postgres",
-        "postgresql://localhost/mydb"
-      ]
+        "postgresql://localhost:5432/postgres"
+      ],
+      "custom_instructions": {
+        "text": "show all database"
+      }
+    },
+    "redis": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-redis",
+        "redis://127.0.0.1:6379"
+      ],
+      "command": "npx"
     }
   }
 }
