@@ -51,6 +51,9 @@ return {
         },
       })
     end,
+    keys = {
+      { "<localleader>mh", "<cmd>MCPHub<CR>", desc = "Start MCP Hub" },
+    },
   },
   {
     "olimorris/codecompanion.nvim",
@@ -113,11 +116,37 @@ return {
                 },
                 choices = {
                   ["google/gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
+                  ["anthropic/claude-3.5-sonnet"] = "Claude 3.5 from Anthropic",
                   ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
+                  ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
+                  ["google/gemini-2.5-pro-exp-03-25:free"] = "Gemini 2.5 from Google",
+                  ["qwen/qwen2.5-vl-32b-instruct:free"] = "Qwen 2.5 from Qwen",
+                  ["qwen/qwq-32b:free"] = "Qwq 32b from Qwen",
                 },
               },
             })
           end,
+          gemini = function()
+            return require("codecompanion.adapters").extend("gemini", {
+              schema = {
+                model = {
+                  default = "gemini-2.5-pro-exp-03-25",
+                },
+                choices = {
+                  ["gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
+                  ["gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
+                },
+              },
+              env = {
+                api_key = "GEMINI_API_KEY",
+              },
+            })
+          end,
+        },
+        display = {
+          diff = {
+            provider = "mini_diff",
+          },
         },
         strategies = {
           chat = {
@@ -257,7 +286,7 @@ return {
       vim.keymap.set({ "n", "v" }, "<localleader>aac", "<cmd>Augment chat<CR>")
       vim.keymap.set("n", "<localleader>aat", "<cmd>Augment chat-toggle<CR>")
       vim.keymap.set("n", "<localleader>aan", "<cmd>Augment chat-new<CR>")
-      vim.keymap.set("n", "<C-y>", "<cmd>augment#Accept()<CR>")
+      vim.keymap.set("n", "<M-y>", "<cmd>call augment#Accept()<CR>")
       -- vim.keymap.set("i", "<C-a>", "<cmd>call augment#Accept()<CR>", { silent = true })
     end,
   },

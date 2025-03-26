@@ -11,18 +11,23 @@ return {
         },
         gemini = {
           api_key = os.getenv("GEMINI_API_KEY"),
+          models = {
+            "gemini-2.0-flash-001",
+            "gemini-2.5-pro-exp-03-25",
+          },
         },
         groq = {
           api_key = os.getenv("GROQ_API_KEY"),
         },
         mistral = {
+          disable = true, -- Disable if not installed or not in PATH
           api_key = os.getenv("MISTRAL_API_KEY"),
         },
         pplx = {
+          disable = true, -- Disable if not installed or not in PATH
           api_key = os.getenv("PERPLEXITY_API_KEY"),
         },
         -- provide an empty list to make provider available (no API key required)
-        ollama = {},
         openai = {
           api_key = os.getenv("OPENAI_API_KEY"),
         },
@@ -30,13 +35,16 @@ return {
           api_key = os.getenv("GITHUB_TOKEN"),
         },
         nvidia = {
+          disable = true, -- Disable if not installed or not in PATH
           api_key = os.getenv("NVIDIA_API_KEY"),
         },
         xai = {
+          disable = true, -- Disable if not installed or not in PATH
           api_key = os.getenv("XAI_API_KEY"),
         },
         openrouter = {
           disable = false,
+          style = "openai",
           endpoint = "https://openrouter.ai/api/v1/chat/completions",
           api_key = os.getenv("OPENROUTER_API_KEY"),
           models = {
@@ -52,10 +60,11 @@ return {
           },
         },
         cerebras = {
+          disable = false,
+          style = "openai",
           endpoint = "https://api.cerebras.ai/v1/chat/completions",
           api_key = os.getenv("CEREBRAS_API_KEY"),
           models = {
-
             "llama3.1-8b",
             "llama3.1-70b",
           },
@@ -65,12 +74,7 @@ return {
           },
         },
         deepseek = {
-          endpoint = "https://api.deepseek.com/chat/completions",
           api_key = os.getenv("DEEPSEEK_API_KEY"),
-          params = {
-            chat = { temperature = 1.1, top_p = 1 },
-            command = { temperature = 1.1, top_p = 1 },
-          },
         },
       },
       cmd_prefix = "Prt",
@@ -303,6 +307,7 @@ return {
   keys = {
     { "<localleader>pc", "<cmd>PrtChatNew<cr>", mode = { "n", "i" }, desc = "New Chat" },
     { "<localleader>pc", ":<C-u>'<,'>PrtChatNew<cr>", mode = { "v" }, desc = "Visual Chat New" },
+    { "<localleader>pg", "<cmd>PrtChatRespond<cr>", desc = "🦜 Respond to Parrot Chat" },
     { "<localleader>pt", "<cmd>PrtChatToggle<cr>", mode = { "n", "i" }, desc = "Toggle Popup Chat" },
     { "<localleader>pf", "<cmd>PrtChatFinder<cr>", mode = { "n", "i" }, desc = "Chat Finder" },
     { "<localleader>pr", "<cmd>PrtRewrite<cr>", mode = { "n", "i" }, desc = "Inline Rewrite" },

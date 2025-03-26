@@ -9,7 +9,7 @@ return {
   keys = {
     {
       "<leader>cp",
-      ft = "markdown",
+      ft = { "markdown", "codecompanion", "Avante", "copilot-chat" },
       "<cmd>MarkdownPreviewToggle<cr>",
       desc = "Markdown Preview",
     },
