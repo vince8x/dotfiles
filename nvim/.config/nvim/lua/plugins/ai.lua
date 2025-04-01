@@ -283,11 +283,10 @@ return {
       vim.keymap.set("n", "<leader>al", function()
         vim.cmd("Augment chat " .. vim.api.nvim_get_current_line())
       end, { desc = "Augment chat with current line" })
-      vim.keymap.set({ "n", "v" }, "<localleader>aac", "<cmd>Augment chat<CR>")
-      vim.keymap.set("n", "<localleader>aat", "<cmd>Augment chat-toggle<CR>")
-      vim.keymap.set("n", "<localleader>aan", "<cmd>Augment chat-new<CR>")
-      vim.keymap.set("n", "<M-y>", "<cmd>call augment#Accept()<CR>")
-      -- vim.keymap.set("i", "<C-a>", "<cmd>call augment#Accept()<CR>", { silent = true })
+      vim.keymap.set({ "n", "v" }, "<localleader>agc", "<cmd>Augment chat<CR>")
+      vim.keymap.set("n", "<localleader>agt", "<cmd>Augment chat-toggle<CR>")
+      vim.keymap.set("n", "<localleader>agn", "<cmd>Augment chat-new<CR>")
+      vim.keymap.set("i", "<M-y>", "<cmd>call augment#Accept()<CR>", { noremap = true, silent = true })
     end,
   },
   {

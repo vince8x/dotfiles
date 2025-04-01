@@ -23,6 +23,14 @@
 ## Specify the Anthropic API key
 #anthropic-api-key:
 
+api-key:
+- openrouter=${OPENROUTER_API_KEY}
+- deepseek=${DEEPSEEK_API_KEY}
+
+dark-mode: true
+pretty: true
+stream: true
+
 ## Specify the model to use for the main chat
 #model:
 

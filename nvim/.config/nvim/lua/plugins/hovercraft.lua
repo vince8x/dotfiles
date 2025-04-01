@@ -11,16 +11,17 @@ return {
       providers = {
         providers = {
           {
-            "LSP",
-            require("hovercraft.provider.lsp.hover").new(),
-          },
-          {
             "Man",
             require("hovercraft.provider.man").new(),
           },
           {
             "Dictionary",
             require("hovercraft.provider.dictionary").new(),
+          },
+          { "Git Blame", require("hovercraft.provider.git.blame").new() },
+          {
+            "LSP",
+            require("hovercraft.provider.lsp.hover").new(),
           },
         },
       },

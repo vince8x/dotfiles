@@ -35,6 +35,7 @@ return {
         opts.adapters,
         require("neotest-rust")({
           args = { "--no-capture" },
+          env = { DOTENV_FILE = ".env" }, -- Set environment variables if needed
         })
       )
     end,
