@@ -4,11 +4,15 @@
     "snippets": [
       {
         "language": "markdown",
-        "path": "./snippets/markdown.json"
+        "path": "./markdown.json"
       },
       {
         "language": "markdown",
-        "path": "./snippets/prompts.json"
+        "path": "./prompts.json"
+      },
+      {
+        "language": "markdown",
+        "path": "./ai.json"
       }
     ]
   }

@@ -1,12 +1,19 @@
 {
   "Insert task list": {
     "prefix": "task",
-    "body": ["- [${1| ,x|}] ${2:text}", "${0}"],
+    "body": [
+      "- [${1| ,x|}] ${2:text}",
+      "${0}"
+    ],
     "description": "Insert task list"
   },
   "Insert task list 2": {
     "prefix": "task2",
-    "body": ["- [${1| ,x|}] ${2:text}", "- [${3| ,x|}] ${4:text}", "${0}"],
+    "body": [
+      "- [${1| ,x|}] ${2:text}",
+      "- [${3| ,x|}] ${4:text}",
+      "${0}"
+    ],
     "description": "Insert task list with 2 tasks"
   },
   "Insert task list 3": {
@@ -189,5 +196,14 @@
       "${0}"
     ],
     "description": "Insert table with 5 rows and 3 columns. First row is heading."
+  },
+  "Unit Tests for Python Function": {
+    "prefix": "p_puf",
+    "body": [
+      "Write a unit test for the following Python function. Ensure that the test covers edge cases, exceptions, and typical use cases. Include multiple assertions to validate input and output behavior.",
+      "",
+      "[paste Python function]"
+    ],
+    "description": "Generate Unit Tests for Python Function"
   }
 }

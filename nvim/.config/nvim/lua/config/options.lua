@@ -182,3 +182,5 @@ vim.opt_local.conceallevel = 2
 -- Search inside selection block
 vim.keymap.set('v', '<M-/>', '<esc>/\\%V')           -- search within selection
 vim.keymap.set('x', '<M-s>', [[:s/\%V]]) -- substitution in visual selection
+
+vim.g.vscode = true
