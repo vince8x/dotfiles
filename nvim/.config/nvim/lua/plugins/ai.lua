@@ -92,6 +92,8 @@ return {
                     ["gemma2-9b-it"] = "Gemma 2 9B from Google",
                     ["deepseek-r1-distill-llama-70b"] = "Deepseek R1 distill from Deepseek",
                     ["qwen-qwq-32b"] = "Qwen QWQ from Qwen",
+                    ["meta-llama/llama-4-scout-17b-16e-instruct"] = "Llama 4 Scout 17B from Meta",
+                    ["meta-llama/llama-4-maverick-17b-128e-instruct"] = "Llama 4 Maverick 17B from Meta",
                   },
                 },
               },
@@ -119,9 +121,10 @@ return {
                   ["anthropic/claude-3.5-sonnet"] = "Claude 3.5 from Anthropic",
                   ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
                   ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
-                  ["google/gemini-2.5-pro-exp-03-25:free"] = "Gemini 2.5 from Google",
-                  ["qwen/qwen2.5-vl-32b-instruct:free"] = "Qwen 2.5 from Qwen",
-                  ["qwen/qwq-32b:free"] = "Qwq 32b from Qwen",
+                  ["google/gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
+                  ["qwen/qwen2.5-vl-32b-instruct"] = "Qwen 2.5 from Qwen",
+                  ["qwen/qwq-32b"] = "Qwq 32b from Qwen",
+                  ["openrouter/quasar-alpha"] = "Quasar from Openrouter",
                 },
               },
             })
@@ -135,6 +138,8 @@ return {
                 choices = {
                   ["gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
                   ["gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
+                  ["meta-llama/llama-4-scout"] = "Llama 4 Scout 17B from Meta",
+                  ["meta-llama/llama-4-maverick"] = "Llama 4 Maverick 17B from Meta",
                 },
               },
               env = {
@@ -327,33 +332,4 @@ return {
       { "<localleader>cl", "<cmd>ClaudeCode<CR>", desc = "Claude Code" },
     },
   },
-  -- {
-  --   "frankroeder/parrot.nvim",
-  --   disabled = true,
-  --   tag = "v0.3.1",
-  --   dependencies = { "ibhagwan/fzf-lua", "nvim-lua/plenary.nvim" },
-  --   config = function()
-  --     require("parrot").setup({
-  --       providers = {
-  --         -- pplx = {
-  --         --   api_key = os.getenv("PERPLEXITY_API_KEY"),
-  --         -- OPTIONAL
-  --         -- gpg command
-  --         -- api_key = { "gpg", "--decrypt", vim.fn.expand("$HOME") .. "/pplx_api_key.txt.gpg"  },
-  --         -- macOS security tool
-  --         -- api_key = { "/usr/bin/security", "find-generic-password", "-s pplx-api-key", "-w" },
-  --         -- },
-  --         openai = {
-  --           api_key = os.getenv("OPENAI_API_KEY"),
-  --         },
-  --         -- anthropic = {
-  --         --   api_key = os.getenv("ANTHROPIC_API_KEY"),
-  --         -- },
-  --         -- mistral = {
-  --         --   api_key = os.getenv("MISTRAL_API_KEY"),
-  --         -- },
-  --       },
-  --     })
-  --   end,
-  -- },
 }

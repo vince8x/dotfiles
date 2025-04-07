@@ -373,12 +373,20 @@ return {
           system_prompt = dense_chat_system_prompt,
         },
         {
+          provider = "groq",
+          name = "llama-4-scout",
+          chat = true,
+          command = false,
+          model = { model = "meta-llama/llama-4-scout-17b-16e-instruct", temperature = 0.6, top_p = 0.95 },
+          system_prompt = default_code_system_prompt,
+        },
+        {
           provider = "openrouter",
           name = "ChatDeepseek",
           chat = true,
           command = false,
           model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
-          system_prompt = dense_chat_system_prompt,
+          system_prompt = default_code_system_prompt,
         },
         {
           provider = "openrouter",
@@ -395,6 +403,14 @@ return {
           command = false,
           model = { model = "anthropic/claude-3.7-sonnet", temperature = 1.1, top_p = 1 },
           system_prompt = default_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "Llama 4 Maverick",
+          chat = false,
+          command = true,
+          model = { model = "meta-llama/llama-4-maverick", temperature = 0.8, top_p = 1 },
+          system_prompt = default_code_system_prompt,
         },
         {
           provider = "openrouter",
@@ -422,14 +438,6 @@ return {
         },
         {
           provider = "openrouter",
-          name = "nemotron",
-          chat = false,
-          command = true,
-          model = { model = "nvidia/llama-3.1-nemotron-70b-instruct", temperature = 0.8, top_p = 1 },
-          system_prompt = dense_chat_system_prompt,
-        },
-        {
-          provider = "openrouter",
           name = "qwen",
           chat = true,
           command = false,
@@ -441,7 +449,7 @@ return {
           name = "gemini-chat-dense",
           chat = true,
           command = false,
-          model = { model = "gemini-exp-1206", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-2.5-pro-preview-03-25", temperature = 0.8, top_p = 1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -467,7 +475,15 @@ return {
           command = false,
           model = { model = "gemma-3-27b-it", temperature = 0.8, top_p = 1 },
           system_prompt = dense_chat_system_prompt,
-        }
+        },
+        {
+          provider = "openrouter",
+          name = "quasar alpha",
+          chat = true,
+          command = false,
+          model = { model = "openrouter/quasar-alpha", temperature = 0.8, top_p = 1 },
+          system_prompt = dense_chat_system_prompt,
+        },
       },
       -- [feat: add option to set chat buftype to prompt](https://github.com/Robitx/gp.nvim/issues/94)
       chat_prompt_buf_type = false,

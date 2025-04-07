@@ -169,22 +169,6 @@ vim.keymap.set("n", "<leader>mfA", function()
   end
 end, { desc = "[P]Format and save all Markdown files in the repo" })
 
-local wk = require("which-key")
-wk.add({
-  {
-    mode = { "n" },
-    { "<leader>mt", group = "[P]todo" },
-  },
-  {
-    mode = { "n", "v" },
-    { "<leader>m", group = "[P]markdown" },
-    { "<leader>mf", group = "[P]fold" },
-    { "<leader>mh", group = "[P]headings increase/decrease" },
-    { "<leader>ml", group = "[P]links" },
-    { "<leader>ms", group = "[P]spell" },
-    { "<leader>msl", group = "[P]language" },
-  },
-})
 vim.keymap.set(
   "v",
   "<leader>mj",

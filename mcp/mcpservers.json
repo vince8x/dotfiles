@@ -2,7 +2,10 @@
   "mcpServers": {
     "firecrawl": {
       "command": "npx",
-      "args": ["-y", "firecrawl-mcp"],
+      "args": [
+        "-y",
+        "firecrawl-mcp"
+      ],
       "env": {
         "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}",
         "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
@@ -74,6 +77,44 @@
         "redis://127.0.0.1:6379"
       ],
       "command": "npx"
+    },
+    "time": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-time"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "/home/vince8x/.mcphub/servers/memory/memory.json"
+      }
+    },
+    "software-planning": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@NightTrek/Software-planning-mcp"
+      ],
+      "disabled": false
+    },
+    "youtube": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@anaisbetts/mcp-youtube"
+      ]
     }
   }
 }

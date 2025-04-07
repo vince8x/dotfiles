@@ -3,6 +3,8 @@ return {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "williamboman/mason.nvim",
+      "williamboman/mason-lspconfig.nvim",
       "jose-elias-alvarez/typescript.nvim",
       init = function()
         require("lazyvim.util").lsp.on_attach(function(_, buffer)
@@ -18,7 +20,12 @@ return {
       servers = {
         -- tsserver will be automatically installed with mason and loaded with lspconfig
         tsserver = {},
-        circom_lsp = {},
+        ['circom-lsp'] = {
+          mason = false,
+          cmd = { "circom-lsp" },
+          filetypes = { "circom" },
+          root_markers = { ".git" },
+        },
       },
       -- you can do any additional lsp server setup here
       -- return true if you don't want this server to be setup with lspconfig

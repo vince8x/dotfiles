@@ -25,7 +25,7 @@ return {
         "lua_ls",
         "bashls",
         -- Add your desired LSP server's MASON NAME here
-        "circom-lsp", -- <---- ADD IT HERE
+        "circom-lsp",
         -- "pyright",
         -- "rust_analyzer",
         -- etc.

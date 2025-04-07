@@ -23,4 +23,7 @@ return {
     },
   },
   { "cordx56/rustowl", dependencies = { "neovim/nvim-lspconfig" } },
+  {
+    "iden3/vim-circom-syntax",
+  },
 }

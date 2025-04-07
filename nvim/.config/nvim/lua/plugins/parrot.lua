@@ -53,6 +53,9 @@ return {
             "deepseek/deepseek-chat",
             "anthropic/claude-3.7-sonnet",
             "qwen/qwen-2.5-coder-32b-instruct",
+            "meta-llama/llama-4-maverick",
+            "meta-llama/llama-4-scout",
+            "openrouter/quasar-alpha",
           },
           params = {
             chat = { temperature = 1.1, top_p = 1 },

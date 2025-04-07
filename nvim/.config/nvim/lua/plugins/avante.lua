@@ -29,7 +29,7 @@ return {
         endpoint = "https://api.groq.com/openai/v1/",
         -- model = 'llama-3.2-90b-text-preview',
         -- model = 'llama-3.3-70b-specdec',
-        model = "llama-3.3-70b-versatile",
+        model = "meta-llama/llama-4-scout-17b-16e-instruct",
       },
       cerebras = {
         __inherited_from = "openai",
@@ -48,6 +48,18 @@ return {
         endpoint = "https://openrouter.ai/api/v1",
         api_key_name = "OPENROUTER_API_KEY",
         model = "qwen/qwen-2.5-coder-32b-instruct",
+      },
+      ["openrouter-llama-4-scout"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "meta-llama/llama-4-maverick",
+      },
+      ["quasar-alpha"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "openrouter/quasar-alpha",
       },
     },
     dual_boost = {

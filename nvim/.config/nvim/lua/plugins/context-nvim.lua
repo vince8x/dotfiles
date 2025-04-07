@@ -352,4 +352,7 @@ return {
       end, { noremap = true, silent = true })
     end,
   },
+  {
+    "banjo/contextfiles.nvim",
+  },
 }
