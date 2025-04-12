@@ -26,4 +26,7 @@ return {
   {
     "iden3/vim-circom-syntax",
   },
+  {
+    "noir-lang/noir-nvim",
+  },
 }

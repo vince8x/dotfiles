@@ -61,6 +61,12 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         model = "openrouter/quasar-alpha",
       },
+      ["optimus-alpha"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "openrouter/optimus-alpha",
+      },
     },
     dual_boost = {
       enabled = false,

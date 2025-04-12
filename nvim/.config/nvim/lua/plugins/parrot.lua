@@ -56,6 +56,7 @@ return {
             "meta-llama/llama-4-maverick",
             "meta-llama/llama-4-scout",
             "openrouter/quasar-alpha",
+            "openrouter/optigmus-alpha",
           },
           params = {
             chat = { temperature = 1.1, top_p = 1 },

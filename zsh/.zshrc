@@ -271,3 +271,9 @@ export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+export NARGO_HOME="/home/vince8x/.nargo"
+
+export PATH="$PATH:$NARGO_HOME/bin"
+export PATH="${HOME}/.bb:${PATH}"
+export PATH="/home/vince8x/.bb:$PATH"
