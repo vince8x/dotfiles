@@ -142,17 +142,16 @@ export EDITOR="$VISUAL"
 
 # editor
 alias nvim-astro="NVIM_APPNAME=AstroNvim nvim"
+alias nvim-vscode="NVIM_APPNAME=vscodevim nvim"
 
 function nvims() {
-  items=("default" "kickstart" "AstroNvim" "lazy")
+  items=("default" "nvim" "vscodevim")
   config=$(printf "%s\n" "${items[@]}" | fzf --prompt=" Neovim Config  " --height=~50% --layout=reverse --border --exit-0)
   if [[ -z $config ]]; then
     echo "Nothing selected"
     return 0
   elif [[ $config == "default" ]]; then
     config = ""
-  elif [[ $config == "lazy" ]]; then
-    config = "nvim"
   fi
   NVIM_APPNAME=$config nvim $@
 }

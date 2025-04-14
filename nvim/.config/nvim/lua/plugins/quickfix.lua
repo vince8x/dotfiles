@@ -143,15 +143,13 @@ return {
       vim.o.qftf = "{info -> v:lua._G.qftf(info)}"
     end,
   },
-  -- {
-  --   "yssl/QFEnter",
-  --   config = function()
-  --     vim.g.qfenter_keymap = {
-  --       open = { "<CR>" },
-  --       vopen = { "<c-v>" },
-  --       hopen = { "<c-h>" },
-  --       topen = { "<c-t>" },
-  --     }
-  --   end,
-  -- },
+  {
+    "stevearc/quicker.nvim",
+    event = "FileType qf",
+    opts = {},
+    keys = {
+      { "<M-q>", "<cmd>lua require('quicker').toggle()<cr>", desc = "Toggle quickfix" },
+      { "<T-q>", "<cmd>lua require('quicker').toggle()<cr>", desc = "Toggle quickfix" },
+    },
+  },
 }
