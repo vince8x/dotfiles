@@ -264,6 +264,11 @@ bindkey -M vicmd '^[,' partial_accept_backward # Ctrl + ,
 # whisper
 export WHISPER_CPP_HOME="$HOME/projects/tools/whisper.cpp"
 
+# editable-term
+if [ -z "$NVIM" ]; then
+    set -o vi
+fi
+
 
 . "$HOME/.cargo/env"
 
