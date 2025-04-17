@@ -296,8 +296,8 @@ return {
           command = true,
           model = {
             model = "gpt-3.5-turbo-1106",
-            temperature = 0.8,
-            top_p = 1,
+            temperature = 0.2,
+            top_p = 0.1,
           },
           system_prompt = default_code_system_prompt,
         },
@@ -306,7 +306,7 @@ return {
           chat = true,
           command = false,
           -- string with model name or table with model name and parameters
-          model = { model = "gpt-3.5-turbo-1106", temperature = 1.1, top_p = 1 },
+          model = { model = "gpt-3.5-turbo-1106", temperature = 0.2, top_p = 0.1 },
           -- system prompt (use this to specify the persona/role of the AI)
           system_prompt = default_chat_system_prompt,
         },
@@ -314,14 +314,14 @@ return {
           name = "ChatGPT4",
           chat = true,
           command = false,
-          model = { model = "gpt-4o-mini", temperature = 1.1, top_p = 1 },
+          model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_chat_system_prompt,
         },
         {
           name = "CodeGPT4",
           chat = false,
           command = true,
-          model = { model = "gpt-4o-mini", temperature = 0.8, top_p = 1 },
+          model = { model = "gpt-4o-mini", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_code_system_prompt,
         },
         {
@@ -331,8 +331,8 @@ return {
           command = false,
           model = {
             model = "openai/o1-mini-2024-09-12",
-            temperature = 0.8,
-            top_p = 1,
+            temperature = 0.2,
+            top_p = 0.1,
           },
           system_prompt = default_code_system_prompt,
         },
@@ -343,8 +343,8 @@ return {
           command = false,
           model = {
             model = "openai/o1-preview-2024-09-12",
-            temperature = 0.8,
-            top_p = 1,
+            temperature = 0.2,
+            top_p = 0.1,
           },
           system_prompt = default_code_system_prompt,
         },
@@ -353,7 +353,7 @@ return {
           name = "deepseek-reasoner",
           chat = true,
           command = false,
-          model = { model = "deepseek-reasoner", temperature = 1.1, top_p = 1 },
+          model = { model = "deepseek-reasoner", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -361,7 +361,7 @@ return {
           name = "deepseek-reasoner-groq",
           chat = true,
           command = false,
-          model = { model = "deepseek-r1-distill-llama-70b", temperature = 0.6, top_p = 0.95 },
+          model = { model = "deepseek-r1-distill-llama-70b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -369,7 +369,7 @@ return {
           name = "qwen-qwq-32b-groq",
           chat = true,
           command = false,
-          model = { model = "qwen-qwq-32b", temperature = 0.6, top_p = 0.95 },
+          model = { model = "qwen-qwq-32b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -377,7 +377,7 @@ return {
           name = "llama-4-scout",
           chat = true,
           command = false,
-          model = { model = "meta-llama/llama-4-scout-17b-16e-instruct", temperature = 0.6, top_p = 0.95 },
+          model = { model = "meta-llama/llama-4-scout-17b-16e-instruct", temperature = 0.2, top_p = 0.1},
           system_prompt = default_code_system_prompt,
         },
         {
@@ -385,7 +385,7 @@ return {
           name = "ChatDeepseek",
           chat = true,
           command = false,
-          model = { model = "deepseek/deepseek-chat", temperature = 1.1, top_p = 1 },
+          model = { model = "deepseek/deepseek-chat", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_code_system_prompt,
         },
         {
@@ -393,7 +393,7 @@ return {
           name = "CodeDeepseek",
           chat = false,
           command = true,
-          model = { model = "deepseek/deepseek-chat", temperature = 0.8, top_p = 1 },
+          model = { model = "deepseek/deepseek-chat", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -401,7 +401,7 @@ return {
           name = "ChatClaudeSonnet",
           chat = true,
           command = false,
-          model = { model = "anthropic/claude-3.7-sonnet", temperature = 1.1, top_p = 1 },
+          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_chat_system_prompt,
         },
         {
@@ -409,7 +409,7 @@ return {
           name = "Llama 4 Maverick",
           chat = false,
           command = true,
-          model = { model = "meta-llama/llama-4-maverick", temperature = 0.8, top_p = 1 },
+          model = { model = "meta-llama/llama-4-maverick", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_code_system_prompt,
         },
         {
@@ -417,7 +417,7 @@ return {
           name = "CodeClaudeSonnet",
           chat = false,
           command = true,
-          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.8, top_p = 1 },
+          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_code_system_prompt,
         },
         {
@@ -425,7 +425,7 @@ return {
           name = "llama3.1-8b",
           chat = true,
           command = false,
-          model = { model = "llama3.1-8b", temperature = 0.8, top_p = 1 },
+          model = { model = "llama3.1-8b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -433,7 +433,7 @@ return {
           name = "llama3.1-70b",
           chat = true,
           command = false,
-          model = { model = "llama3.1-70b", temperature = 0.8, top_p = 1 },
+          model = { model = "llama3.1-70b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -441,7 +441,7 @@ return {
           name = "qwen",
           chat = true,
           command = false,
-          model = { model = "qwen/qwen-2.5-coder-32b-instruct", temperature = 0.8, top_p = 1 },
+          model = { model = "qwen/qwen-2.5-coder-32b-instruct", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -449,7 +449,7 @@ return {
           name = "gemini-chat-dense",
           chat = true,
           command = false,
-          model = { model = "gemini-2.5-pro-preview-03-25", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-2.5-pro-preview-03-25", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -457,7 +457,7 @@ return {
           name = "gemini-flash",
           chat = true,
           command = false,
-          model = { model = "gemini-2.0-flash-exp", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-2.0-flash-exp", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -465,7 +465,7 @@ return {
           name = "gemini-flash-thinking",
           chat = true,
           command = false,
-          model = { model = "gemini-2.0-flash-thinking-exp-01-21", temperature = 0.8, top_p = 1 },
+          model = { model = "gemini-2.0-flash-thinking-exp-01-21", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -473,23 +473,7 @@ return {
           name = "gemma-3-27b-it",
           chat = true,
           command = false,
-          model = { model = "gemma-3-27b-it", temperature = 0.8, top_p = 1 },
-          system_prompt = dense_chat_system_prompt,
-        },
-        {
-          provider = "openrouter",
-          name = "quasar alpha",
-          chat = true,
-          command = false,
-          model = { model = "openrouter/quasar-alpha", temperature = 0.8, top_p = 1 },
-          system_prompt = dense_chat_system_prompt,
-        },
-        {
-          provider = "openrouter",
-          name = "optimus alpha",
-          chat = true,
-          command = false,
-          model = { model = "openrouter/optimus-alpha", temperature = 0.8, top_p = 1 },
+          model = { model = "gemma-3-27b-it", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
       },

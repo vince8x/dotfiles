@@ -55,12 +55,10 @@ return {
             "qwen/qwen-2.5-coder-32b-instruct",
             "meta-llama/llama-4-maverick",
             "meta-llama/llama-4-scout",
-            "openrouter/quasar-alpha",
-            "openrouter/optigmus-alpha",
           },
           params = {
-            chat = { temperature = 1.1, top_p = 1 },
-            command = { temperature = 1.1, top_p = 1 },
+            chat = { temperature = 0.2, top_p = 1 },
+            command = { temperature = 0.2, top_p = 1 },
           },
         },
         cerebras = {
@@ -73,8 +71,8 @@ return {
             "llama3.1-70b",
           },
           params = {
-            chat = { temperature = 1.1, top_p = 1 },
-            command = { temperature = 1.1, top_p = 1 },
+            chat = { temperature = 0.2, top_p = 1 },
+            command = { temperature = 0.2, top_p = 1 },
           },
         },
         deepseek = {

@@ -45,7 +45,8 @@ return {
               default = 32768,
             },
             temperature = {
-              default = 1,
+              default = 0.2,
+              top_p = 0.1,
             },
           })
         end,
@@ -68,8 +69,6 @@ return {
                 ["google/gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
                 ["qwen/qwen2.5-vl-32b-instruct"] = "Qwen 2.5 from Qwen",
                 ["qwen/qwq-32b"] = "Qwq 32b from Qwen",
-                ["openrouter/quasar-alpha"] = "Quasar from Openrouter",
-                ["openrouter/optimus-alpha"] = "Optimus from Openrouter",
               },
             },
           })
