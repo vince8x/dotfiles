@@ -223,4 +223,38 @@ return {
       })
     end,
   },
+  {
+    "nathanbraun/nvim-ai",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    -- Optional, for model selection },
+    config = function()
+      require("nai").setup({
+        mappings = {
+          enabled = true,
+          intercept_ctrl_c = true,
+          chat = {
+            continue = "<f16>ic",
+            new = "<f16>ii",
+            cancel = "<f16>ix",
+          },
+          expand = {
+            blocks = "<f16>ie",
+          },
+          insert = {
+            user_message = "<Leader>iu",
+            scrape = "<f16>id",
+            web = "<f16>iw",
+            youtube = "<f16>iy",
+            reference = "<f16>ir",
+            snapshot = "<f16>is",
+            crawl = "<f16>il",
+          },
+          settings = {
+            select_model = "<Leader>am",
+            toggle_provider = "<Leader>ap",
+          },
+        },
+      })
+    end,
+  },
 }
