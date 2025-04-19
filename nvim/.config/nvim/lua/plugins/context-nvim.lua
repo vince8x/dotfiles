@@ -353,6 +353,25 @@ return {
     end,
   },
   {
+    "zhisme/copy_with_context.nvim",
+    config = function()
+      require("copy_with_context").setup({
+        -- Customize mappings
+        mappings = {
+          relative = "<f16>cy",
+          absolute = "<f16>cY",
+        },
+        -- whether to trim lines or not
+        trim_lines = true,
+        context_format = "# %s:%s", -- Default format for context: "# Source file: filepath:line"
+      })
+    end,
+    keys = {
+      { "<f16>cy", "<cmd>CopyWithContext<cr>", desc = "Copy with context" },
+      { "<f16>cY", "<cmd>CopyWithContext absolute<cr>", desc = "Copy with context absolute" },
+    },
+  },
+  {
     "banjo/contextfiles.nvim",
   },
 }

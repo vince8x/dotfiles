@@ -56,68 +56,93 @@ return {
     },
   },
   {
-    "github/copilot.vim",
-    enabled = false,
+    "CopilotC-Nvim/CopilotChat.nvim",
+    branch = "main",
+    cmd = "CopilotChat",
+    opts = function()
+      local user = vim.env.USER or "User"
+      user = user:sub(1, 1):upper() .. user:sub(2)
+      return {
+        auto_insert_mode = true,
+        question_header = "  " .. user .. " ",
+        answer_header = "  Copilot ",
+        window = {
+          width = 0.4,
+        },
+      }
+    end,
+    keys = {
+      { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
+      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
+      {
+        "<leader>aa",
+        function()
+          return require("CopilotChat").toggle()
+        end,
+        desc = "Toggle (CopilotChat)",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ax",
+        function()
+          return require("CopilotChat").reset()
+        end,
+        desc = "Clear (CopilotChat)",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>aq",
+        function()
+          vim.ui.input({
+            prompt = "Quick Chat: ",
+          }, function(input)
+            if input ~= "" then
+              require("CopilotChat").ask(input)
+            end
+          end)
+        end,
+        desc = "Quick Chat (CopilotChat)",
+        mode = { "n", "v" },
+      },
+      {
+        "<leader>ap",
+        function()
+          require("CopilotChat").select_prompt()
+        end,
+        desc = "Prompt Actions (CopilotChat)",
+        mode = { "n", "v" },
+      },
+    },
+    config = function(_, opts)
+      local vectorcode_ctx = require("vectorcode.integrations.copilotchat").make_context_provider({
+        prompt_header = "Here are relevant files from the repository:",
+        prompt_footer = "\nConsider this context when answering:",
+        skip_empty = true,
+      })
+      opts.contexts = vim.tbl_extend("force", opts.contexts or {}, { vectorcode = vectorcode_ctx })
+      opts.prompts = vim.tbl_extend("force", opts.prompts or {}, {
+        DeepExplain = {
+          prompt = "Please explain how the following code works.",
+          context = { "selection", "vectorcode" },
+        },
+      })
+      local chat = require("CopilotChat")
+
+      vim.api.nvim_create_autocmd("BufEnter", {
+        pattern = "copilot-chat",
+        callback = function()
+          vim.opt_local.relativenumber = false
+          vim.opt_local.number = false
+        end,
+      })
+
+      chat.setup(opts)
+    end,
   },
-  -- {
-  --   "jackMort/ChatGPT.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --     require("chatgpt").setup({
-  --       openai_params = {
-  --         -- NOTE: model can be a function returning the model name
-  --         -- this is useful if you want to change the model on the fly
-  --         -- using commands
-  --         -- Example:
-  --         -- model = function()
-  --         --     if some_condition() then
-  --         --         return "gpt-4-1106-preview"
-  --         --     else
-  --         --         return "gpt-3.5-turbo"
-  --         --     end
-  --         -- end,
-  --         model = "gpt-4-1106-preview",
-  --         frequency_penalty = 0,
-  --         presence_penalty = 0,
-  --         max_tokens = 4095,
-  --         temperature = 0.2,
-  --         top_p = 0.1,
-  --         n = 1,
-  --       },
-  --       keymaps = {
-  --         submit = "<C-j>",
-  --         yank_last_code = "<C-y>",
-  --       },
-  --     })
-  --     require("which-key").add({
-  --       {
-  --         { "<leader>o", group = "OpenAI's ChatGPT" },
-  --         { "<leader>oc", "<cmd>ChatGPT<CR>", desc = "ChatGPT" },
-  --         {
-  --           mode = { "n", "v" },
-  --           { "<leader>oa", "<cmd>ChatGPTRun add_tests<CR>", desc = "Add Tests" },
-  --           { "<leader>od", "<cmd>ChatGPTRun docstring<CR>", desc = "Docstring" },
-  --           { "<leader>oe", "<cmd>ChatGPTEditWithInstruction<CR>", desc = "Edit with instruction" },
-  --           { "<leader>of", "<cmd>ChatGPTRun fix_bugs<CR>", desc = "Fix Bugs" },
-  --           { "<leader>og", "<cmd>ChatGPTRun grammar_correction<CR>", desc = "Grammar Correction" },
-  --           { "<leader>ok", "<cmd>ChatGPTRun keywords<CR>", desc = "Keywords" },
-  --           { "<leader>ol", "<cmd>ChatGPTRun code_readability_analysis<CR>", desc = "Code Readability Analysis" },
-  --           { "<leader>oo", "<cmd>ChatGPTRun optimize_code<CR>", desc = "Optimize Code" },
-  --           { "<leader>or", "<cmd>ChatGPTRun roxygen_edit<CR>", desc = "Roxygen Edit" },
-  --           { "<leader>os", "<cmd>ChatGPTRun summarize<CR>", desc = "Summarize" },
-  --           { "<leader>ot", "<cmd>ChatGPTRun translate<CR>", desc = "Translate" },
-  --           { "<leader>ox", "<cmd>ChatGPTRun explain_code<CR>", desc = "Explain Code" },
-  --         },
-  --       },
-  --     })
-  --   end,
-  --   dependencies = {
-  --     "MunifTanjim/nui.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "folke/trouble.nvim",
-  --     "nvim-telescope/telescope.nvim",
-  --   },
-  -- },
+  {
+    "github/copilot.vim",
+    enabled = true,
+  },
   {
     "supermaven-inc/supermaven-nvim",
     event = "VeryLazy",
@@ -126,8 +151,12 @@ return {
       require("supermaven-nvim").setup({
         keymaps = {
           accept_suggestion = "<M-i>",
-          accept_word = "<M-j>",
+          accept_word = "<M-e>",
           clear_suggestion = "<M-c>",
+        },
+        color = {
+          suggestion_color = "#b85b56",
+          cterm = 244,
         },
       })
     end,
@@ -241,7 +270,7 @@ return {
             blocks = "<f16>ie",
           },
           insert = {
-            user_message = "<Leader>iu",
+            user_message = "<f16>iu",
             scrape = "<f16>id",
             web = "<f16>iw",
             youtube = "<f16>iy",
@@ -250,11 +279,117 @@ return {
             crawl = "<f16>il",
           },
           settings = {
-            select_model = "<Leader>am",
-            toggle_provider = "<Leader>ap",
+            select_model = "<f16>im",
+            toggle_provider = "<f16>ip",
           },
         },
       })
     end,
+  },
+  {
+    "Davidyz/VectorCode",
+    version = "*", -- optional, depending on whether you're on nightly or release
+    build = "pipx upgrade vectorcode", -- optional but recommended if you set `version = "*"`
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function(_, opts)
+      local function check_chroma_server()
+        local curl_cmd = 'curl -s -o /dev/null -w "%{http_code}" http://localhost:11434/api/v1/heartbeat'
+        local status_code = tonumber(vim.fn.system(curl_cmd))
+
+        if status_code and status_code >= 200 and status_code < 300 then
+          vim.notify("Chroma DB server found on localhost:11434", vim.log.levels.INFO)
+          return "localhost", "11434"
+        end
+
+        vim.notify("No Chroma DB server found", vim.log.levels.WARN)
+        return nil, nil
+      end
+
+      local function update_config_file(host, port)
+        if not (host and port) then
+          return
+        end
+
+        local path = require("plenary.path")
+
+        -- Use current working directory
+        local cwd = vim.fn.getcwd()
+        local config_dir = path:new(cwd, ".vectorcode")
+        local config_file = config_dir:joinpath("config.json")
+
+        -- Create directory if it doesn't exist
+        if not config_dir:exists() then
+          vim.fn.mkdir(config_dir.filename, "p")
+        end
+
+        -- Read existing config if it exists
+        local config = {}
+        local needs_update = true
+
+        if config_file:exists() then
+          local content = config_file:read()
+          local ok, existing_config = pcall(vim.json.decode, content)
+          if ok then
+            config = existing_config
+            -- Check if values are already set to the same values
+            if config.host == host and config.port == port then
+              needs_update = false
+            end
+          end
+        end
+
+        -- Only update if the values have changed or don't exist
+        if needs_update then
+          -- Update config with new host and port
+          config.host = host
+          config.port = port
+
+          -- Write the updated config back to file
+          local json_str = vim.json.encode(config)
+          config_file:write(json_str, "w")
+          vim.notify("Updated " .. config_file.filename .. " with server details", vim.log.levels.INFO)
+        end
+      end
+
+      -- Check for Chroma server and update config file if found
+      local host, port = check_chroma_server()
+      if host and port then
+        update_config_file(host, port)
+      end
+
+      local vectorcode = require("vectorcode")
+      vectorcode.setup(opts)
+    end,
+  },
+  {
+    "Xuyuanp/nes.nvim",
+    event = "VeryLazy",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    opts = {},
+    -- lazy config
+    config = function()
+      vim.api.nvim_set_hl(0, "NesAdd", { link = "DiffAdd" })
+      vim.api.nvim_set_hl(0, "NesDelete", { link = "DiffDelete" })
+    end,
+    keys = {
+      {
+        "<T-.>",
+        function()
+          require("nes").get_suggestion()
+        end,
+        mode = "i",
+        desc = "[Nes] get suggestion",
+      },
+      {
+        "<T-n>",
+        function()
+          require("nes").apply_suggestion(0, { jump = true, trigger = true })
+        end,
+        mode = "i",
+        desc = "[Nes] apply suggestion",
+      },
+    },
   },
 }
