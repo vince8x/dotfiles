@@ -310,7 +310,7 @@ return {
     vim.cmd([[cab cca CodeCompanionActions]])
   end,
   keys = {
-    { "<C-i>", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle (CopilotChatToggle)", mode = { "n", "v", "i" } },
+    { "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle (CopilotChatToggle)", mode = { "n", "v", "i" } },
     {
       "<localleader>Cc>",
       function()

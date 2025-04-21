@@ -56,94 +56,6 @@ return {
     },
   },
   {
-    "CopilotC-Nvim/CopilotChat.nvim",
-    branch = "main",
-    cmd = "CopilotChat",
-    opts = function()
-      local user = vim.env.USER or "User"
-      user = user:sub(1, 1):upper() .. user:sub(2)
-      return {
-        auto_insert_mode = true,
-        question_header = "  " .. user .. " ",
-        answer_header = "  Copilot ",
-        window = {
-          width = 0.4,
-        },
-      }
-    end,
-    keys = {
-      { "<c-s>", "<CR>", ft = "copilot-chat", desc = "Submit Prompt", remap = true },
-      { "<leader>a", "", desc = "+ai", mode = { "n", "v" } },
-      {
-        "<leader>aa",
-        function()
-          return require("CopilotChat").toggle()
-        end,
-        desc = "Toggle (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ax",
-        function()
-          return require("CopilotChat").reset()
-        end,
-        desc = "Clear (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>aq",
-        function()
-          vim.ui.input({
-            prompt = "Quick Chat: ",
-          }, function(input)
-            if input ~= "" then
-              require("CopilotChat").ask(input)
-            end
-          end)
-        end,
-        desc = "Quick Chat (CopilotChat)",
-        mode = { "n", "v" },
-      },
-      {
-        "<leader>ap",
-        function()
-          require("CopilotChat").select_prompt()
-        end,
-        desc = "Prompt Actions (CopilotChat)",
-        mode = { "n", "v" },
-      },
-    },
-    config = function(_, opts)
-      local vectorcode_ctx = require("vectorcode.integrations.copilotchat").make_context_provider({
-        prompt_header = "Here are relevant files from the repository:",
-        prompt_footer = "\nConsider this context when answering:",
-        skip_empty = true,
-      })
-      opts.contexts = vim.tbl_extend("force", opts.contexts or {}, { vectorcode = vectorcode_ctx })
-      opts.prompts = vim.tbl_extend("force", opts.prompts or {}, {
-        DeepExplain = {
-          prompt = "Please explain how the following code works.",
-          context = { "selection", "vectorcode" },
-        },
-      })
-      local chat = require("CopilotChat")
-
-      vim.api.nvim_create_autocmd("BufEnter", {
-        pattern = "copilot-chat",
-        callback = function()
-          vim.opt_local.relativenumber = false
-          vim.opt_local.number = false
-        end,
-      })
-
-      chat.setup(opts)
-    end,
-  },
-  {
-    "github/copilot.vim",
-    enabled = true,
-  },
-  {
     "supermaven-inc/supermaven-nvim",
     event = "VeryLazy",
     build = ":SupermavenUsePro",
@@ -165,14 +77,23 @@ return {
     "augmentcode/augment.vim",
     init = function()
       vim.g.augment_disable_tab_mapping = true
-      vim.keymap.set("n", "<leader>al", function()
-        vim.cmd("Augment chat " .. vim.api.nvim_get_current_line())
-      end, { desc = "Augment chat with current line" })
-      vim.keymap.set({ "n", "v" }, "<localleader>agc", "<cmd>Augment chat<CR>")
-      vim.keymap.set("n", "<localleader>agt", "<cmd>Augment chat-toggle<CR>")
-      vim.keymap.set("n", "<localleader>agn", "<cmd>Augment chat-new<CR>")
-      vim.keymap.set("i", "<M-y>", "<cmd>call augment#Accept()<CR>", { noremap = true, silent = true })
+      vim.keymap.set("v", "<leader>agv", function()
+        local text = vim.fn.getreg("*") -- or vim.fn.getreg('"') for the unnamed register
+        vim.cmd("Augment chat " .. vim.fn.shellescape(text))
+      end, { desc = "Augment chat with visual selection" })
     end,
+    keys = {
+      { "<leader>ag", desc = "Augment chat +" },
+      {
+        "<leader>al",
+        "<cmd>Augment chat " .. vim.api.nvim_get_current_line() .. "<CR>",
+        desc = "Augment chat with current line",
+      },
+      { "<leader>agc", "<cmd>Augment chat<CR>", mode = { "n", "v" }, desc = "Augment chat" },
+      { "<leader>agt", "<cmd>Augment chat-toggle<CR>", desc = "Toggle Augment chat" },
+      { "<leader>agn", "<cmd>Augment chat-new<CR>", desc = "New Augment chat" },
+      { "<M-y>", "<cmd>call augment#Accept()<CR>", mode = "i", noremap = true, silent = true },
+    },
   },
   {
     "GeorgesAlkhouri/nvim-aider",
@@ -181,6 +102,7 @@ return {
       "AiderHealth",
     },
     keys = {
+      { "<f16>a", desc = "AI+" },
       { "<f16>a/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
       { "<f16>as", "<cmd>AiderTerminalSend<cr>", desc = "Send to Aider", mode = { "n", "v" } },
       { "<f16>ac", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
@@ -210,6 +132,26 @@ return {
     end,
     keys = {
       { "<localleader>cl", "<cmd>ClaudeCode<CR>", desc = "Claude Code" },
+    },
+  },
+  {
+    "johnseth97/codex.nvim",
+    lazy = true,
+    keys = {
+      {
+        "<localleader>cc",
+        function()
+          require("codex").toggle()
+        end,
+        desc = "Toggle Codex popup",
+      },
+    },
+    opts = {
+      keymaps = {}, -- disable internal mapping
+      border = "rounded", -- or 'double'
+      width = 0.8,
+      height = 0.8,
+      autoinstall = true,
     },
   },
   {
@@ -360,36 +302,5 @@ return {
       local vectorcode = require("vectorcode")
       vectorcode.setup(opts)
     end,
-  },
-  {
-    "Xuyuanp/nes.nvim",
-    event = "VeryLazy",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    opts = {},
-    -- lazy config
-    config = function()
-      vim.api.nvim_set_hl(0, "NesAdd", { link = "DiffAdd" })
-      vim.api.nvim_set_hl(0, "NesDelete", { link = "DiffDelete" })
-    end,
-    keys = {
-      {
-        "<T-.>",
-        function()
-          require("nes").get_suggestion()
-        end,
-        mode = "i",
-        desc = "[Nes] get suggestion",
-      },
-      {
-        "<T-n>",
-        function()
-          require("nes").apply_suggestion(0, { jump = true, trigger = true })
-        end,
-        mode = "i",
-        desc = "[Nes] apply suggestion",
-      },
-    },
   },
 }
