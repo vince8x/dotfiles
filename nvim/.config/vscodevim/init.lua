@@ -1,6 +1,8 @@
 -- bootstrap lazy.nvim, LazyVim and your plugins
 require("config.lazy")
 
+vim.g.maplocalleader = ","
+
 local function vscode_action(cmd)
   return function() vscode.action(cmd) end
 end
@@ -39,4 +41,3 @@ keymap("n", "zO", ':call VSCodeNotify("editor.unfoldRecursively")<CR>', opts)
 keymap("n", "zo", ':call VSCodeNotify("editor.unfold")<CR>', opts)
 keymap("n", "za", ':call VSCodeNotify("editor.toggleFold")<CR>', opts)
 --keymap('n', '<space>', ':call VSCodeNotify("workbench.action.quickOpen")<CR>', opts)
-keymap("n", "<space>", ':call VSCodeNotify("whichkey.show")<CR>', opts)

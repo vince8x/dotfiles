@@ -82,4 +82,8 @@ return {
       { "<leader>ci", "<cmd>CtxIngest<CR>", desc = "Toggle [C]tx [I]ngest" },
     },
   },
+  {
+    "rmunozan/cosh.nvim",
+    cmd = "Cosh",
+  },
 }
