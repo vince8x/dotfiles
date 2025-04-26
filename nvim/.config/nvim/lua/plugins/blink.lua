@@ -1,5 +1,14 @@
 return {
   {
+    "saghen/blink.compat",
+    -- use the latest release, via version = '*', if you also use the latest release for blink.cmp
+    version = "*",
+    -- lazy.nvim will automatically load the plugin when it's required by blink.cmp
+    lazy = true,
+    -- make sure to set opts so that lazy.nvim calls blink.compat's setup
+    opts = {},
+  },
+  {
     "saghen/blink.cmp",
     dependencies = {
       "Kaiser-Yang/blink-cmp-avante",
@@ -19,6 +28,11 @@ return {
       default = { ..., "supermaven", "avante", "context_nvim" }, -- to add the context_nvim source to all filetypes
       per_filetype = { codecompanion = { "context_nvim", markdown = "context_nvim" } }, -- to add the context_nvim source to a specific filetype
       providers = {
+        tmux = {
+          name = "tmux",
+          module = "blink.compat.source",
+          score_offset = 3,
+        },
         supermaven = {
           name = "supermaven",
           module = "blink.compat.source",

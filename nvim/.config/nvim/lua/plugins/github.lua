@@ -36,17 +36,39 @@ local github_key_maps = function()
 end
 
 return {
-  "ldelossa/gh.nvim",
-  dependencies = {
-    {
-      "ldelossa/litee.nvim",
-      config = function()
-        require("litee.lib").setup()
-      end,
+  {
+    "ldelossa/gh.nvim",
+    dependencies = {
+      {
+        "ldelossa/litee.nvim",
+        config = function()
+          require("litee.lib").setup()
+        end,
+      },
+    },
+    config = function()
+      require("litee.gh").setup()
+      github_key_maps()
+    end,
+  },
+  {
+    "johnseth97/gh-dash.nvim",
+    lazy = true,
+    keys = {
+      {
+        "<leader>ghc",
+        function()
+          require("gh_dash").toggle()
+        end,
+        desc = "Toggle gh-dash popup",
+      },
+    },
+    opts = {
+      keymaps = {}, -- disable internal mapping
+      border = "rounded", -- or 'double'
+      width = 0.8,
+      height = 0.8,
+      autoinstall = true,
     },
   },
-  config = function()
-    require("litee.gh").setup()
-    github_key_maps()
-  end,
 }

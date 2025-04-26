@@ -1,6 +1,18 @@
 {
   "name": "vince8x-snippets",
   "contributes": {
+    "languages": [
+      {
+        "id": "copilot-chat",
+        "aliases": [
+          "Copilot Chat",
+          "copilot-chat"
+        ],
+        "extensions": [
+          "copilot-chat"
+        ]
+      }
+    ],
     "snippets": [
       {
         "language": "markdown",
@@ -12,6 +24,10 @@
       },
       {
         "language": "markdown",
+        "path": "./ai.json"
+      },
+      {
+        "language": "copilot-chat",
         "path": "./ai.json"
       }
     ]
