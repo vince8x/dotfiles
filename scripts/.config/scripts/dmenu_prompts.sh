@@ -1,12 +1,23 @@
 #!/bin/sh
-dmenu_prompts=~/.config/prompts/$(ls ~/.config/prompts/ | dmenu -i -p "Choose prompt file")
-echo $dmenu_prompts
-[ "$dmenu_notes" = "$HOME/.config/prompts/" ] && exit
-while [ -d $dmenu_prompts ] 
-do 
- dmenu_prompts=$dmenu_prompts/$(ls $dmenu_prompts | dmenu -i -p "Choose prompt file")
+
+if [ -z "$1" ]; then
+    echo "Usage: $0 <directory>"
+    exit 1
+fi
+
+dmenu_dir="$1"
+
+dmenu_prompts="$dmenu_dir/$(ls "$dmenu_dir" | dmenu -i -p "Choose prompt file")"
+echo "$dmenu_prompts"
+[ "$dmenu_prompts" = "$dmenu_dir/" ] && exit
+
+while [ -d "$dmenu_prompts" ]; do
+    dmenu_prompts="$dmenu_prompts/$(ls "$dmenu_prompts" | dmenu -i -p "Choose prompt file")"
 done
 
-[ "$(echo "${dmenu_prompts##*.}")" = "txt" ] && cat ~/.config/prompts/"$dmenu_prompts" | xclip -selection clipboard
- && exit
-st -e nvim $dmenu_prompts
+if [ "${dmenu_prompts##*.}" = "txt" ] || [ "${dmenu_prompts##*.}" = "md" ]; then
+    cat "$dmenu_prompts" | xclip -selection clipboard
+    echo "$dmenu_prompts" | xclip -selection clipboard && exit
+fi
+
+st -e nvim "$dmenu_prompts"

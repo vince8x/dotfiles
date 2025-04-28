@@ -192,6 +192,7 @@
   "vim-piper": { "branch": "master", "commit": "d51cb514b38f057bf0e59da4e033e448e0032dc3" },
   "vim-tmux-navigator": { "branch": "master", "commit": "791dacfcfc8ccb7f6eb1c853050883b03e5a22fe" },
   "vimtex": { "branch": "master", "commit": "cfd4e528b0b44804b51a2929ddcde0b99ebae52f" },
+  "vocal.nvim": { "branch": "master", "commit": "e62a7adcadcde758268a8433b1345ca2a0ecd4a9" },
   "vscode-js-debug": { "branch": "main", "commit": "cdca7f206692f5ceed702c19b7f7f72aa2bba3b9" },
   "which-key.nvim": { "branch": "main", "commit": "370ec46f710e058c9c1646273e6b225acf47cbed" },
   "window-picker": { "branch": "main", "commit": "6382540b2ae5de6c793d4aa2e3fe6dbb518505ec" },

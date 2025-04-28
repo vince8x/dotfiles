@@ -457,7 +457,7 @@ return {
           name = "gemini-flash",
           chat = true,
           command = false,
-          model = { model = "gemini-2.0-flash-exp", temperature = 0.2, top_p = 0.1 },
+          model = { model = "gemini-2.5-flash-preview-04-17", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {

@@ -117,7 +117,7 @@ return {
               default = "google/gemini-2.0-flash-001",
             },
             choices = {
-              ["google/gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
+              ["google/gemini-2.5-flash-preview-04-17"] = "Gemini Flash 2.5 from Google",
               ["anthropic/claude-3.5-sonnet"] = "Claude 3.5 from Anthropic",
               ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
               ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
@@ -132,10 +132,10 @@ return {
         return require("codecompanion.adapters").extend("gemini", {
           schema = {
             model = {
-              default = "gemini-2.5-pro-exp-03-25",
+              default = "gemini-2.5-flash-preview-04-17",
             },
             choices = {
-              ["gemini-2.0-flash-001"] = "Gemini 2.0 from Google",
+              ["gemini-2.5-flash-preview-04-17"] = "Gemini Flash 2.5 from Google",
               ["gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
               ["meta-llama/llama-4-scout"] = "Llama 4 Scout 17B from Meta",
               ["meta-llama/llama-4-maverick"] = "Llama 4 Maverick 17B from Meta",

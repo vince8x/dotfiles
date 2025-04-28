@@ -27,6 +27,7 @@ export GOOGLEAI_API_KEY=$GEMINI_API_KEY
 export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 export CEREBRAS_API_KEY=`pass show apikey/cerebras`
 export ANTHROPIC_API_KEY=`pass show apikey/anthropic`
+export TMUXAI_OPENROUTER_API_KEY=$OPENROUTER_API_KEY
 
 
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig

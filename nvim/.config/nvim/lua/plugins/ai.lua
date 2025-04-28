@@ -225,8 +225,43 @@ return {
             toggle_provider = "<f16>ip",
           },
         },
+        aliases = {
+          translate = {
+            system = "You are an interpretor. Translate any further text/user messages you receive to Spanish. If the text is a question, don't answer it, just translate the question to Spanish.",
+            user_prefix = "",
+            config = {
+              model = "openai/gpt-4o-mini",
+              temperature = 0.1,
+            },
+          },
+          refactor = {
+            system = "You are a coding expert. Refactor the provided code to improve readability, efficiency, and adherence to best practices. Explain your key improvements.",
+            user_prefix = "Refactor the following code:",
+          },
+          test = {
+            system = "You are a testing expert. Generate comprehensive unit tests for the provided code, focusing on edge cases and full coverage.",
+            user_prefix = "Generate tests for:",
+          },
+          ["check-todo-list"] = {
+            system = [[Your job is to evaluate a todo list and make sure everything is checked off.
+
+
+Instructions:
+- If everything is checked off, respond "Looks good!" and nothing else.
+- Otherwise remind me what I still have to do.]],
+            config = {
+              expand_placeholders = true,
+            },
+            user_prefix = [[The todo is here:
+        $FILE_CONTENTS
+        ]],
+          },
+        },
       })
     end,
+    keys = {
+      { "<f16>ib", "<cmd>NAIBrowse<CR>", desc = "Nai Browse" },
+    },
   },
   {
     "Davidyz/VectorCode",

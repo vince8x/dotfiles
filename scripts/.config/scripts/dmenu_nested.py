@@ -16,6 +16,7 @@ Values can be:
 
 
 import json
+import os
 from collections import OrderedDict
 from subprocess import Popen, call, PIPE
 from argparse import ArgumentParser, FileType
@@ -32,7 +33,9 @@ def show_menu(args, menus):
             show_menu(args, menus[choice])
         elif menus[choice]:
             # Specific command defined
-            call(menus[choice].split())
+            command_parts = menus[choice].split()
+            expanded_command_parts = [os.path.expanduser(part) for part in command_parts]
+            call(expanded_command_parts)
         else:
             # Call the command title
             call([choice])
