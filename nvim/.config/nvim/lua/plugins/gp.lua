@@ -438,10 +438,18 @@ return {
         },
         {
           provider = "openrouter",
-          name = "qwen",
+          name = "qwen3-30b-a3b",
           chat = true,
           command = false,
-          model = { model = "qwen/qwen-2.5-coder-32b-instruct", temperature = 0.2, top_p = 0.1 },
+          model = { model = "qwen/qwen3-30b-a3b", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "qwen3-235b-a22b",
+          chat = true,
+          command = false,
+          model = { model = "qwen/qwen3-235b-a22b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -465,7 +473,7 @@ return {
           name = "gemini-flash-thinking",
           chat = true,
           command = false,
-          model = { model = "gemini-2.0-flash-thinking-exp-01-21", temperature = 0.2, top_p = 0.1 },
+          model = { model = "gemini-2.5-flash-preview-04-17", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {

@@ -122,8 +122,8 @@ return {
               ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
               ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
               ["google/gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
-              ["qwen/qwen2.5-vl-32b-instruct"] = "Qwen 2.5 from Qwen",
-              ["qwen/qwq-32b"] = "Qwq 32b from Qwen",
+              ["qwen/qwen3-30b-a3b"] = "qwen3-30b-a3b",
+              ["qwen/qwen3-235b-a22b"] = "qwen3-235b-a22b",
             },
           },
         })
@@ -155,6 +155,16 @@ return {
           },
         })
       end,
+    },
+    extensions = {
+      mcphub = {
+        callback = "mcphub.extensions.codecompanion",
+        opts = {
+          make_vars = true,
+          make_slash_commands = true,
+          show_result_in_chat = true,
+        },
+      },
     },
     strategies = {
       chat = {
@@ -221,13 +231,6 @@ return {
             callback = function()
               return require("vectorcode.integrations").codecompanion.chat.make_tool()
             end,
-          },
-          ["mcp"] = {
-            -- calling it in a function would prevent mcphub from being loaded before it's needed
-            callback = function()
-              return require("mcphub.extensions.codecompanion")
-            end,
-            description = "Call tools and resources from the MCP Servers",
           },
         },
       },
@@ -310,7 +313,12 @@ return {
     vim.cmd([[cab cca CodeCompanionActions]])
   end,
   keys = {
-    { "<leader>ai", "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle (CopilotChatToggle)", mode = { "n", "v", "i" } },
+    {
+      "<leader>ai",
+      "<cmd>CodeCompanionChat Toggle<cr>",
+      desc = "Toggle (CopilotChatToggle)",
+      mode = { "n", "v", "i" },
+    },
     {
       "<localleader>Cc>",
       function()
