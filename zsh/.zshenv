@@ -28,6 +28,7 @@ export OPENROUTER_API_KEY=`pass show apikey/openrouter`
 export CEREBRAS_API_KEY=`pass show apikey/cerebras`
 export ANTHROPIC_API_KEY=`pass show apikey/anthropic`
 export TMUXAI_OPENROUTER_API_KEY=$OPENROUTER_API_KEY
+export MEM0_API_KEY=`pass show apikey/mem0`
 
 
 export PKG_CONFIG_PATH=/usr/lib/pkgconfig:/usr/share/pkgconfig

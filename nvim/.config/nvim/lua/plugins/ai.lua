@@ -70,6 +70,10 @@ return {
           suggestion_color = "#b85b56",
           cterm = 244,
         },
+        condition = function()
+          local filetypes = { "md", "mdc" }
+          return vim.tbl_contains(filetypes, vim.fn.expand("%:e"))
+        end,
       })
     end,
   },
