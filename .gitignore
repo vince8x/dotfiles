@@ -3,3 +3,6 @@ tmux/plugins/
 raycast
 fzf
 .log
+
+chroma/.config/chroma/chromadb/
+
