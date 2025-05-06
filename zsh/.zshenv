@@ -47,3 +47,5 @@ export PATH=$GOPATH/bin:$GOROOT/bin:$HOME/.local/bin:$PATH
 source $HOME/.cargo/env
 
 export PATH="$PATH:/home/vince8x/.config/.foundry/bin"
+
+export CLIPMENU_COMMAND="fzf"
