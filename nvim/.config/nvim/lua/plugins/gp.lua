@@ -457,7 +457,7 @@ return {
           name = "gemini-chat-dense",
           chat = true,
           command = false,
-          model = { model = "gemini-2.5-pro-preview-03-25", temperature = 0.2, top_p = 0.1 },
+          model = { model = "gemini-2.5-pro-preview-05-06", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {

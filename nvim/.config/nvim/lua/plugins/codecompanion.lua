@@ -121,7 +121,7 @@ return {
               ["anthropic/claude-3.5-sonnet"] = "Claude 3.5 from Anthropic",
               ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
               ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
-              ["google/gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
+              ["google/gemini-2.5-pro-preview-05-06"] = "Gemini 2.5 from Google",
               ["qwen/qwen3-30b-a3b"] = "qwen3-30b-a3b",
               ["qwen/qwen3-235b-a22b"] = "qwen3-235b-a22b",
             },
@@ -136,7 +136,7 @@ return {
             },
             choices = {
               ["gemini-2.5-flash-preview-04-17"] = "Gemini Flash 2.5 from Google",
-              ["gemini-2.5-pro-exp-03-25"] = "Gemini 2.5 from Google",
+              ["gemini-2.5-pro-preview-05-06"] = "Gemini 2.5 from Google",
               ["meta-llama/llama-4-scout"] = "Llama 4 Scout 17B from Meta",
               ["meta-llama/llama-4-maverick"] = "Llama 4 Maverick 17B from Meta",
             },
