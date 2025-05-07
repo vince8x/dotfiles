@@ -1,3 +1,4 @@
 {
-  "prompts": "~/.config/scripts/dmenu_prompts.sh ~/projects/tools/personal-prompts/software/"
+  "prompts": "~/.config/scripts/dmenu_prompts.sh ~/projects/tools/prompts/personal-prompts/software",
+  "bmad": "~/.config/scripts/dmenu_prompts.sh ~/projects/tools/prompts/BMAD-METHOD/CURRENT-V2"
 }
