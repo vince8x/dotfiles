@@ -19,11 +19,6 @@ return {
         vim.api.nvim_set_hl(0, "BlinkCmpKindAvanteMention", { default = false, fg = "#89b4fa" })
       end,
     },
-    opts = {
-      keymap = {
-        preset = "enter",
-      },
-    },
     sources = {
       default = { ..., "supermaven", "avante", "context_nvim" }, -- to add the context_nvim source to all filetypes
       per_filetype = { codecompanion = { "context_nvim", markdown = { "context_nvim", "path", "lsp", "snippets" } } }, -- to add the context_nvim source to a specific filetype

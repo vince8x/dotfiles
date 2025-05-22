@@ -1,26 +1,35 @@
 {
+  "nativeMCPServers": [
+    
+  ],
   "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp@latest"
-      ]
-    },
     "firecrawl": {
-      "env": {
-        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}",
-        "FIRECRAWL_CREDIT_WARNING_THRESHOLD": "2000",
-        "FIRECRAWL_RETRY_INITIAL_DELAY": "2000",
-        "FIRECRAWL_RETRY_MAX_DELAY": "30000",
-        "FIRECRAWL_CREDIT_CRITICAL_THRESHOLD": "500",
-        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
-        "FIRECRAWL_RETRY_BACKOFF_FACTOR": "3"
-      },
-      "command": "npx",
       "args": [
         "-y",
         "firecrawl-mcp"
+      ],
+      "env": {
+        "FIRECRAWL_RETRY_MAX_DELAY": "30000",
+        "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}",
+        "FIRECRAWL_CREDIT_CRITICAL_THRESHOLD": "500",
+        "FIRECRAWL_CREDIT_WARNING_THRESHOLD": "2000",
+        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
+        "FIRECRAWL_RETRY_BACKOFF_FACTOR": "3",
+        "FIRECRAWL_RETRY_INITIAL_DELAY": "2000"
+      },
+      "command": "npx"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ]
+    },
+    "fetch": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-fetch"
       ]
     },
     "youtube": {
@@ -30,56 +39,26 @@
         "@anaisbetts/mcp-youtube"
       ]
     },
-    "memory": {
-      "env": {
-        "MEMORY_FILE_PATH": "/home/vince8x/.mcphub/servers/memory/memory.json"
-      },
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ]
-    },
-    "browser-tools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@agentdeskai/browser-tools-mcp@1.2.0"
-      ]
-    },
-    "taskmaster-ai": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "--package=task-master-ai",
-        "task-master-ai"
-      ],
-      "env": {
-      }
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
     "todoist": {
       "disabled": true,
-      "env": {
-        "TODOIST_API_TOKEN": "your-api-token-here"
-      },
-      "command": "npx",
       "args": [
         "-y",
         "@abhiz123/todoist-mcp-server"
-      ]
+      ],
+      "env": {
+        "TODOIST_API_TOKEN": "your-api-token-here"
+      },
+      "command": "npx"
     },
-    "fetch": {
-      "command": "uvx",
+    "memory": {
       "args": [
-        "mcp-server-fetch"
-      ]
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "env": {
+        "MEMORY_FILE_PATH": "/home/vince8x/.mcphub/servers/memory/memory.json"
+      },
+      "command": "npx"
     },
     "postgres": {
       "command": "npx",
@@ -89,30 +68,56 @@
         "postgresql://localhost:5432/lixiprod"
       ]
     },
+    "github": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
+      },
+      "command": "npx"
+    },
+    "software-planning-tool": {
+      "disabled": true,
+      "args": [
+        "/home/vince8x/.mcphub/servers/software-planning-mcp/build/index.js"
+      ],
+      "command": "node",
+      "autoApprove": [
+        
+      ]
+    },
+    "browser-tools": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@agentdeskai/browser-tools-mcp@1.2.0"
+      ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ]
+    },
+    "taskmaster-ai": {
+      "args": [
+        "-y",
+        "--package=task-master-ai",
+        "task-master-ai"
+      ],
+      "env": [
+        
+      ],
+      "command": "npx"
+    },
     "browsermcp": {
       "command": "npx",
       "args": [
         "@browsermcp/mcp@latest"
       ]
-    },
-    "github": {
-      "env": {
-        "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      },
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-github"
-      ]
-    },
-    "software-planning-tool": {
-      "command": "node",
-      "args": [
-        "/home/vince8x/.mcphub/servers/software-planning-mcp/build/index.js"
-      ],
-      "disabled": false,
-      "autoApprove": []
     }
-  },
-  "nativeMCPServers": []
+  }
 }
