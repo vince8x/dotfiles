@@ -120,6 +120,7 @@ return {
               ["google/gemini-2.5-flash-preview-04-17"] = "Gemini Flash 2.5 from Google",
               ["anthropic/claude-3.5-sonnet"] = "Claude 3.5 from Anthropic",
               ["anthropic/claude-3.7-sonnet"] = "Claude 3.7 from Anthropic",
+              ["anthropic/claude-sonnet-4"] = "Claude 4.0 from Anthropic",
               ["deepseek/deekseek-chat-v3-0324"] = "Deepseek Chat v3 from Deepseek",
               ["google/gemini-2.5-pro-preview-05-06"] = "Gemini 2.5 from Google",
               ["qwen/qwen3-30b-a3b"] = "qwen3-30b-a3b",

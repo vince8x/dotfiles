@@ -52,6 +52,7 @@ return {
             "openai/o1-preview-2024-09-12",
             "deepseek/deepseek-chat",
             "anthropic/claude-3.7-sonnet",
+            "anthropic/claude-sonnet-4",
             "qwen/qwen-2.5-coder-32b-instruct",
             "qwen/qwen3-30b-a3b",
             "qwen/qwen3-235b-a22b",

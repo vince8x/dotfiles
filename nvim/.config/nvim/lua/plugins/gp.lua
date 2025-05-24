@@ -401,7 +401,7 @@ return {
           name = "ChatClaudeSonnet",
           chat = true,
           command = false,
-          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.2, top_p = 0.1 },
+          model = { model = "anthropic/claude-sonnet-4", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_chat_system_prompt,
         },
         {
@@ -417,7 +417,7 @@ return {
           name = "CodeClaudeSonnet",
           chat = false,
           command = true,
-          model = { model = "anthropic/claude-3.7-sonnet", temperature = 0.2, top_p = 0.1 },
+          model = { model = "anthropic/claude-sonnet-4", temperature = 0.2, top_p = 0.1 },
           system_prompt = default_code_system_prompt,
         },
         {
