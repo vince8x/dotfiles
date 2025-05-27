@@ -23,44 +23,44 @@ return {
       default = { ..., "supermaven", "avante", "context_nvim" }, -- to add the context_nvim source to all filetypes
       per_filetype = { codecompanion = { "context_nvim", markdown = { "context_nvim", "path", "lsp", "snippets" } } }, -- to add the context_nvim source to a specific filetype
       providers = {
-        tmux = {
-          name = "tmux",
-          module = "blink.compat.source",
-          score_offset = 3,
-        },
-        supermaven = {
-          name = "supermaven",
-          module = "blink.compat.source",
-          score_offset = 3,
-        },
-        context_nvim = {
-          enabled = true,
-          name = "context_nvim",
-          module = "context_nvim.blink_source",
-        },
-        avante = {
-          module = "blink-cmp-avante",
-          name = "Avante",
-          opts = {
-            -- options for blink-cmp-avante
-            avante = {
-              command = {
-                get_kind_name = function(_)
-                  return "AvanteCmd"
-                end,
-              },
-              mention = {
-                get_kind_name = function(_)
-                  return "AvanteMention"
-                end,
-              },
-            },
-            kind_icons = {
-              AvanteCmd = "",
-              AvanteMention = "@",
-            },
-          },
-        },
+        -- tmux = {
+        --   name = "tmux",
+        --   module = "blink.compat.source",
+        --   score_offset = 3,
+        -- },
+        -- supermaven = {
+        --   name = "supermaven",
+        --   module = "blink.compat.source",
+        --   score_offset = 3,
+        -- },
+        -- context_nvim = {
+        --   enabled = true,
+        --   name = "context_nvim",
+        --   module = "context_nvim.blink_source",
+        -- },
+        -- avante = {
+        --   module = "blink-cmp-avante",
+        --   name = "Avante",
+        --   opts = {
+        --     -- options for blink-cmp-avante
+        --     avante = {
+        --       command = {
+        --         get_kind_name = function(_)
+        --           return "AvanteCmd"
+        --         end,
+        --       },
+        --       mention = {
+        --         get_kind_name = function(_)
+        --           return "AvanteMention"
+        --         end,
+        --       },
+        --     },
+        --     kind_icons = {
+        --       AvanteCmd = "",
+        --       AvanteMention = "@",
+        --     },
+        --   },
+        -- },
       },
     },
   },
