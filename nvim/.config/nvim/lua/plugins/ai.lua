@@ -101,41 +101,61 @@ return {
   },
   {
     "GeorgesAlkhouri/nvim-aider",
-    cmd = {
-      "AiderTerminalToggle",
-      "AiderHealth",
-    },
+    cmd = "Aider",
+    -- Example key mappings for common actions:
     keys = {
-      { "<f16>a", desc = "AI+" },
-      { "<f16>a/", "<cmd>AiderTerminalToggle<cr>", desc = "Open Aider" },
-      { "<f16>as", "<cmd>AiderTerminalSend<cr>", desc = "Send to Aider", mode = { "n", "v" } },
-      { "<f16>ac", "<cmd>AiderQuickSendCommand<cr>", desc = "Send Command To Aider" },
-      { "<f16>ab", "<cmd>AiderQuickSendBuffer<cr>", desc = "Send Buffer To Aider" },
-      { "<f16>a+", "<cmd>AiderQuickAddFile<cr>", desc = "Add File to Aider" },
-      { "<f16>a-", "<cmd>AiderQuickDropFile<cr>", desc = "Drop File from Aider" },
-      { "<f16>ar", "<cmd>AiderQuickReadOnlyFile<cr>", desc = "Add File as Read-Only" },
+      { "<f16>a/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
+      { "<f16>as", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+      { "<f16>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
+      { "<f16>ab", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
+      { "<f16>a+", "<cmd>Aider add<cr>", desc = "Add File" },
+      { "<f16>a-", "<cmd>Aider drop<cr>", desc = "Drop File" },
+      { "<f16>ar", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
+      { "<f16>aR", "<cmd>Aider reset<cr>", desc = "Reset Session" },
       -- Example nvim-tree.lua integration if needed
-      { "<f16>aa", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "NvimTree" },
-      { "<f16>ax", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "NvimTree" },
+      { "<f16>a+", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "neo-tree" },
+      { "<f16>a-", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "neo-tree" },
     },
     dependencies = {
       "folke/snacks.nvim",
       --- The below dependencies are optional
-      "catppuccin/nvim",
-      "nvim-tree/nvim-tree.lua",
+      --- Neo-tree integration
+      {
+        "nvim-neo-tree/neo-tree.nvim",
+        opts = function(_, opts)
+          -- Example mapping configuration (already set by default)
+          opts.window = {
+            mappings = {
+              ["+"] = { "nvim_aider_add", desc = "add to aider" },
+              ["-"] = { "nvim_aider_drop", desc = "drop from aider" },
+              ["="] = { "nvim_aider_add_read_only", desc = "add read-only to aider" },
+            },
+          }
+          require("nvim_aider.neo_tree").setup(opts)
+        end,
+      },
     },
     config = true,
   },
   {
-    "greggh/claude-code.nvim",
+    "coder/claudecode.nvim",
     dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for git operations
+      "folke/snacks.nvim", -- optional
     },
-    config = function()
-      require("claude-code").setup()
-    end,
+    config = true,
     keys = {
-      { "<localleader>cl", "<cmd>ClaudeCode<CR>", desc = "Claude Code" },
+      { "<f16>l", nil, desc = "AI/Claude Code" },
+      { "<f16>lc", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+      { "<f16>lf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+      { "<f16>lr", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+      { "<f16>lC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<f16>ls", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+      {
+        "<f16>ls",
+        "<cmd>ClaudeCodeTreeAdd<cr>",
+        desc = "Add file",
+        ft = { "NvimTree", "neo-tree", "oil" },
+      },
     },
   },
   {

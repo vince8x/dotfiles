@@ -125,6 +125,8 @@ return {
               ["google/gemini-2.5-pro-preview-05-06"] = "Gemini 2.5 from Google",
               ["qwen/qwen3-30b-a3b"] = "qwen3-30b-a3b",
               ["qwen/qwen3-235b-a22b"] = "qwen3-235b-a22b",
+              ["inception/mercury-coder"] = "mercury-coder",
+              ["moonshotai/kimi-k2"] = "Kimi K2 from Moonshot",
             },
           },
         })

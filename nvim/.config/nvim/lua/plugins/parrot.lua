@@ -58,6 +58,9 @@ return {
             "qwen/qwen3-235b-a22b",
             "meta-llama/llama-4-maverick",
             "meta-llama/llama-4-scout",
+            "inception/mercury-coder",
+            "moonshotai/kimi-k2",
+            "x-ai/grok-4"
           },
           params = {
             chat = { temperature = 0.2, top_p = 1 },

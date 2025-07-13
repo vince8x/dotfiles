@@ -3,25 +3,38 @@ return {
   event = "VeryLazy",
   build = "make",
   opts = {
-    provider = "gemini",
-    auto_suggestions_provider = "gemini",
-    gemini = {
-      endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
-      model = "gemini-2.5-flash-preview-04-17",
-      timeout = 30000, -- Timeout in milliseconds
-      temperature = 0,
-      max_tokens = 4096,
-      ["local"] = false,
-    },
-    vendors = {
+    providers = {
+      openai = {
+        endpoint = "https://api.openai.com/v1",
+        model = "gpt-4o", -- your desired model (or use gpt-4o, etc.)
+        timeout = 30000, -- Timeout in milliseconds, increase this for reasoning models
+        extra_request_body = {
+          temperature = 0,
+          max_completion_tokens = 8192, -- Increase this to include reasoning tokens (for reasoning models)
+          reasoning_effort = "medium", -- low|medium|high, only used for reasoning models
+        },
+      },
+      gemini = {
+        endpoint = "https://generativelanguage.googleapis.com/v1beta/models",
+        model = "gemini-2.5-flash-preview-04-17",
+        timeout = 30000, -- Timeout in milliseconds
+        extra_request_body = {
+          max_completion_tokens = 8192,
+          top_p = 0.95,
+          top_k = 40,
+        },
+      },
       deepseek = {
         __inherited_from = "openai",
         api_key_name = "DEEPSEEK_API_KEY",
         endpoint = "https://api.deepseek.com/v1",
         model = "deepseek-chat",
         timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 4096,
+        extra_request_body = {
+          max_completion_tokens = 8192,
+          temperature = 0,
+          max_tokens = 4096,
+        },
       },
       groq = {
         __inherited_from = "openai",
@@ -61,6 +74,18 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         model = "meta-llama/llama-4-maverick",
       },
+      ["openrouter-mercury-coder"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "inception/mercury-coder",
+      },
+      ["openrouter-kimi-k2"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "moonshot/kimi-k2",
+      },
     },
     dual_boost = {
       enabled = false,
@@ -99,7 +124,6 @@ return {
       local hub = require("mcphub").get_hub_instance()
       return hub:get_active_servers_prompt()
     end,
-    disable_tools = { "fetch" },
     custom_tools = function()
       return {
         require("mcphub.extensions.avante").mcp_tool(),

@@ -349,6 +349,30 @@ return {
           system_prompt = default_code_system_prompt,
         },
         {
+          provider = "openrouter",
+          name = "Mercury Coder",
+          chat = true,
+          command = false,
+          model = {
+            model = "inception/mercury-coder",
+            temperature = 0.2,
+            top_p = 0.1,
+          },
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "Kimi K2",
+          chat = true,
+          command = false,
+          model = {
+            model = "moonshotai/kimi-k2",
+            temperature = 0.2,
+            top_p = 0.1,
+          },
+          system_prompt = default_code_system_prompt,
+        },
+        {
           provider = "deepseek",
           name = "deepseek-reasoner",
           chat = true,

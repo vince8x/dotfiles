@@ -280,3 +280,6 @@ export NARGO_HOME="/home/vince8x/.nargo"
 
 export PATH="$PATH:$NARGO_HOME/bin"
 export PATH="${HOME}/.bb:${PATH}"
+
+# opencode
+export PATH=/home/vince8x/.opencode/bin:$PATH
