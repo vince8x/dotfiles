@@ -362,4 +362,176 @@ Instructions:
       vectorcode.setup(opts)
     end,
   },
+  {
+    "NickvanDyke/opencode.nvim",
+    dependencies = {
+      "folke/snacks.nvim",
+    },
+    opts = {
+      -- Your configuration, if any
+    },
+    keys = {
+      -- opencode.nvim exposes a general, flexible API — customize it to your workflow!
+      -- But here are some examples to get you started :)
+      {
+        "<f16>ot",
+        function()
+          require("opencode").toggle()
+        end,
+        desc = "Toggle opencode",
+      },
+      {
+        "<f16>oa",
+        function()
+          require("opencode").ask()
+        end,
+        desc = "Ask opencode",
+        mode = { "n", "v" },
+      },
+      {
+        "<f16>oA",
+        function()
+          require("opencode").ask("@file ")
+        end,
+        desc = "Ask opencode about current file",
+        mode = { "n", "v" },
+      },
+      {
+        "<f16>on",
+        function()
+          require("opencode").command("/new")
+        end,
+        desc = "New session",
+      },
+      {
+        "<f16>oe",
+        function()
+          require("opencode").prompt("Explain @cursor and its context")
+        end,
+        desc = "Explain code near cursor",
+      },
+      {
+        "<f16>or",
+        function()
+          require("opencode").prompt("Review @file for correctness and readability")
+        end,
+        desc = "Review file",
+      },
+      {
+        "<f16>of",
+        function()
+          require("opencode").prompt("Fix these @diagnostics")
+        end,
+        desc = "Fix errors",
+      },
+      {
+        "<f16>oo",
+        function()
+          require("opencode").prompt("Optimize @selection for performance and readability")
+        end,
+        desc = "Optimize selection",
+        mode = "v",
+      },
+      {
+        "<f16>od",
+        function()
+          require("opencode").prompt("Add documentation comments for @selection")
+        end,
+        desc = "Document selection",
+        mode = "v",
+      },
+      {
+        "<f16>ot",
+        function()
+          require("opencode").prompt("Add tests for @selection")
+        end,
+        desc = "Test selection",
+        mode = "v",
+      },
+    },
+  },
+  {
+    "piersolenski/wtf.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      "nvim-telescope/telescope.nvim", -- Optional: For WtfGrepHistory
+    },
+    opts = {},
+    keys = {
+      {
+        "<f16>wd",
+        mode = { "n", "x" },
+        function()
+          require("wtf").diagnose()
+        end,
+        desc = "Debug diagnostic with AI",
+      },
+      {
+        "<f16>wf",
+        mode = { "n", "x" },
+        function()
+          require("wtf").fix()
+        end,
+        desc = "Fix diagnostic with AI",
+      },
+      {
+        mode = { "n" },
+        "<f16>ws",
+        function()
+          require("wtf").search()
+        end,
+        desc = "Search diagnostic with Google",
+      },
+      {
+        mode = { "n" },
+        "<f16>wp",
+        function()
+          require("wtf").pick_provider()
+        end,
+        desc = "Pick provider",
+      },
+      {
+        mode = { "n" },
+        "<f16>wh",
+        function()
+          require("wtf").history()
+        end,
+        desc = "Populate the quickfix list with previous chat history",
+      },
+      {
+        mode = { "n" },
+        "<f16>wg",
+        function()
+          require("wtf").grep_history()
+        end,
+        desc = "Grep previous chat history with Telescope",
+      },
+    },
+  },
+  {
+    "skywind3000/vim-gpt-commit",
+    config = function()
+      -- if you don't want to set your api key directly, add to your .zshrc:
+      -- export OPENAI_API_KEY='sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
+      vim.g.gpt_commit_key = os.getenv("OPENAI_API_KEY")
+      -- uncomment this line below to enable proxy
+      -- vim.g.gpt_commit_proxy = 'socks5://127.0.0.1:1080'
+
+      -- uncomment the following lines if you want to use Ollama:
+      -- vim.g.gpt_commit_engine = 'ollama'
+      -- vim.g.gpt_commit_ollama_url = 'http://127.0.0.1:11434/api/chat'
+      -- vim.g.gpt_commit_ollama_model = 'llama2'
+    end,
+  },
+  {
+    "k2589/LLuMinate.nvim",
+    config = function()
+      require("lluminate").setup()
+    end,
+    keys = {
+      { "<f16>lm", ":EnrichContext<CR>", mode = "n", desc = "Enrich Context" },
+      { "<f16>lm", ":<C-u>EnrichContext<CR>", mode = "v", desc = "Enrich Context (Visual)" },
+    },
+  },
 }

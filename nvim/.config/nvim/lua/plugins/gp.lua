@@ -393,7 +393,7 @@ return {
           name = "qwen-qwq-32b-groq",
           chat = true,
           command = false,
-          model = { model = "qwen-qwq-32b", temperature = 0.2, top_p = 0.1 },
+          model = { model = "qwen/qwen-qwq-32b", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {
@@ -402,6 +402,14 @@ return {
           chat = true,
           command = false,
           model = { model = "meta-llama/llama-4-scout-17b-16e-instruct", temperature = 0.2, top_p = 0.1},
+          system_prompt = default_code_system_prompt,
+        },
+        {
+          provider = "groq",
+          name = "groq kimi-k2",
+          chat = true,
+          command = false,
+          model = { model = "moonshotai/kimi-k2-instruct", temperature = 0.6, top_p = 0.1},
           system_prompt = default_code_system_prompt,
         },
         {
@@ -461,6 +469,14 @@ return {
           system_prompt = dense_chat_system_prompt,
         },
         {
+          provider = "cerebras",
+          name = "cerebras-qwen3-235b",
+          chat = true,
+          command = false,
+          model = { model = "qwen-3-235b-a22b", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
           provider = "openrouter",
           name = "qwen3-30b-a3b",
           chat = true,
@@ -474,6 +490,22 @@ return {
           chat = true,
           command = false,
           model = { model = "qwen/qwen3-235b-a22b", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "qwen3-235b-a22b-07-25",
+          chat = true,
+          command = false,
+          model = { model = "qwen/qwen3-235b-a22b-07-25", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "qwen3-coder",
+          chat = true,
+          command = false,
+          model = { model = "qwen/qwen3-coder", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {

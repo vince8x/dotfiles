@@ -54,6 +54,8 @@ return {
             "anthropic/claude-3.7-sonnet",
             "anthropic/claude-sonnet-4",
             "qwen/qwen-2.5-coder-32b-instruct",
+            "qwen/qwen3-coder",
+            "qwen3-235b-a22b-07-25",
             "qwen/qwen3-30b-a3b",
             "qwen/qwen3-235b-a22b",
             "meta-llama/llama-4-maverick",

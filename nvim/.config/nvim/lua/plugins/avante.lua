@@ -56,6 +56,12 @@ return {
         endpoint = "https://api.groq.com/openai/v1/chat/completions",
         model = "deepseek-r1-distill-llama-70b",
       },
+      ["groq-kimi-k2"] = {
+        __inherited_from = "openai",
+        api_key_name = "GROQ_API_KEY",
+        endpoint = "https://api.groq.com/openai/v1/chat/completions",
+        model = "moonshotai/kimi-k2-instruct",
+      },
       ["openrouter-qwen3-30b-a3b"] = {
         __inherited_from = "openai",
         endpoint = "https://openrouter.ai/api/v1",
@@ -67,6 +73,12 @@ return {
         endpoint = "https://openrouter.ai/api/v1",
         api_key_name = "OPENROUTER_API_KEY",
         model = "qwen/qwen3-235b-a22b",
+      },
+      ["openrouter-qwen3-235b-a22b-07-25"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "qwen/qwen3-235b-a22b-07-25",
       },
       ["openrouter-llama-4-scout"] = {
         __inherited_from = "openai",
@@ -86,10 +98,16 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         model = "moonshot/kimi-k2",
       },
+      ["openrouter-qwen3-coder"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "qwen/qwen3-coder",
+      },
     },
     dual_boost = {
       enabled = false,
-      first_provider = "gemini",
+      first_provider = "openrouter-qwen3-coder",
       second_provider = "openrouter-qwen3-30b-a3b",
       prompt = "Based on the two reference outputs below, generate a response that incorporates elements from both but reflects your own judgment and unique perspective. Do not provide any explanation, just give the response directly. Reference Output 1: [{{provider1_output}}], Reference Output 2: [{{provider2_output}}]",
       timeout = 60000, -- Timeout in milliseconds

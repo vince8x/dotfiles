@@ -5,4 +5,5 @@ fzf
 .log
 
 chroma/.config/chroma/chromadb/
+.opencode
 
