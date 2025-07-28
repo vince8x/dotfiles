@@ -63,15 +63,15 @@ return {
     },
     config = function(_, opts)
       local vectorcode_ctx = require("vectorcode.integrations.copilotchat").make_context_provider({
-        prompt_header = "Here are relevant files from the repository:",
-        prompt_footer = "\nConsider this context when answering:",
-        skip_empty = true,
+        prompt_header = "Here are relevant files from the repository:", -- Customize header text
+        prompt_footer = "\nConsider this context when answering:", -- Customize footer text
+        skip_empty = true, -- Skip adding context when no files are retrieved
       })
       opts.contexts = vim.tbl_extend("force", opts.contexts or {}, { vectorcode = vectorcode_ctx })
       opts.prompts = vim.tbl_extend("force", opts.prompts or {}, {
-        DeepExplain = {
-          prompt = "Please explain how the following code works.",
-          context = { "selection", "vectorcode" },
+        Explain = {
+          prompt = "Explain the following code in detail:\n$input",
+          context = { "selection", "vectorcode" }, -- Add vectorcode to the context
         },
       })
       local chat = require("CopilotChat")
