@@ -77,28 +77,28 @@ return {
       })
     end,
   },
-  {
-    "augmentcode/augment.vim",
-    init = function()
-      vim.g.augment_disable_tab_mapping = true
-      vim.keymap.set("v", "<leader>agv", function()
-        local text = vim.fn.getreg("*") -- or vim.fn.getreg('"') for the unnamed register
-        vim.cmd("Augment chat " .. vim.fn.shellescape(text))
-      end, { desc = "Augment chat with visual selection" })
-    end,
-    keys = {
-      { "<leader>ag", desc = "Augment chat +" },
-      {
-        "<leader>al",
-        "<cmd>Augment chat " .. vim.api.nvim_get_current_line() .. "<CR>",
-        desc = "Augment chat with current line",
-      },
-      { "<leader>agc", "<cmd>Augment chat<CR>", mode = { "n", "v" }, desc = "Augment chat" },
-      { "<leader>agt", "<cmd>Augment chat-toggle<CR>", desc = "Toggle Augment chat" },
-      { "<leader>agn", "<cmd>Augment chat-new<CR>", desc = "New Augment chat" },
-      { "<M-y>", "<cmd>call augment#Accept()<CR>", mode = "i", noremap = true, silent = true },
-    },
-  },
+  -- {
+  --   "augmentcode/augment.vim",
+  --   init = function()
+  --     vim.g.augment_disable_tab_mapping = true
+  --     vim.keymap.set("v", "<leader>agv", function()
+  --       local text = vim.fn.getreg("*") -- or vim.fn.getreg('"') for the unnamed register
+  --       vim.cmd("Augment chat " .. vim.fn.shellescape(text))
+  --     end, { desc = "Augment chat with visual selection" })
+  --   end,
+  --   keys = {
+  --     { "<leader>ag", desc = "Augment chat +" },
+  --     {
+  --       "<leader>al",
+  --       "<cmd>Augment chat " .. vim.api.nvim_get_current_line() .. "<CR>",
+  --       desc = "Augment chat with current line",
+  --     },
+  --     { "<leader>agc", "<cmd>Augment chat<CR>", mode = { "n", "v" }, desc = "Augment chat" },
+  --     { "<leader>agt", "<cmd>Augment chat-toggle<CR>", desc = "Toggle Augment chat" },
+  --     { "<leader>agn", "<cmd>Augment chat-new<CR>", desc = "New Augment chat" },
+  --     { "<M-y>", "<cmd>call augment#Accept()<CR>", mode = "i", noremap = true, silent = true },
+  --   },
+  -- },
   {
     "GeorgesAlkhouri/nvim-aider",
     cmd = "Aider",
@@ -156,6 +156,24 @@ return {
         desc = "Add file",
         ft = { "NvimTree", "neo-tree", "oil" },
       },
+    },
+  },
+  {
+    "SouhailBlmn/claude-code.nvim",
+    dependencies = {
+      "akinsho/toggleterm.nvim",
+      "nvim-telescope/telescope.nvim", -- Optional, for terminal picker
+    },
+    config = function()
+      require("claude-code").setup({
+        size = 100,
+        direction = "vertical",
+      })
+    end,
+    keys = {
+      { "<f16>lc", "<cmd>ClaudeCode<cr>", desc = "Toggle current terminal Claude Code" },
+      { "<f16>ln", "<cmd>ClaudeCodeNew<cr>", desc = "New Claude Code" },
+      { "<f16>ll", "<cmd>ClaudeCodeList<cr>", desc = "Claude Code picker" },
     },
   },
   {
@@ -449,6 +467,20 @@ Instructions:
         mode = "v",
       },
     },
+  },
+  {
+    "cousine/opencode-context.nvim",
+    opts = {
+      tmux_target = nil, -- Manual override: "session:window.pane"
+      auto_detect_pane = true, -- Auto-detect opencode pane in current window
+    },
+    keys = {
+      { "<f16>os", "<cmd>OpencodeSend<cr>", desc = "Send prompt to opencode" },
+      { "<f16>os", "<cmd>OpencodeSend<cr>", mode = "v", desc = "Send prompt to opencode" },
+      { "<f16>ow", "<cmd>OpencodeSwitchMode<cr>", desc = "Toggle opencode mode" },
+      { "<f16>op", "<cmd>OpencodePrompt<cr>", desc = "Open opencode persistent prompt" },
+    },
+    cmd = { "OpencodeSend", "OpencodeSwitchMode" },
   },
   {
     "piersolenski/wtf.nvim",

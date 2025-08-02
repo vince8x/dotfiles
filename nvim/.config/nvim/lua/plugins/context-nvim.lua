@@ -333,12 +333,12 @@ return {
     lazy = false, -- disables lazy-loading so the plugin is loaded on startup
     config = function()
       -- Optional: additional configuration or key mappings
-      vim.api.nvim_set_keymap("n", "<f16>cb", ":CopyBuffersToClipboard<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<f16>cc", ":CopyCurrentBufferToClipboard<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<f16>cg", ":CopyGitFilesToClipboard<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<f16>cq", ":CopyQuickfixFilesToClipboard<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<f16>ch", ":CopyHarpoonFilesToClipboard<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<f16>cd", ":CopyDirectoryFilesToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yb", ":CopyBuffersToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yc", ":CopyCurrentBufferToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yg", ":CopyGitFilesToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yq", ":CopyQuickfixFilesToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yh", ":CopyHarpoonFilesToClipboard<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<f16>yd", ":CopyDirectoryFilesToClipboard<CR>", { noremap = true, silent = true })
 
       vim.keymap.set("n", "<f16>cd", function()
         vim.ui.input({
@@ -358,8 +358,8 @@ return {
       require("copy_with_context").setup({
         -- Customize mappings
         mappings = {
-          relative = "<f16>cy",
-          absolute = "<f16>cY",
+          relative = "<f16>yy",
+          absolute = "<f16>yY",
         },
         -- whether to trim lines or not
         trim_lines = true,
@@ -367,8 +367,8 @@ return {
       })
     end,
     keys = {
-      { "<f16>cy", "<cmd>CopyWithContext<cr>", desc = "Copy with context" },
-      { "<f16>cY", "<cmd>CopyWithContext absolute<cr>", desc = "Copy with context absolute" },
+      { "<f16>yy", "<cmd>CopyWithContext<cr>", desc = "Copy with context" },
+      { "<f16>yY", "<cmd>CopyWithContext absolute<cr>", desc = "Copy with context absolute" },
     },
   },
   {

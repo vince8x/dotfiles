@@ -104,6 +104,24 @@ return {
         api_key_name = "OPENROUTER_API_KEY",
         model = "qwen/qwen3-coder",
       },
+      ["openrouter-qwen-3-coder"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "qwen/qwen3-coder",
+      },
+      ["openrouter-glm-4.5"] = {
+        __inherited_from = "openai",
+        endpoint = "https://openrouter.ai/api/v1",
+        api_key_name = "OPENROUTER_API_KEY",
+        model = "z-ai/glm-4.5",
+      },
+      ["cerebras-qwen-3-coder-480b"] = {
+        __inherited_from = "openai",
+        endpoint = "https://api.cerebras.ai",
+        api_key_name = "CEREBRAS_API_KEY",
+        model = "qwen-3-coder-480b",
+      },
     },
     dual_boost = {
       enabled = false,

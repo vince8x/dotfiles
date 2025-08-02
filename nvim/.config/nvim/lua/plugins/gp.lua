@@ -477,6 +477,14 @@ return {
           system_prompt = dense_chat_system_prompt,
         },
         {
+          provider = "cerebras",
+          name = "cerebras-qwen-3-coder-480b",
+          chat = true,
+          command = false,
+          model = { model = "qwen-3-coder-480b", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
           provider = "openrouter",
           name = "qwen3-30b-a3b",
           chat = true,
@@ -506,6 +514,14 @@ return {
           chat = true,
           command = false,
           model = { model = "qwen/qwen3-coder", temperature = 0.2, top_p = 0.1 },
+          system_prompt = dense_chat_system_prompt,
+        },
+        {
+          provider = "openrouter",
+          name = "glm-4.5",
+          chat = true,
+          command = false,
+          model = { model = "z-ai/glm-4.5", temperature = 0.2, top_p = 0.1 },
           system_prompt = dense_chat_system_prompt,
         },
         {

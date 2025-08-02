@@ -62,7 +62,8 @@ return {
             "meta-llama/llama-4-scout",
             "inception/mercury-coder",
             "moonshotai/kimi-k2",
-            "x-ai/grok-4"
+            "x-ai/grok-4",
+            "z-ai/glm-4.5"
           },
           params = {
             chat = { temperature = 0.2, top_p = 1 },
@@ -77,6 +78,7 @@ return {
           models = {
             "llama3.1-8b",
             "llama3.1-70b",
+            "qwen-3-235b-a22b"
           },
           params = {
             chat = { temperature = 0.2, top_p = 1 },

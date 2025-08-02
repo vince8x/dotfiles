@@ -107,6 +107,22 @@ return {
           },
         })
       end,
+      cerebras = function()
+				return require("codecompanion.adapters").extend("openai_compatible", {
+					env = {
+						url = "https://api.cerebras.ai",
+						api_key = vim.env.CEREBRAS_API_KEY,
+					},
+					schema = {
+						model = {
+							default = function(self)
+								-- https://cloud.cerebras.ai/
+								return "llama-4-scout-17b-16e-instruct"
+							end,
+						},
+					},
+				})
+			end,
       openrouter = function()
         return require("codecompanion.adapters").extend("openai_compatible", {
           env = {
@@ -131,6 +147,8 @@ return {
               ["qwen/qwen3-coder"] = "Qwen 3-Coder from Qwen",
               ["inception/mercury-coder"] = "mercury-coder",
               ["moonshotai/kimi-k2"] = "Kimi K2 from Moonshot",
+              ["x-ai/grok-4"] = "Grok 4 from X-AI",
+              ["z-ai/glm-4.5"] = "GLM 4.5 from Z-AI"
             },
           },
         })
@@ -345,6 +363,7 @@ return {
     "CodeCompanion",
     "CodeCompanionActions",
     "CodeCompanionChat",
+    "CodeCompanionLoad",
   },
   init = function()
     require("plugins.codecompanion.fidget-spinner"):init()
@@ -384,5 +403,19 @@ return {
       end,
       desc = "Find Previous Chats",
     },
+    { "<f16>cC", ":lua require('codecompanion').prompt('context')<CR>", desc = "Codecompanion: With Context Files" },
+    { "<leader>at", ":CodeCompanionChat Toggle<CR>", desc = "Codecompanion: toggle" },
+    {
+      "<f16>ac",
+      function()
+        local name = vim.fn.input("Save as: ")
+        if name and name ~= "" then
+          vim.cmd("CodeCompanionSave " .. name)
+        end
+      end,
+      desc = "Codecompanion: Save chat",
+    },
+    { "<f16>cL", ":CodeCompanionLoad<CR>", desc = "Codecompanion: Load chat" },
+    { "<f16>aP", ":CodeCompanionActions<CR>", desc = "Codecompanion: Prompts" },
   },
 }

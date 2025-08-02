@@ -1,106 +1,96 @@
 {
-  "nativeMCPServers": [
-    
-  ],
   "mcpServers": {
+    "browser-tools": {
+      "args": [
+        "-y",
+        "@agentdeskai/browser-tools-mcp@1.2.0"
+      ],
+      "command": "npx"
+    },
+    "browsermcp": {
+      "args": [
+        "@browsermcp/mcp@latest"
+      ],
+      "command": "npx"
+    },
+    "context7": {
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
+      "command": "npx"
+    },
+    "fetch": {
+      "args": [
+        "mcp-server-fetch"
+      ],
+      "command": "uvx"
+    },
     "firecrawl": {
       "args": [
         "-y",
         "firecrawl-mcp"
       ],
+      "command": "npx",
       "env": {
-        "FIRECRAWL_RETRY_MAX_DELAY": "30000",
         "FIRECRAWL_API_KEY": "${FIRECRAWL_API_KEY}",
         "FIRECRAWL_CREDIT_CRITICAL_THRESHOLD": "500",
         "FIRECRAWL_CREDIT_WARNING_THRESHOLD": "2000",
-        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
         "FIRECRAWL_RETRY_BACKOFF_FACTOR": "3",
-        "FIRECRAWL_RETRY_INITIAL_DELAY": "2000"
-      },
-      "command": "npx"
-    },
-    "sequential-thinking": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ]
-    },
-    "fetch": {
-      "command": "uvx",
-      "args": [
-        "mcp-server-fetch"
-      ]
-    },
-    "youtube": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@anaisbetts/mcp-youtube"
-      ]
-    },
-    "todoist": {
-      "disabled": true,
-      "args": [
-        "-y",
-        "@abhiz123/todoist-mcp-server"
-      ],
-      "env": {
-        "TODOIST_API_TOKEN": "your-api-token-here"
-      },
-      "command": "npx"
-    },
-    "memory": {
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-memory"
-      ],
-      "env": {
-        "MEMORY_FILE_PATH": "/home/vince8x/.mcphub/servers/memory/memory.json"
-      },
-      "command": "npx"
-    },
-    "postgres": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-postgres",
-        "postgresql://localhost:5432/lixiprod"
-      ]
+        "FIRECRAWL_RETRY_INITIAL_DELAY": "2000",
+        "FIRECRAWL_RETRY_MAX_ATTEMPTS": "5",
+        "FIRECRAWL_RETRY_MAX_DELAY": "30000"
+      }
     },
     "github": {
       "args": [
         "-y",
         "@modelcontextprotocol/server-github"
       ],
+      "command": "npx",
       "env": {
         "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_TOKEN}"
-      },
+      }
+    },
+    "memory": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "command": "npx",
+      "env": {
+        "MEMORY_FILE_PATH": "/home/vince8x/.mcphub/servers/memory/memory.json"
+      }
+    },
+    "postgres": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://localhost:5432/lixiprod"
+      ],
+      "command": "npx"
+    },
+    "sequential-thinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "command": "npx"
+    },
+    "sequentialthinking": {
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
       "command": "npx"
     },
     "software-planning-tool": {
-      "disabled": true,
       "args": [
         "/home/vince8x/.mcphub/servers/software-planning-mcp/build/index.js"
       ],
+      "autoApprove": [],
       "command": "node",
-      "autoApprove": [
-        
-      ]
-    },
-    "browser-tools": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@agentdeskai/browser-tools-mcp@1.2.0"
-      ]
-    },
-    "context7": {
-      "command": "npx",
-      "args": [
-        "-y",
-        "@upstash/context7-mcp@latest"
-      ]
+      "disabled": true
     },
     "taskmaster-ai": {
       "args": [
@@ -108,16 +98,27 @@
         "--package=task-master-ai",
         "task-master-ai"
       ],
-      "env": [
-        
+      "command": "npx",
+      "env": []
+    },
+    "todoist": {
+      "args": [
+        "-y",
+        "@abhiz123/todoist-mcp-server"
+      ],
+      "command": "npx",
+      "disabled": true,
+      "env": {
+        "TODOIST_API_TOKEN": "your-api-token-here"
+      }
+    },
+    "youtube": {
+      "args": [
+        "-y",
+        "@anaisbetts/mcp-youtube"
       ],
       "command": "npx"
-    },
-    "browsermcp": {
-      "command": "npx",
-      "args": [
-        "@browsermcp/mcp@latest"
-      ]
     }
-  }
+  },
+  "nativeMCPServers": []
 }
