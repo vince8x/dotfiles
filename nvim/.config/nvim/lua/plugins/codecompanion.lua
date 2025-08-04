@@ -107,22 +107,6 @@ return {
           },
         })
       end,
-      cerebras = function()
-				return require("codecompanion.adapters").extend("openai_compatible", {
-					env = {
-						url = "https://api.cerebras.ai",
-						api_key = vim.env.CEREBRAS_API_KEY,
-					},
-					schema = {
-						model = {
-							default = function(self)
-								-- https://cloud.cerebras.ai/
-								return "llama-4-scout-17b-16e-instruct"
-							end,
-						},
-					},
-				})
-			end,
       openrouter = function()
         return require("codecompanion.adapters").extend("openai_compatible", {
           env = {
@@ -148,7 +132,7 @@ return {
               ["inception/mercury-coder"] = "mercury-coder",
               ["moonshotai/kimi-k2"] = "Kimi K2 from Moonshot",
               ["x-ai/grok-4"] = "Grok 4 from X-AI",
-              ["z-ai/glm-4.5"] = "GLM 4.5 from Z-AI"
+              ["z-ai/glm-4.5"] = "GLM 4.5 from Z-AI",
             },
           },
         })
@@ -288,7 +272,32 @@ return {
               provider = "snacks",
             },
           },
-          codebase = require("vectorcode.integrations").codecompanion.chat.make_slash_command(),
+          -- ["codebase"] = {
+          --   callback = require("vectorcode.integrations").codecompanion.chat.make_slash_command({
+          --     max_num = 8,
+          --     default_num = 5,
+          --   }),
+          --   description = "Search codebase with RAG",
+          --   opts = { contains_code = true },
+          -- },
+          ["docs"] = {
+            callback = function(query)
+              return require("vectorcode").query(query, {
+                collection = "documentation",
+                n_query = 3,
+              })
+            end,
+            description = "Search documentation",
+          },
+          ["backend"] = {
+            callback = function(query)
+              return require("vectorcode").query(query, {
+                collection = "backend",
+                n_query = 5,
+              })
+            end,
+            description = "Search backend code",
+          },
         },
         tools = {},
       },
@@ -379,7 +388,7 @@ return {
       mode = { "n", "v", "i" },
     },
     {
-      "<localleader>Cc>",
+      "<localleader>Cc",
       function()
         if vim.bo.ft == "codecompanion" then
           if Snacks.zen.win and Snacks.zen.win:valid() then
