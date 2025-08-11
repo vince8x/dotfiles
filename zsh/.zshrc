@@ -283,3 +283,4 @@ export PATH="${HOME}/.bb:${PATH}"
 
 # opencode
 export PATH=/home/vince8x/.opencode/bin:$PATH
+

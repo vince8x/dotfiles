@@ -104,6 +104,7 @@ return {
     cmd = "Aider",
     -- Example key mappings for common actions:
     keys = {
+      { "<f16>a", nil, desc = "Aider" },
       { "<f16>a/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
       { "<f16>as", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
       { "<f16>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
@@ -140,7 +141,18 @@ return {
   {
     "coder/claudecode.nvim",
     dependencies = {
+      "waiting-for-dev/ergoterm.nvim",
       "folke/snacks.nvim", -- optional
+    },
+    event = "VeryLazy",
+    opts = {
+      terminal = {
+        provider = require("utils.claude-ergoterm"),
+      },
+      diff_opts = {
+        keep_terminal_focus = true,
+      },
+      terminal_cmd = "ccr code", -- Point to local installation
     },
     config = true,
     keys = {
@@ -149,6 +161,8 @@ return {
       { "<f16>lf", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
       { "<f16>lr", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
       { "<f16>lC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+      { "<f16>lm", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+      { "<f16>lb", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
       { "<f16>ls", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
       {
         "<f16>ls",
@@ -156,24 +170,34 @@ return {
         desc = "Add file",
         ft = { "NvimTree", "neo-tree", "oil" },
       },
+      { "<f16>laa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+      { "<f16>lad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
   },
   {
-    "SouhailBlmn/claude-code.nvim",
+    "pittcat/claude-fzf.nvim",
     dependencies = {
-      "akinsho/toggleterm.nvim",
-      "nvim-telescope/telescope.nvim", -- Optional, for terminal picker
+      "ibhagwan/fzf-lua",
+      "coder/claudecode.nvim",
     },
-    config = function()
-      require("claude-code").setup({
-        size = 100,
-        direction = "vertical",
-      })
-    end,
+    opts = {
+      auto_context = true,
+      batch_size = 10,
+    },
+    cmd = {
+      "ClaudeFzf",
+      "ClaudeFzfFiles",
+      "ClaudeFzfGrep",
+      "ClaudeFzfBuffers",
+      "ClaudeFzfGitFiles",
+      "ClaudeFzfDirectory",
+    },
     keys = {
-      { "<f16>lc", "<cmd>ClaudeCode<cr>", desc = "Toggle current terminal Claude Code" },
-      { "<f16>ln", "<cmd>ClaudeCodeNew<cr>", desc = "New Claude Code" },
-      { "<f16>ll", "<cmd>ClaudeCodeList<cr>", desc = "Claude Code picker" },
+      { "<f16>lf", "<cmd>ClaudeFzfFiles<cr>", desc = "Claude: Add files" },
+      { "<f16>lg", "<cmd>ClaudeFzfGrep<cr>", desc = "Claude: Search and add" },
+      { "<f16>lb", "<cmd>ClaudeFzfBuffers<cr>", desc = "Claude: Add buffers" },
+      { "<f16>lgf", "<cmd>ClaudeFzfGitFiles<cr>", desc = "Claude: Add Git files" },
+      { "<f16>ld", "<cmd>ClaudeFzfDirectory<cr>", desc = "Claude: Add directory files" },
     },
   },
   {
