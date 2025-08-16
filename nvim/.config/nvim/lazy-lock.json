@@ -151,6 +151,7 @@
   "project-cli-commands.nvim": { "branch": "main", "commit": "9a2a2fdfd38a3d71cc927e3a398ac0ddfa846b3d" },
   "project.nvim": { "branch": "main", "commit": "8c6bad7d22eef1b71144b401c9f74ed01526a4fb" },
   "project_notes": { "branch": "main", "commit": "53eab5041bd8c7021c699f7fdf93b6dd3708a3b3" },
+  "prompt-tower.nvim": { "branch": "main", "commit": "73f111562fe0a2d3abf756a4f18a556a84367938" },
   "qalc.nvim": { "branch": "main", "commit": "7697cff543b7089c858f3b26a013c1eb52fe86fa" },
   "quicker.nvim": { "branch": "master", "commit": "51d3926f183c2d98fbc237cc237ae0926839af3a" },
   "recall.nvim": { "branch": "snacks-picker", "commit": "9572804748bbf5a14c1a88061cd732551d66b36d" },

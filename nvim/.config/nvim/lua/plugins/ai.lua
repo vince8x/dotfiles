@@ -174,32 +174,32 @@ return {
       { "<f16>lad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
     },
   },
-  {
-    "pittcat/claude-fzf.nvim",
-    dependencies = {
-      "ibhagwan/fzf-lua",
-      "coder/claudecode.nvim",
-    },
-    opts = {
-      auto_context = true,
-      batch_size = 10,
-    },
-    cmd = {
-      "ClaudeFzf",
-      "ClaudeFzfFiles",
-      "ClaudeFzfGrep",
-      "ClaudeFzfBuffers",
-      "ClaudeFzfGitFiles",
-      "ClaudeFzfDirectory",
-    },
-    keys = {
-      { "<f16>lf", "<cmd>ClaudeFzfFiles<cr>", desc = "Claude: Add files" },
-      { "<f16>lg", "<cmd>ClaudeFzfGrep<cr>", desc = "Claude: Search and add" },
-      { "<f16>lb", "<cmd>ClaudeFzfBuffers<cr>", desc = "Claude: Add buffers" },
-      { "<f16>lgf", "<cmd>ClaudeFzfGitFiles<cr>", desc = "Claude: Add Git files" },
-      { "<f16>ld", "<cmd>ClaudeFzfDirectory<cr>", desc = "Claude: Add directory files" },
-    },
-  },
+  -- {
+  --   "pittcat/claude-fzf.nvim",
+  --   dependencies = {
+  --     "ibhagwan/fzf-lua",
+  --     "coder/claudecode.nvim",
+  --   },
+  --   opts = {
+  --     auto_context = true,
+  --     batch_size = 10,
+  --   },
+  --   cmd = {
+  --     "ClaudeFzf",
+  --     "ClaudeFzfFiles",
+  --     "ClaudeFzfGrep",
+  --     "ClaudeFzfBuffers",
+  --     "ClaudeFzfGitFiles",
+  --     "ClaudeFzfDirectory",
+  --   },
+  --   keys = {
+  --     { "<f16>lf", "<cmd>ClaudeFzfFiles<cr>", desc = "Claude: Add files" },
+  --     { "<f16>lg", "<cmd>ClaudeFzfGrep<cr>", desc = "Claude: Search and add" },
+  --     { "<f16>lb", "<cmd>ClaudeFzfBuffers<cr>", desc = "Claude: Add buffers" },
+  --     { "<f16>lgf", "<cmd>ClaudeFzfGitFiles<cr>", desc = "Claude: Add Git files" },
+  --     { "<f16>ld", "<cmd>ClaudeFzfDirectory<cr>", desc = "Claude: Add directory files" },
+  --   },
+  -- },
   {
     "johnseth97/codex.nvim",
     lazy = true,

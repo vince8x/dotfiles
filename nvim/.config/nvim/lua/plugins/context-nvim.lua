@@ -374,4 +374,18 @@ return {
   {
     "banjo/contextfiles.nvim",
   },
+  {
+    "kylesnowschwartz/prompt-tower.nvim",
+    cmd = { "PromptTower" },
+    config = function()
+      require("prompt-tower").setup({
+        output_format = {
+          default_format = "markdown", -- Options: 'xml', 'markdown', 'minimal'
+        },
+      })
+    end,
+    keys = {
+      { "<f16>pt", "<cmd>PromptTower<cr>", desc = "Open Prompt Tower" },
+    },
+  },
 }
